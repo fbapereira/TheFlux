@@ -18,8 +18,8 @@ namespace u2x.TheFlux.dao
         public tf_instituicao()
         {
             this.tf_pagamento = new HashSet<tf_pagamento>();
+            this.tf_tipo_pagamento = new HashSet<tf_tipo_pagamento>();
             this.tf_usuario = new HashSet<tf_usuario>();
-            this.tf_tipo_movimentacao = new HashSet<tf_tipo_movimentacao>();
         }
     
         public int id { get; set; }
@@ -28,8 +28,8 @@ namespace u2x.TheFlux.dao
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tf_pagamento> tf_pagamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tf_usuario> tf_usuario { get; set; }
+        public virtual ICollection<tf_tipo_pagamento> tf_tipo_pagamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tf_tipo_movimentacao> tf_tipo_movimentacao { get; set; }
+        public virtual ICollection<tf_usuario> tf_usuario { get; set; }
     }
 }

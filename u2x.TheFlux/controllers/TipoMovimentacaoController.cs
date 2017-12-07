@@ -12,9 +12,10 @@ namespace u2x.TheFlux.controllers
     public class TipoMovimentacaoController : ApiController
     {
         [HttpPost]
-        public void post([FromBody]TipoMovimentacao value)
+        public Boolean post([FromBody]TipoMovimentacao value)
         {
             new TipoMovimentacao().Add(value.descricao, value.id_instituicao);
+            return true;
         }
 
         [HttpGet]
@@ -25,7 +26,7 @@ namespace u2x.TheFlux.controllers
 
         [HttpGet]
         [Route("AlteraStatus/{arg1}/{arg2}")]
-        public void Get(Int32 arg1, Int32 arg2)
+        public Boolean Get(Int32 arg1, Int32 arg2)
         {
             Int32 idTipo = arg1;
             Int32 isActive = arg2;
@@ -33,6 +34,8 @@ namespace u2x.TheFlux.controllers
                 new TipoMovimentacao().Active(idTipo);
             else
                 new TipoMovimentacao().Deactive(idTipo);
+
+            return true;
         }
 
 

@@ -27,6 +27,9 @@ namespace u2x.TheFlux
 
 
            });
+
+            RouteTable.Routes.MapHttpRoute(name: "ControllersApi", routeTemplate: "{controller}");
+
         }
 
         protected void Session_Start(object sender, EventArgs e)

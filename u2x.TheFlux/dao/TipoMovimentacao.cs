@@ -10,7 +10,7 @@ namespace u2x.TheFlux.dao
         public new Int32 id;
         public new String descricao;
 
-        private u2xMainEntities db = new u2xMainEntities();
+        private u2xMainEntities1 db = new u2xMainEntities1();
 
         public void Add(String descricao, Int32 idInstituicao)
         {
@@ -26,7 +26,7 @@ namespace u2x.TheFlux.dao
 
         public List<TipoMovimentacao> Get(Int32 idInstituicao)
         {
-            List<tf_tipo_movimentacao> temp = db.tf_tipo_movimentacao.Where(x => (x.id_instituicao == idInstituicao && !(bool)x.is_canceled)).ToList();
+            List<tf_tipo_movimentacao> temp = db.tf_tipo_movimentacao.Where(x => (x.id_instituicao == idInstituicao)).ToList();
             if (temp.Count == 0) { return null; }
 
             List<TipoMovimentacao> lst = new List<TipoMovimentacao>();
@@ -67,7 +67,8 @@ namespace u2x.TheFlux.dao
             return new TipoMovimentacao()
             {
                 id = obj.id,
-                descricao = obj.descricao
+                descricao = obj.descricao,
+                is_canceled = obj.is_canceled
             };
         }
     }

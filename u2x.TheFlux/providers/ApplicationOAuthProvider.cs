@@ -20,7 +20,7 @@ namespace U2X.TheFlux
 
         public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext c)
         {
-            u2xMainEntities db = new u2xMainEntities();
+            u2xMainEntities1 db = new u2xMainEntities1();
             tf_usuario oUsuario = (tf_usuario)db.tf_usuario.Where(
                     usuario => usuario.login == c.UserName && usuario.senha == c.Password).FirstOrDefault();
 

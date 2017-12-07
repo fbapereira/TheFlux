@@ -22,7 +22,8 @@
           <Property Name="is_entrada" Type="bit" Nullable="false" />
           <Property Name="descricao" Type="varchar(max)" Nullable="false" />
           <Property Name="valor" Type="float" Nullable="false" />
-          <Property Name="data" Type="date" Nullable="false" />
+          <Property Name="data" Type="datetime" Nullable="false" />
+          <Property Name="id_tipo_pagamento" Type="int" />
         </EntityType>
         <EntityType Name="tf_pagamento">
           <Key>
@@ -43,6 +44,16 @@
           <Property Name="id_instituicao" Type="int" Nullable="false" />
           <Property Name="is_canceled" Type="bit" />
         </EntityType>
+        <EntityType Name="tf_tipo_pagamento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_instituicao" Type="int" />
+          <Property Name="nome" Type="varchar" MaxLength="50" />
+          <Property Name="cobranca_juros" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="is_ativo" Type="bit" />
+        </EntityType>
         <EntityType Name="tf_usuario">
           <Key>
             <PropertyRef Name="id" />
@@ -62,6 +73,18 @@
             </Principal>
             <Dependent Role="tf_movimentacao">
               <PropertyRef Name="id_tipo_movimentacao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tf_movimentacao_tf_tipo_pagamento">
+          <End Role="tf_tipo_pagamento" Type="Self.tf_tipo_pagamento" Multiplicity="0..1" />
+          <End Role="tf_movimentacao" Type="Self.tf_movimentacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tf_tipo_pagamento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tf_movimentacao">
+              <PropertyRef Name="id_tipo_pagamento" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -89,6 +112,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tf_tipo_pagamento_tf_instituicao">
+          <End Role="tf_instituicao" Type="Self.tf_instituicao" Multiplicity="0..1" />
+          <End Role="tf_tipo_pagamento" Type="Self.tf_tipo_pagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tf_instituicao">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tf_tipo_pagamento">
+              <PropertyRef Name="id_instituicao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tf_usuario_tf_instituicao">
           <End Role="tf_instituicao" Type="Self.tf_instituicao" Multiplicity="1" />
           <End Role="tf_usuario" Type="Self.tf_usuario" Multiplicity="*" />
@@ -106,9 +141,14 @@
           <EntitySet Name="tf_movimentacao" EntityType="Self.tf_movimentacao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_pagamento" EntityType="Self.tf_pagamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_tipo_movimentacao" EntityType="Self.tf_tipo_movimentacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tf_tipo_pagamento" EntityType="Self.tf_tipo_pagamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_usuario" EntityType="Self.tf_usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_tf_movimentacao_tf_tipo_movimentacao" Association="Self.FK_tf_movimentacao_tf_tipo_movimentacao">
             <End Role="tf_tipo_movimentacao" EntitySet="tf_tipo_movimentacao" />
+            <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tf_movimentacao_tf_tipo_pagamento" Association="Self.FK_tf_movimentacao_tf_tipo_pagamento">
+            <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
             <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />
           </AssociationSet>
           <AssociationSet Name="FK_tf_movimentacao_tf_usuario" Association="Self.FK_tf_movimentacao_tf_usuario">
@@ -118,6 +158,10 @@
           <AssociationSet Name="FK_tf_pagamento_tf_instituicao" Association="Self.FK_tf_pagamento_tf_instituicao">
             <End Role="tf_instituicao" EntitySet="tf_instituicao" />
             <End Role="tf_pagamento" EntitySet="tf_pagamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tf_tipo_pagamento_tf_instituicao" Association="Self.FK_tf_tipo_pagamento_tf_instituicao">
+            <End Role="tf_instituicao" EntitySet="tf_instituicao" />
+            <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
           </AssociationSet>
           <AssociationSet Name="FK_tf_usuario_tf_instituicao" Association="Self.FK_tf_usuario_tf_instituicao">
             <End Role="tf_instituicao" EntitySet="tf_instituicao" />
@@ -135,8 +179,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nome" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tf_pagamento" Relationship="Self.FK_tf_pagamento_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_pagamento" />
+          <NavigationProperty Name="tf_tipo_pagamento" Relationship="Self.FK_tf_tipo_pagamento_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_tipo_pagamento" />
           <NavigationProperty Name="tf_usuario" Relationship="Self.FK_tf_usuario_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_usuario" />
-          <NavigationProperty Name="tf_tipo_movimentacao" Relationship="u2xMainModel.FK_s" FromRole="tf_instituicao" ToRole="tf_tipo_movimentacao" />
         </EntityType>
         <EntityType Name="tf_movimentacao">
           <Key>
@@ -148,8 +192,10 @@
           <Property Name="is_entrada" Type="Boolean" Nullable="false" />
           <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="valor" Type="Double" Nullable="false" />
-          <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_tipo_pagamento" Type="Int32" />
           <NavigationProperty Name="tf_tipo_movimentacao" Relationship="Self.FK_tf_movimentacao_tf_tipo_movimentacao" FromRole="tf_movimentacao" ToRole="tf_tipo_movimentacao" />
+          <NavigationProperty Name="tf_tipo_pagamento" Relationship="Self.FK_tf_movimentacao_tf_tipo_pagamento" FromRole="tf_movimentacao" ToRole="tf_tipo_pagamento" />
           <NavigationProperty Name="tf_usuario" Relationship="Self.FK_tf_movimentacao_tf_usuario" FromRole="tf_movimentacao" ToRole="tf_usuario" />
         </EntityType>
         <EntityType Name="tf_pagamento">
@@ -169,10 +215,21 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descricao" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tf_movimentacao" Relationship="Self.FK_tf_movimentacao_tf_tipo_movimentacao" FromRole="tf_tipo_movimentacao" ToRole="tf_movimentacao" />
           <Property Name="id_instituicao" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_s" FromRole="tf_tipo_movimentacao" ToRole="tf_instituicao" />
           <Property Name="is_canceled" Type="Boolean" />
+          <NavigationProperty Name="tf_movimentacao" Relationship="Self.FK_tf_movimentacao_tf_tipo_movimentacao" FromRole="tf_tipo_movimentacao" ToRole="tf_movimentacao" />
+        </EntityType>
+        <EntityType Name="tf_tipo_pagamento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_instituicao" Type="Int32" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cobranca_juros" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="tf_instituicao" Relationship="Self.FK_tf_tipo_pagamento_tf_instituicao" FromRole="tf_tipo_pagamento" ToRole="tf_instituicao" />
+          <NavigationProperty Name="tf_movimentacao" Relationship="Self.FK_tf_movimentacao_tf_tipo_pagamento" FromRole="tf_tipo_pagamento" ToRole="tf_movimentacao" />
+          <Property Name="is_ativo" Type="Boolean" />
         </EntityType>
         <EntityType Name="tf_usuario">
           <Key>
@@ -198,6 +255,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tf_tipo_pagamento_tf_instituicao">
+          <End Role="tf_instituicao" Type="Self.tf_instituicao" Multiplicity="0..1" />
+          <End Role="tf_tipo_pagamento" Type="Self.tf_tipo_pagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tf_instituicao">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tf_tipo_pagamento">
+              <PropertyRef Name="id_instituicao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tf_usuario_tf_instituicao">
           <End Role="tf_instituicao" Type="Self.tf_instituicao" Multiplicity="1" />
           <End Role="tf_usuario" Type="Self.tf_usuario" Multiplicity="*" />
@@ -222,6 +291,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tf_movimentacao_tf_tipo_pagamento">
+          <End Role="tf_tipo_pagamento" Type="Self.tf_tipo_pagamento" Multiplicity="0..1" />
+          <End Role="tf_movimentacao" Type="Self.tf_movimentacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tf_tipo_pagamento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tf_movimentacao">
+              <PropertyRef Name="id_tipo_pagamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tf_movimentacao_tf_usuario">
           <End Role="tf_usuario" Type="Self.tf_usuario" Multiplicity="1" />
           <End Role="tf_movimentacao" Type="Self.tf_movimentacao" Multiplicity="*" />
@@ -234,15 +315,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="u2xMainEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="u2xMainEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tf_instituicao" EntityType="Self.tf_instituicao" />
           <EntitySet Name="tf_movimentacao" EntityType="Self.tf_movimentacao" />
           <EntitySet Name="tf_pagamento" EntityType="Self.tf_pagamento" />
           <EntitySet Name="tf_tipo_movimentacao" EntityType="Self.tf_tipo_movimentacao" />
+          <EntitySet Name="tf_tipo_pagamento" EntityType="Self.tf_tipo_pagamento" />
           <EntitySet Name="tf_usuario" EntityType="Self.tf_usuario" />
           <AssociationSet Name="FK_tf_pagamento_tf_instituicao" Association="Self.FK_tf_pagamento_tf_instituicao">
             <End Role="tf_instituicao" EntitySet="tf_instituicao" />
             <End Role="tf_pagamento" EntitySet="tf_pagamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tf_tipo_pagamento_tf_instituicao" Association="Self.FK_tf_tipo_pagamento_tf_instituicao">
+            <End Role="tf_instituicao" EntitySet="tf_instituicao" />
+            <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
           </AssociationSet>
           <AssociationSet Name="FK_tf_usuario_tf_instituicao" Association="Self.FK_tf_usuario_tf_instituicao">
             <End Role="tf_instituicao" EntitySet="tf_instituicao" />
@@ -252,33 +338,21 @@
             <End Role="tf_tipo_movimentacao" EntitySet="tf_tipo_movimentacao" />
             <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />
           </AssociationSet>
+          <AssociationSet Name="FK_tf_movimentacao_tf_tipo_pagamento" Association="Self.FK_tf_movimentacao_tf_tipo_pagamento">
+            <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
+            <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />
+          </AssociationSet>
           <AssociationSet Name="FK_tf_movimentacao_tf_usuario" Association="Self.FK_tf_movimentacao_tf_usuario">
             <End Role="tf_usuario" EntitySet="tf_usuario" />
             <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />
           </AssociationSet>
-          <AssociationSet Name="FK_s" Association="u2xMainModel.FK_s">
-            <End Role="tf_instituicao" EntitySet="tf_instituicao" />
-            <End Role="tf_tipo_movimentacao" EntitySet="tf_tipo_movimentacao" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_s">
-          <End Type="u2xMainModel.tf_instituicao" Role="tf_instituicao" Multiplicity="1" />
-          <End Type="u2xMainModel.tf_tipo_movimentacao" Role="tf_tipo_movimentacao" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tf_instituicao">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="tf_tipo_movimentacao">
-              <PropertyRef Name="id_instituicao" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="u2xMainModelStoreContainer" CdmEntityContainer="u2xMainEntities">
+        <EntityContainerMapping StorageEntityContainer="u2xMainModelStoreContainer" CdmEntityContainer="u2xMainEntities1">
           <EntitySetMapping Name="tf_instituicao">
             <EntityTypeMapping TypeName="u2xMainModel.tf_instituicao">
               <MappingFragment StoreEntitySet="tf_instituicao">
@@ -297,6 +371,7 @@
                 <ScalarProperty Name="descricao" ColumnName="descricao" />
                 <ScalarProperty Name="valor" ColumnName="valor" />
                 <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -314,10 +389,21 @@
           <EntitySetMapping Name="tf_tipo_movimentacao">
             <EntityTypeMapping TypeName="u2xMainModel.tf_tipo_movimentacao">
               <MappingFragment StoreEntitySet="tf_tipo_movimentacao">
-                <ScalarProperty Name="is_canceled" ColumnName="is_canceled" />
-                <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
+                <ScalarProperty Name="is_canceled" ColumnName="is_canceled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tf_tipo_pagamento">
+            <EntityTypeMapping TypeName="u2xMainModel.tf_tipo_pagamento">
+              <MappingFragment StoreEntitySet="tf_tipo_pagamento">
+                <ScalarProperty Name="is_ativo" ColumnName="is_ativo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cobranca_juros" ColumnName="cobranca_juros" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

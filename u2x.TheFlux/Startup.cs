@@ -3,6 +3,7 @@ using Microsoft.Owin;
 using Owin;
 using Microsoft.Owin.Security.OAuth;
 using U2X.TheFlux;
+using Microsoft.Owin.Cors;
 
 [assembly: OwinStartup(typeof(U2X.TheFlux.Startup))]
 namespace U2X.TheFlux
@@ -27,6 +28,9 @@ namespace U2X.TheFlux
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 AllowInsecureHttp = true
             });
+                   
+
+            app.UseCors(CorsOptions.AllowAll);
         }
     }
 }

@@ -9,21 +9,23 @@ namespace u2x.TheFlux.dao
     {
         public new Int32 id;
         public Int32 idTipoMovimentacao;
+        public Int32 idTipoPagamento;
         public Int32 idUsuario;
         public Boolean isEntrada;
         public new String descricao;
         public new double valor;
         public new DateTime data;
 
-        private u2xMainEntities db = new u2xMainEntities();
+        private u2xMainEntities1 db = new u2xMainEntities1();
 
-        public void Add(Int32 idTipoMovimentacao, Int32 idUsuario, Boolean isEntrada, String descricao, double valor)
+        public void Add(Int32 idTipoMovimentacao, Int32 idTipoPagamento, Int32 idUsuario, Boolean isEntrada, String descricao, double valor, DateTime data)
         {
             tf_movimentacao movimentacao = new tf_movimentacao()
             {
-                data = DateTime.Now,
+                data = data,
                 descricao = descricao,
                 id_tipo_movimentacao = idTipoMovimentacao,
+                id_tipo_pagamento = idTipoPagamento,
                 id_usuario = idUsuario,
                 is_entrada = isEntrada,
                 valor = valor,
@@ -97,6 +99,7 @@ namespace u2x.TheFlux.dao
                 data = obj.data,
                 descricao = obj.descricao,
                 idTipoMovimentacao = obj.id_tipo_movimentacao,
+                idTipoPagamento = (Int32)obj.id_tipo_pagamento,
                 idUsuario = obj.id_usuario,
                 isEntrada = obj.is_entrada,
                 valor = obj.valor,

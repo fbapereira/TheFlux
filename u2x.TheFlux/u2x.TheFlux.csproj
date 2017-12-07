@@ -103,8 +103,9 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -375,8 +376,8 @@
   <ItemGroup>
     <Content Include="dao\dao.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>dao.Context.cs</LastGenOutput>
       <DependentUpon>dao.edmx</DependentUpon>
+      <LastGenOutput>dao.Context.cs</LastGenOutput>
     </Content>
     <Content Include="dao\dao.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -394,6 +395,9 @@
     <Content Include="fonts\roboto\Roboto-Regular.woff2" />
     <Content Include="fonts\roboto\Roboto-Thin.woff" />
     <Content Include="fonts\roboto\Roboto-Thin.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <EntityDeploy Include="dao\dao.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>dao.Designer.cs</LastGenOutput>
@@ -401,10 +405,8 @@
     <Content Include="dao\dao.edmx.diagram">
       <DependentUpon>dao.edmx</DependentUpon>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -424,16 +426,23 @@
     <Content Include="js\materialize.js" />
     <Content Include="js\materialize.min.js" />
     <Content Include="report.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controllers\AdicionarTipoPagamentoController.cs" />
+    <Compile Include="controllers\MovimentacaoPessoal_ObtemController.cs" />
+    <Compile Include="controllers\TipoPagamento_ObtemController.cs" />
+    <Compile Include="controllers\TipoPagamento_AlterarController.cs" />
+    <Compile Include="controllers\TipoPagamento_AdicionarController.cs" />
     <Compile Include="controllers\InstituicaoController.cs" />
     <Compile Include="controllers\LoginController.cs" />
     <Compile Include="controllers\MovimentacaoInstitucionalController.cs" />
     <Compile Include="controllers\RemoveMovimentacaoPessoalController.cs" />
-    <Compile Include="controllers\MovimentacaoPessoalController.cs" />
+    <Compile Include="controllers\MovimentacaoPessoal_AdicionarController.cs" />
     <Compile Include="controllers\TipoMovimentacaoController.cs" />
-    <Compile Include="controllers\SenhaController.cs" />
+    <Compile Include="controllers\UsuarioAtualizaController.cs" />
     <Compile Include="controllers\UsuarioController.cs" />
     <Compile Include="dao\dao.Context.cs">
       <AutoGen>True</AutoGen>
@@ -464,9 +473,13 @@
     <Compile Include="dao\tf_tipo_movimentacao.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
+    <Compile Include="dao\tf_tipo_pagamento.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
     <Compile Include="dao\tf_usuario.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
+    <Compile Include="dao\TipoPagamento.cs" />
     <Compile Include="dao\TipoMovimentacao.cs" />
     <Compile Include="dao\Usuario.cs" />
     <Compile Include="Global.asax.cs">

@@ -12,9 +12,10 @@ namespace u2x.TheFlux.controllers
     public class UsuarioController : ApiController
     {
         // POST api/<controller>
-        public void Post([FromBody]Usuario value)
+        public bool Post([FromBody]Usuario value)
         {
             new Usuario().Add(value.login, value.senha, value.isAdmin, value.id_instituicao);
+            return true;
         }
 
         // POST api/<controller>

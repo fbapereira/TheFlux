@@ -12,7 +12,7 @@ namespace u2x.TheFlux.dao
         public new String senha;
         public new Boolean isAdmin;
 
-        private u2xMainEntities db = new u2xMainEntities();
+        private u2xMainEntities1 db = new u2xMainEntities1();
 
         public void Add(String login, String senha, Boolean isAdmin, Int32 idInstituicao)
         {

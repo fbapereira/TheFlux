@@ -10,7 +10,7 @@ namespace u2x.TheFlux.dao
         public new Int32 id;
         public new String nome;
 
-        private u2xMainEntities db = new u2xMainEntities();
+        private u2xMainEntities1 db = new u2xMainEntities1();
 
         public void Add(String nome)
         {

@@ -13,10 +13,10 @@ namespace u2x.TheFlux.dao
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class u2xMainEntities : DbContext
+    public partial class u2xMainEntities1 : DbContext
     {
-        public u2xMainEntities()
-            : base("name=u2xMainEntities")
+        public u2xMainEntities1()
+            : base("name=u2xMainEntities1")
         {
         }
     
@@ -29,6 +29,7 @@ namespace u2x.TheFlux.dao
         public virtual DbSet<tf_movimentacao> tf_movimentacao { get; set; }
         public virtual DbSet<tf_pagamento> tf_pagamento { get; set; }
         public virtual DbSet<tf_tipo_movimentacao> tf_tipo_movimentacao { get; set; }
+        public virtual DbSet<tf_tipo_pagamento> tf_tipo_pagamento { get; set; }
         public virtual DbSet<tf_usuario> tf_usuario { get; set; }
     }
 }
