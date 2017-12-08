@@ -405,8 +405,13 @@
     <Content Include="dao\dao.edmx.diagram">
       <DependentUpon>dao.edmx</DependentUpon>
     </Content>
+    <Content Include="inline.bundle.js.map" />
+    <Content Include="main.bundle.js.map" />
     <None Include="packages.config" />
+    <Content Include="polyfills.bundle.js.map" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="styles.bundle.js.map" />
+    <Content Include="vendor.bundle.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -415,30 +420,27 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="add.html" />
-    <Content Include="AlterarSenha.html" />
-    <Content Include="css\materialize.css" />
-    <Content Include="css\materialize.min.css" />
-    <Content Include="dashboard.html" />
     <Content Include="Global.asax" />
-    <Content Include="historico.html" />
     <Content Include="index.html" />
-    <Content Include="js\materialize.js" />
-    <Content Include="js\materialize.min.js" />
-    <Content Include="report.html" />
+    <Content Include="inline.bundle.js" />
+    <Content Include="main.bundle.js" />
+    <Content Include="polyfills.bundle.js" />
+    <Content Include="styles.bundle.js" />
+    <Content Include="vendor.bundle.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controllers\AdicionarTipoPagamentoController.cs" />
+    <Compile Include="controllers\Movimentacao_DeletarController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_ObtemController.cs" />
     <Compile Include="controllers\TipoPagamento_ObtemController.cs" />
     <Compile Include="controllers\TipoPagamento_AlterarController.cs" />
     <Compile Include="controllers\TipoPagamento_AdicionarController.cs" />
     <Compile Include="controllers\InstituicaoController.cs" />
     <Compile Include="controllers\LoginController.cs" />
-    <Compile Include="controllers\MovimentacaoInstitucionalController.cs" />
+    <Compile Include="controllers\MovimentacaoInstitucional_ObtemController.cs" />
     <Compile Include="controllers\RemoveMovimentacaoPessoalController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_AdicionarController.cs" />
     <Compile Include="controllers\TipoMovimentacaoController.cs" />

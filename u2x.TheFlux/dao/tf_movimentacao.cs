@@ -22,6 +22,7 @@ namespace u2x.TheFlux.dao
         public double valor { get; set; }
         public System.DateTime data { get; set; }
         public Nullable<int> id_tipo_pagamento { get; set; }
+        public Nullable<bool> is_canceled { get; set; }
     
         public virtual tf_tipo_movimentacao tf_tipo_movimentacao { get; set; }
         public virtual tf_tipo_pagamento tf_tipo_pagamento { get; set; }

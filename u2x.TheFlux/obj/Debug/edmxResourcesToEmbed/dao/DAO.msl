@@ -12,6 +12,7 @@
     <EntitySetMapping Name="tf_movimentacao">
       <EntityTypeMapping TypeName="u2xMainModel.tf_movimentacao">
         <MappingFragment StoreEntitySet="tf_movimentacao">
+          <ScalarProperty Name="is_canceled" ColumnName="is_canceled" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
           <ScalarProperty Name="id_tipo_movimentacao" ColumnName="id_tipo_movimentacao" />

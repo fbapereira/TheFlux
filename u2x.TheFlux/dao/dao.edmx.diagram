@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="5c64cdbc970a4e65bef7cf36eab19959" Name="Diagram1">
         <EntityTypeShape EntityType="u2xMainModel.tf_instituicao" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="u2xMainModel.tf_movimentacao" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_movimentacao" Width="2.25" PointX="5.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="u2xMainModel.tf_pagamento" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="u2xMainModel.tf_tipo_movimentacao" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="u2xMainModel.tf_tipo_pagamento" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />

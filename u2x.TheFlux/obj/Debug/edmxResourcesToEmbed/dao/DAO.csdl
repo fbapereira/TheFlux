@@ -25,6 +25,7 @@
     <NavigationProperty Name="tf_tipo_movimentacao" Relationship="Self.FK_tf_movimentacao_tf_tipo_movimentacao" FromRole="tf_movimentacao" ToRole="tf_tipo_movimentacao" />
     <NavigationProperty Name="tf_tipo_pagamento" Relationship="Self.FK_tf_movimentacao_tf_tipo_pagamento" FromRole="tf_movimentacao" ToRole="tf_tipo_pagamento" />
     <NavigationProperty Name="tf_usuario" Relationship="Self.FK_tf_movimentacao_tf_usuario" FromRole="tf_movimentacao" ToRole="tf_usuario" />
+    <Property Name="is_canceled" Type="Boolean" />
   </EntityType>
   <EntityType Name="tf_pagamento">
     <Key>
@@ -54,7 +55,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_instituicao" Type="Int32" />
     <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="cobranca_juros" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="cobranca_juros" Type="Decimal" Precision="10" Scale="5" />
     <NavigationProperty Name="tf_instituicao" Relationship="Self.FK_tf_tipo_pagamento_tf_instituicao" FromRole="tf_tipo_pagamento" ToRole="tf_instituicao" />
     <NavigationProperty Name="tf_movimentacao" Relationship="Self.FK_tf_movimentacao_tf_tipo_pagamento" FromRole="tf_tipo_pagamento" ToRole="tf_movimentacao" />
     <Property Name="is_ativo" Type="Boolean" />

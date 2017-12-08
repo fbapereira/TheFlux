@@ -24,6 +24,7 @@
           <Property Name="valor" Type="float" Nullable="false" />
           <Property Name="data" Type="datetime" Nullable="false" />
           <Property Name="id_tipo_pagamento" Type="int" />
+          <Property Name="is_canceled" Type="bit" />
         </EntityType>
         <EntityType Name="tf_pagamento">
           <Key>
@@ -51,7 +52,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_instituicao" Type="int" />
           <Property Name="nome" Type="varchar" MaxLength="50" />
-          <Property Name="cobranca_juros" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cobranca_juros" Type="decimal" Precision="10" Scale="5" />
           <Property Name="is_ativo" Type="bit" />
         </EntityType>
         <EntityType Name="tf_usuario">
@@ -197,6 +198,7 @@
           <NavigationProperty Name="tf_tipo_movimentacao" Relationship="Self.FK_tf_movimentacao_tf_tipo_movimentacao" FromRole="tf_movimentacao" ToRole="tf_tipo_movimentacao" />
           <NavigationProperty Name="tf_tipo_pagamento" Relationship="Self.FK_tf_movimentacao_tf_tipo_pagamento" FromRole="tf_movimentacao" ToRole="tf_tipo_pagamento" />
           <NavigationProperty Name="tf_usuario" Relationship="Self.FK_tf_movimentacao_tf_usuario" FromRole="tf_movimentacao" ToRole="tf_usuario" />
+          <Property Name="is_canceled" Type="Boolean" />
         </EntityType>
         <EntityType Name="tf_pagamento">
           <Key>
@@ -226,7 +228,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_instituicao" Type="Int32" />
           <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cobranca_juros" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cobranca_juros" Type="Decimal" Precision="10" Scale="5" />
           <NavigationProperty Name="tf_instituicao" Relationship="Self.FK_tf_tipo_pagamento_tf_instituicao" FromRole="tf_tipo_pagamento" ToRole="tf_instituicao" />
           <NavigationProperty Name="tf_movimentacao" Relationship="Self.FK_tf_movimentacao_tf_tipo_pagamento" FromRole="tf_tipo_pagamento" ToRole="tf_movimentacao" />
           <Property Name="is_ativo" Type="Boolean" />
@@ -364,6 +366,7 @@
           <EntitySetMapping Name="tf_movimentacao">
             <EntityTypeMapping TypeName="u2xMainModel.tf_movimentacao">
               <MappingFragment StoreEntitySet="tf_movimentacao">
+                <ScalarProperty Name="is_canceled" ColumnName="is_canceled" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="id_tipo_movimentacao" ColumnName="id_tipo_movimentacao" />
