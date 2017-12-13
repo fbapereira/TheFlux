@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>The Flux</title>
+    <link rel="shortcut icon" type="image/png" href="/App_Page/favicon.png" />
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <style>
+        .modalLoader {
+            background: transparent;
+            box-shadow: 0 0px 0px 0px;
+            top: 20%;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+    <div ng-include="'controllers/menu.html'"></div>
+    <div ng-view></div>
+
+    <div id="modalLoader" class="modal modalLoader">
+        <div class="modal-content center">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Carregando</p>
+        </div>
+    </div>
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/u2x.functions.js"></script>
+
+    <script src="js/init.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="controllers/login.js"></script>
+    <script src="controllers/menu.js"></script>
+    <script src="controllers/dashboard.js"></script>
+    <script src="controllers/usuario.js"></script>
+    <script src="controllers/add_usuario.js"></script>
+    <script src="controllers/add_movimentacao.js"></script>
+    <script src="controllers/historico.js"></script>
+</body>
+</html>

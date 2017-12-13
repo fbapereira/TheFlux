@@ -374,6 +374,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Page\controllers\add_movimentacao.html" />
+    <Content Include="App_Page\controllers\add_movimentacao.js" />
+    <Content Include="App_Page\controllers\add_usuario.html" />
+    <Content Include="App_Page\controllers\add_usuario.js" />
+    <Content Include="App_Page\controllers\dashboard.html" />
+    <Content Include="App_Page\controllers\dashboard.js" />
+    <Content Include="App_Page\controllers\historico.js" />
+    <Content Include="App_Page\controllers\historico.html" />
+    <Content Include="App_Page\controllers\login.html" />
+    <Content Include="App_Page\controllers\login.js" />
+    <Content Include="App_Page\controllers\menu.html" />
+    <Content Include="App_Page\controllers\menu.js" />
+    <Content Include="App_Page\controllers\movimentacao.js" />
+    <Content Include="App_Page\controllers\pagamento.html" />
+    <Content Include="App_Page\controllers\movimentacao.html" />
+    <Content Include="App_Page\controllers\pagamento.js" />
+    <Content Include="App_Page\controllers\usuario.js" />
+    <Content Include="App_Page\controllers\usuario.html" />
+    <Content Include="App_Page\css\materialize.css" />
+    <Content Include="App_Page\css\materialize.min.css" />
+    <Content Include="App_Page\css\style.css" />
+    <Content Include="App_Page\favicon.png" />
+    <Content Include="App_Page\index.html" />
+    <Content Include="App_Page\js\angular.min.js" />
+    <Content Include="App_Page\js\filter.js" />
+    <Content Include="App_Page\js\init.js" />
+    <Content Include="App_Page\js\materialize.js" />
+    <Content Include="App_Page\js\materialize.min.js" />
+    <Content Include="App_Page\js\moment.min.js" />
+    <Content Include="App_Page\js\u2x.functions.js" />
     <Content Include="dao\dao.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dao.edmx</DependentUpon>
@@ -384,20 +414,6 @@
       <DependentUpon>dao.edmx</DependentUpon>
       <LastGenOutput>dao.cs</LastGenOutput>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\roboto\Roboto-Bold.woff" />
-    <Content Include="fonts\roboto\Roboto-Bold.woff2" />
-    <Content Include="fonts\roboto\Roboto-Light.woff" />
-    <Content Include="fonts\roboto\Roboto-Light.woff2" />
-    <Content Include="fonts\roboto\Roboto-Medium.woff" />
-    <Content Include="fonts\roboto\Roboto-Medium.woff2" />
-    <Content Include="fonts\roboto\Roboto-Regular.woff" />
-    <Content Include="fonts\roboto\Roboto-Regular.woff2" />
-    <Content Include="fonts\roboto\Roboto-Thin.woff" />
-    <Content Include="fonts\roboto\Roboto-Thin.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <EntityDeploy Include="dao\dao.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>dao.Designer.cs</LastGenOutput>
@@ -405,13 +421,18 @@
     <Content Include="dao\dao.edmx.diagram">
       <DependentUpon>dao.edmx</DependentUpon>
     </Content>
-    <Content Include="inline.bundle.js.map" />
-    <Content Include="main.bundle.js.map" />
+    <Content Include="App_Page\fonts\roboto\Roboto-Bold.woff" />
+    <Content Include="App_Page\fonts\roboto\Roboto-Bold.woff2" />
+    <Content Include="App_Page\fonts\roboto\Roboto-Light.woff" />
+    <Content Include="App_Page\fonts\roboto\Roboto-Light.woff2" />
+    <Content Include="App_Page\fonts\roboto\Roboto-Medium.woff" />
+    <Content Include="App_Page\fonts\roboto\Roboto-Medium.woff2" />
+    <Content Include="App_Page\fonts\roboto\Roboto-Regular.woff" />
+    <Content Include="App_Page\fonts\roboto\Roboto-Regular.woff2" />
+    <Content Include="App_Page\fonts\roboto\Roboto-Thin.woff" />
+    <Content Include="App_Page\fonts\roboto\Roboto-Thin.woff2" />
     <None Include="packages.config" />
-    <Content Include="polyfills.bundle.js.map" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <Content Include="styles.bundle.js.map" />
-    <Content Include="vendor.bundle.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -421,12 +442,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
-    <Content Include="inline.bundle.js" />
-    <Content Include="main.bundle.js" />
-    <Content Include="polyfills.bundle.js" />
-    <Content Include="styles.bundle.js" />
-    <Content Include="vendor.bundle.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

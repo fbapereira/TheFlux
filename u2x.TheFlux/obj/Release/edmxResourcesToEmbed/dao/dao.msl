@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="u2xMainModelStoreContainer" CdmEntityContainer="u2xMainEntities">
+  <EntityContainerMapping StorageEntityContainer="u2xMainModelStoreContainer" CdmEntityContainer="u2xMainEntities1">
     <EntitySetMapping Name="tf_instituicao">
       <EntityTypeMapping TypeName="u2xMainModel.tf_instituicao">
         <MappingFragment StoreEntitySet="tf_instituicao">
@@ -12,6 +12,7 @@
     <EntitySetMapping Name="tf_movimentacao">
       <EntityTypeMapping TypeName="u2xMainModel.tf_movimentacao">
         <MappingFragment StoreEntitySet="tf_movimentacao">
+          <ScalarProperty Name="is_canceled" ColumnName="is_canceled" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
           <ScalarProperty Name="id_tipo_movimentacao" ColumnName="id_tipo_movimentacao" />
@@ -19,13 +20,13 @@
           <ScalarProperty Name="descricao" ColumnName="descricao" />
           <ScalarProperty Name="valor" ColumnName="valor" />
           <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tf_pagamento">
       <EntityTypeMapping TypeName="u2xMainModel.tf_pagamento">
         <MappingFragment StoreEntitySet="tf_pagamento">
-          <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
           <ScalarProperty Name="ano" ColumnName="ano" />
@@ -37,10 +38,21 @@
     <EntitySetMapping Name="tf_tipo_movimentacao">
       <EntityTypeMapping TypeName="u2xMainModel.tf_tipo_movimentacao">
         <MappingFragment StoreEntitySet="tf_tipo_movimentacao">
-          <ScalarProperty Name="is_canceled" ColumnName="is_canceled" />
-          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
+          <ScalarProperty Name="is_canceled" ColumnName="is_canceled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_tipo_pagamento">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_tipo_pagamento">
+        <MappingFragment StoreEntitySet="tf_tipo_pagamento">
+          <ScalarProperty Name="is_ativo" ColumnName="is_ativo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="cobranca_juros" ColumnName="cobranca_juros" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -52,16 +64,6 @@
           <ScalarProperty Name="login" ColumnName="login" />
           <ScalarProperty Name="senha" ColumnName="senha" />
           <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tf_tipo_pagamento">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_tipo_pagamento">
-        <MappingFragment StoreEntitySet="tf_tipo_pagamento">
-          <ScalarProperty Name="cobranca_juros" ColumnName="cobranca_juros" />
-          <ScalarProperty Name="nome" ColumnName="nome" />
-          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
-          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

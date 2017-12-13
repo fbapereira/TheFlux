@@ -1,0 +1,71 @@
+﻿<div ng-app="myApp" ng-controller="menuCtrl">
+
+    <nav class="purple darken-3" role="navigation" ng-if="!usuario">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo center">The Flux</a>
+        </div>
+    </nav>
+    <div class="navbar-fixed hide-on-small-only" ng-if="usuario">
+        <nav>
+            <div class="nav-wrapper purple darken-3">
+                <ul class="right">
+                    <li>
+                        <a href="#!/dashboard">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#!/historico">Histórico</a>
+                    </li>
+                    <li>
+                        <a href="#!/movimentacao" ng-if="usuario.isAdmin">Tipo de Movimentação</a>
+                    </li>
+                    <li>
+                        <a href="#!/pagamento" ng-if="usuario.isAdmin">Tipo de Pagamento</a>
+                    </li>
+                    <li>
+                        <a href="#!/usuario">Usuário</a>
+                    </li>
+                    <li>
+                        <a ng-click="LogOut()">{{usuario.name}}Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <nav class="hide-on-med-and-up purple darken-3" ng-if="usuario">
+        <div class="container">
+            <ul id="slide-out" class="side-nav fixed">
+                <li class="logo" style="text-align: center;">
+                    The Flux
+                </li>
+                <li class="no-padding">
+                    <ul>
+                        <li>
+                            <a href="#!/dashboard">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="#!/historico">Histórico</a>
+                        </li>
+
+                        <li>
+                            <a href="#!/movimentacao" ng-if="usuario.isAdmin">Tipo de Movimentação</a>
+                        </li>
+                        <li>
+                            <a href="#!/pagamento" ng-if="usuario.isAdmin">Tipo de Pagamento</a>
+                        </li>
+                        <li>
+                            <a href="#!/usuario">Usuário</a>
+                        </li>
+                        <li>
+                            <a ng-click="LogOut()">{{usuario.name}}Sair</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <a materialize="sideNav"  data-activates="slide-out" class="button-collapse">
+                <i class="material-icons ">menu</i>
+            </a>
+        </div>
+    </nav>
+
+</div>

@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0ef76d0e4c14466994553efffb7d7960" Name="Diagram1">
-        <EntityTypeShape EntityType="u2xMainModel.tf_instituicao" Width="1.5" PointX="0.5" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="u2xMainModel.tf_movimentacao" Width="2.375" PointX="3.875" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="u2xMainModel.tf_pagamento" Width="2.375" PointX="0.625" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="u2xMainModel.tf_tipo_movimentacao" Width="2.5" PointX="2.625" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="u2xMainModel.tf_usuario" Width="1.5" PointX="0.875" PointY="3.25" IsExpanded="true" />
+      <Diagram DiagramId="5c64cdbc970a4e65bef7cf36eab19959" Name="Diagram1">
+        <EntityTypeShape EntityType="u2xMainModel.tf_instituicao" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_movimentacao" Width="2.25" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_pagamento" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_tipo_movimentacao" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_tipo_pagamento" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_usuario" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
         <AssociationConnector Association="u2xMainModel.FK_tf_pagamento_tf_instituicao" ManuallyRouted="false" />
+        <AssociationConnector Association="u2xMainModel.FK_tf_tipo_pagamento_tf_instituicao" ManuallyRouted="false" />
         <AssociationConnector Association="u2xMainModel.FK_tf_usuario_tf_instituicao" ManuallyRouted="false" />
         <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_tipo_movimentacao" ManuallyRouted="false" />
+        <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_tipo_pagamento" ManuallyRouted="false" />
         <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_usuario" ManuallyRouted="false" />
-        <AssociationConnector Association="u2xMainModel.FK_s" />
-        <EntityTypeShape EntityType="u2xMainModel.tf_tipo_pagamento" Width="2.625" PointX="3.75" PointY="4" />
-        <AssociationConnector Association="u2xMainModel.FK_tf_tipo_pagamento_tf_instituicao" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
