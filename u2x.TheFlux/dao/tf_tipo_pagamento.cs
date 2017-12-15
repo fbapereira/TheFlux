@@ -26,8 +26,8 @@ namespace u2x.TheFlux.dao
         public Nullable<decimal> cobranca_juros { get; set; }
         public Nullable<bool> is_ativo { get; set; }
     
-        public virtual tf_instituicao tf_instituicao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tf_movimentacao> tf_movimentacao { get; set; }
+        public virtual tf_instituicao tf_instituicao { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+﻿<div ng-app="myApp" ng-controller="widgetEstrelaCtrl">
+    <div class="col l6 m12 s12">
+        <ul class="collection" ng-click="OpenAddEstrelas()">
+            <li class="collection-item avatar">
+                <i class="material-icons circle purple">star</i>
+                <p style="font-size: 80%;float:left;width:100%;font-weight: bolder;"> Você tem {{estrelas}} estrela(s)</p><br />
+                <p style="font-size: 80%;width:100%;">Convide seus amigos e ganhe 1 estrela para cada amigo que se cadastrar! <a style="color:purple">Click aqui para convidar</a> </p>
+            </li>
+
+        </ul>
+    </div>
+
+    <div id="mdlEstrela" class="modal" materialize="modal">
+        <div class="modal-content">
+            <h4>Indique um amigo</h4>
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    <input id="txtPassword" ng-model="email" placeholder="Email" class="validate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    <input id="txtPassword" ng-model="telefone" placeholder="telefone" class="validate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s10 offset-s1 offset-l1  l4">
+                    <a ng-click="CloseAddEstrela()" class="btn-large waves-effect waves-light purple lighten-4" style="width: 100%; margin-bottom:15px">
+                        Voltar
+                    </a>
+                </div>
+                <div class="col s10 offset-s1 offset-l2 l4">
+                    <a id="btn_entrar" ng-click="AddEstrela()" class="btn-large waves-effect waves-light purple darken-3" style="width: 100%">
+                        Cadastrar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

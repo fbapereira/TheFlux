@@ -1,11 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="u2xMainModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tf_estrelas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="telefone" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="is_processed" Type="bit" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="tf_instituicao">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nome" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="800" />
+    <Property Name="telefone" Type="varchar" MaxLength="20" />
+    <Property Name="documento" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tf_movimentacao">
     <Key>
@@ -60,6 +73,18 @@
     <Property Name="senha" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="isAdmin" Type="bit" />
   </EntityType>
+  <Association Name="FK_tf_estrelas_tf_usuario">
+    <End Role="tf_usuario" Type="Self.tf_usuario" Multiplicity="1" />
+    <End Role="tf_estrelas" Type="Self.tf_estrelas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_estrelas">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tf_movimentacao_tf_tipo_movimentacao">
     <End Role="tf_tipo_movimentacao" Type="Self.tf_tipo_movimentacao" Multiplicity="1" />
     <End Role="tf_movimentacao" Type="Self.tf_movimentacao" Multiplicity="*" />
@@ -133,12 +158,17 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="u2xMainModelStoreContainer">
+    <EntitySet Name="tf_estrelas" EntityType="Self.tf_estrelas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_instituicao" EntityType="Self.tf_instituicao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_movimentacao" EntityType="Self.tf_movimentacao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_pagamento" EntityType="Self.tf_pagamento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_tipo_movimentacao" EntityType="Self.tf_tipo_movimentacao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_tipo_pagamento" EntityType="Self.tf_tipo_pagamento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_usuario" EntityType="Self.tf_usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tf_estrelas_tf_usuario" Association="Self.FK_tf_estrelas_tf_usuario">
+      <End Role="tf_usuario" EntitySet="tf_usuario" />
+      <End Role="tf_estrelas" EntitySet="tf_estrelas" />
+    </AssociationSet>
     <AssociationSet Name="FK_tf_movimentacao_tf_tipo_movimentacao" Association="Self.FK_tf_movimentacao_tf_tipo_movimentacao">
       <End Role="tf_tipo_movimentacao" EntitySet="tf_tipo_movimentacao" />
       <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />

@@ -14,8 +14,16 @@ namespace u2x.TheFlux.dao
 
         private u2xMainEntities1 db = new u2xMainEntities1();
 
-        public void Add(String login, String senha, Boolean isAdmin, Int32 idInstituicao)
+        public bool Add(String login, String senha, Boolean isAdmin, Int32 idInstituicao)
         {
+            List<tf_usuario> lstUsuario;
+
+            lstUsuario = db.tf_usuario.Where(usu => (usu.login == login)).ToList<tf_usuario>();
+            if (lstUsuario != null && lstUsuario.Count > 0)
+            {
+                throw new Exception("U2X_MessageJá existe um usuário com esse login");
+            }
+
             tf_usuario temp = new tf_usuario()
             {
                 isAdmin = isAdmin,
@@ -25,6 +33,7 @@ namespace u2x.TheFlux.dao
             };
             db.tf_usuario.Add(temp);
             db.SaveChanges();
+            return true;
         }
 
         public Usuario Get(String login, String senha)

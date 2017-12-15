@@ -11,11 +11,12 @@ namespace u2x.TheFlux.dao
 
         public void Add(TipoPagamento tipoPagamento)
         {
+            if (tipoPagamento.cobranca_juros == null) { tipoPagamento.cobranca_juros = 0; }
             tf_tipo_pagamento temp = new tf_tipo_pagamento();
             temp.cobranca_juros = (decimal)tipoPagamento.cobranca_juros;
             temp.id_instituicao = tipoPagamento.id_instituicao;
             temp.is_ativo = tipoPagamento.is_ativo;
-            temp.nome= tipoPagamento.nome;
+            temp.nome = tipoPagamento.nome;
 
             db.tf_tipo_pagamento.Add(temp);
             db.SaveChanges();

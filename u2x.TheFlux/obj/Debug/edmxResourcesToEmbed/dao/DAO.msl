@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="u2xMainModelStoreContainer" CdmEntityContainer="u2xMainEntities1">
-    <EntitySetMapping Name="tf_instituicao">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_instituicao">
-        <MappingFragment StoreEntitySet="tf_instituicao">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nome" ColumnName="nome" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tf_movimentacao">
       <EntityTypeMapping TypeName="u2xMainModel.tf_movimentacao">
         <MappingFragment StoreEntitySet="tf_movimentacao">
@@ -64,6 +56,28 @@
           <ScalarProperty Name="login" ColumnName="login" />
           <ScalarProperty Name="senha" ColumnName="senha" />
           <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_instituicao">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_instituicao">
+        <MappingFragment StoreEntitySet="tf_instituicao">
+          <ScalarProperty Name="documento" ColumnName="documento" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_estrelas">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_estrelas">
+        <MappingFragment StoreEntitySet="tf_estrelas">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="is_processed" ColumnName="is_processed" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -19,10 +19,10 @@ namespace u2x.TheFlux.controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]Instituicao value)
-        {
-            new Instituicao().Add(value.nome);
-        }
+        //public void Post([FromBody]Instituicao value)
+        //{
+        //    new Instituicao().Add(value.nome);
+        //}
 
     }
 }

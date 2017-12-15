@@ -378,6 +378,8 @@
     <Content Include="App_Page\controllers\add_movimentacao.js" />
     <Content Include="App_Page\controllers\add_usuario.html" />
     <Content Include="App_Page\controllers\add_usuario.js" />
+    <Content Include="App_Page\controllers\cadastro.html" />
+    <Content Include="App_Page\controllers\cadastro.js" />
     <Content Include="App_Page\controllers\dashboard.html" />
     <Content Include="App_Page\controllers\dashboard.js" />
     <Content Include="App_Page\controllers\historico.js" />
@@ -386,16 +388,19 @@
     <Content Include="App_Page\controllers\login.js" />
     <Content Include="App_Page\controllers\menu.html" />
     <Content Include="App_Page\controllers\menu.js" />
+    <Content Include="App_Page\controllers\movimentacao.html" />
     <Content Include="App_Page\controllers\movimentacao.js" />
     <Content Include="App_Page\controllers\pagamento.html" />
-    <Content Include="App_Page\controllers\movimentacao.html" />
     <Content Include="App_Page\controllers\pagamento.js" />
     <Content Include="App_Page\controllers\usuario.js" />
     <Content Include="App_Page\controllers\usuario.html" />
+    <Content Include="App_Page\controllers\widget_estrela.js" />
+    <Content Include="App_Page\controllers\widget_estrela.html" />
     <Content Include="App_Page\css\materialize.css" />
     <Content Include="App_Page\css\materialize.min.css" />
     <Content Include="App_Page\css\style.css" />
     <Content Include="App_Page\favicon.png" />
+    <Content Include="App_Page\img\icon.png" />
     <Content Include="App_Page\index.html" />
     <Content Include="App_Page\js\angular.min.js" />
     <Content Include="App_Page\js\filter.js" />
@@ -448,8 +453,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controllers\AdicionarTipoPagamentoController.cs" />
+    <Compile Include="controllers\Adicionar_EstrelaController.cs" />
+    <Compile Include="controllers\Instituicao_AddController.cs" />
+    <Compile Include="controllers\Instituicao_AdicionarController.cs" />
     <Compile Include="controllers\Movimentacao_DeletarController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_ObtemController.cs" />
+    <Compile Include="controllers\Obtem_EstrelaController.cs" />
     <Compile Include="controllers\TipoPagamento_ObtemController.cs" />
     <Compile Include="controllers\TipoPagamento_AlterarController.cs" />
     <Compile Include="controllers\TipoPagamento_AdicionarController.cs" />
@@ -476,8 +485,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dao.edmx</DependentUpon>
     </Compile>
+    <Compile Include="dao\Estrela.cs" />
     <Compile Include="dao\Instituicao.cs" />
     <Compile Include="dao\Movimentacao.cs" />
+    <Compile Include="dao\tf_estrelas.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
     <Compile Include="dao\tf_instituicao.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
