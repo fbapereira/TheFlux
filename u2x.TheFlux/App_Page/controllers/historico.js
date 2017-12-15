@@ -27,6 +27,37 @@
         });
     }
 
+    function carregaMeses() {
+        $scope.searchDate = [];
+        //obtem as listas
+        var lstDate = [];
+        $scope.lstMovimentacao.forEach(function (movimentacao) {
+            lstDate.push(moment(movimentacao.data))
+        });
+
+        // Obtem o minimo
+        var minDate = moment.min(lstDate)
+        var maxDate = moment.max(lstDate)
+
+        //Obtem mes e ano 
+        var minMes = Number(moment(minDate).format('MM'));
+        var minAno = Number(moment(minDate).format('YYYY'));
+        var maxMes = Number(moment(maxDate).format('MM'));
+        var maxAno = Number(moment(maxDate).format('YYYY'));
+
+
+        while (minMes != maxMes || minAno != maxAno) {
+            $scope.searchDate.push(minMes + "/" + minAno);
+            minMes = minMes + 1;
+            if (minMes > 12) {
+                minAno = minAno + 1;
+                minMes = 1;
+            }
+        }
+        $scope.searchDate.push(maxMes + "/" + maxAno);
+
+    }
+
     function carregaTipoMovimentacao() {
         return new Promise(function (resolve, reject) {
             $http({
@@ -97,7 +128,11 @@
                 else return 0;
             })
 
+            $scope.oSearchTipo = "1";
+            $scope.oSearchDate = "1";
+            $scope.Filtrar();
 
+            carregaMeses();
             U2X_FechaLoader();
         }, function errorCallback(response) {
             console.log(response);
@@ -105,6 +140,39 @@
             $location.path("/");
             U2X_FechaLoader();
             return;
+        });
+
+    }
+
+    $scope.Filtrar = function () {
+        $scope.lstMovimentacaoFiltered = $scope.lstMovimentacao.filter(function (mov) {
+            var bRetorno = true;
+
+            if ($scope.oSearchDate != "1") {
+                var sMes = $scope.oSearchDate.split("/")[0]
+                var sAno = $scope.oSearchDate.split("/")[1]
+
+                var data = moment(mov.data);
+
+                var oMes = Number(moment(data).format('MM'));
+                var oAno = Number(moment(data).format('YYYY'));
+
+                if (sMes != oMes || sAno != oAno) {
+                    bRetorno = false;
+                }
+            }
+
+            //valida entrada
+            if ($scope.oSearchTipo == 2 && !mov.isEntrada) {
+                bRetorno = false;
+            }
+
+            //valida saida
+            if ($scope.oSearchTipo == 3 && mov.isEntrada) {
+                bRetorno = false;
+            }
+
+            return bRetorno;
         });
 
     }
@@ -135,5 +203,7 @@
 
         return moment(data).format("DD/MM/YYYY");
     }
+
+
 
 });

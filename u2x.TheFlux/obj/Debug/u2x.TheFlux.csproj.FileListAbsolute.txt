@@ -97,3 +97,4 @@ C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux\bin\Microsoft.AI.Web.xml
 C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux\obj\Debug\u2x.TheFlux.csproj.CoreCompileInputs.cache
 C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux\obj\Debug\u2x.TheFlux.dll
 C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux\obj\Debug\u2x.TheFlux.pdb
+C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux\obj\Debug\u2x.TheFlux.csprojResolveAssemblyReference.cache

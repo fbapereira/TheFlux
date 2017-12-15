@@ -1,0 +1,128 @@
+﻿<div class="section no-pad-bot " id="index-banner " ng-app="myApp" ng-controller="relatorioCtrl">
+    <div class="container ">
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col l6 m12 s12">
+                                <label>Selecione o mês:</label>
+                                <select class="browser-default" ng-model="oSearchDate" ng-change="Filtrar();  CarregarInterface();">
+                                    <option value="1" selected>Todos</option>
+                                    <option ng-repeat="date in searchDate" ng-value="date" my-repeat-directive>{{date}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l4 m6 s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">Saldo do Periodo</p>
+                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:right;">{{dataFormat(moment())}}</p><br />
+                            <table>
+                                <tr>
+                                    <td width="50%">Entrada</td>
+                                    <td width="50%">{{trataValores(entradaLiquida ,  2, 'R$ ',  '', ',', '.')}}</td>
+                                </tr>
+                                <tr>
+                                    <td width="50%">Saida</td>
+                                    <td width="50%">{{trataValores(saidaLiquida , 2, 'R$ ',  '', ',', '.')}}</td>
+                                </tr>
+                            </table>
+
+                            <hr />
+                            <table>
+                                <tr>
+                                    <td width="50%">Total</td>
+                                    <td width="50%" style="color: {{getStyle(entradaLiquida + saidaLiquida)}}">{{trataValores(entradaLiquida + saidaLiquida , 2, 'R$ ',  '', ',', '.')}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col l8 m6 s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">Gastos por Tipo de Pagamento</p>
+                            <div id="pieFormaPagamento"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">Sugestão da Disposição do Dinheiro</p>
+                            <div id="pieRegras"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col l6   m6 s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">Gastos por Forma de Pagamento</p>
+
+                            <div id="pieFormaGasto"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col l12 m12 s12">
+                <div class="card">
+                    <div class="card-content">
+                        <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">Tabela de Gastos</p>
+                        <table class="bordered">
+                            <thead>
+                                <tr>
+                                    <th width="50">Tipo Movimentação</th>
+                                    <th width="25">Data</th>
+                                    <th width="25">Valor</th>
+                                </tr>
+                            </thead>
+
+                            <tbody ng-repeat="mov in lstMovimentacaoFiltered  track by mov.id">
+                                <tr>
+                                    <td>{{mov.tipoMovimentacao.descricao}}</td>
+                                    <td>{{dataFormat(mov.data)}}</td>
+                                    <td style="color: {{getStyle(mov.valor)}}"> {{trataValores(mov.valor ,  2, 'R$ ',  '', ',', '.')}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="bordered">
+                            <thead>
+                                <tr>
+                                    <th width="50">Total</th>
+                                    <th width="25"></th>
+                                    <th width="25">{{trataValores(entradaLiquida + saidaLiquida ,  2, 'R$ ',  '', ',', '.')}} </th>
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+</script>

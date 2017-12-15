@@ -392,6 +392,8 @@
     <Content Include="App_Page\controllers\movimentacao.js" />
     <Content Include="App_Page\controllers\pagamento.html" />
     <Content Include="App_Page\controllers\pagamento.js" />
+    <Content Include="App_Page\controllers\relatorio.html" />
+    <Content Include="App_Page\controllers\relatorio.js" />
     <Content Include="App_Page\controllers\usuario.js" />
     <Content Include="App_Page\controllers\usuario.html" />
     <Content Include="App_Page\controllers\widget_estrela.js" />

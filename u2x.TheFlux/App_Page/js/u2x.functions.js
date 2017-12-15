@@ -1,8 +1,13 @@
 ﻿function U2X_ConfiguraInterface() {
     U2X_ConfigModal();
+
     $('.button-collapse').sideNav();
     $('select').material_select();
     $('.collapsible').collapsible();
+    $('ul.tabs').tabs();
+    $('.button-collapse').sideNav('hide');
+    $("body").css("overflow", "")
+
 }
 
 function U2X_ValidaLogin(oUsuario) {

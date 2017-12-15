@@ -38,6 +38,9 @@ app
             .when("/historico", {
                 templateUrl: "controllers/historico.html"
             })
+            .when("/relatorio", {
+                templateUrl: "controllers/relatorio.html"
+            })
             .when("/cadastro", {
                 templateUrl: "controllers/cadastro.html"
             });

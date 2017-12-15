@@ -1,39 +1,61 @@
 ﻿<div class="row" ng-app="myApp" ng-controller="historicoCtrl">
-    <div ng-app="myApp" ng-controller="usuarioCtrl">
-
-        <div class="section no-pad-bot " id="index-banner">
-            <div class="container ">
-                <h5>Histórico</h5>
-                <div ng-if="lstMovimentacao.length > 0" class="col l4 m6 s12" ng-repeat="mov in lstMovimentacao">
-                    <div class="card">
-                        <div class="card-content">
-                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">{{mov.tipoMovimentacao.descricao}}</p>
-                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:right;">{{dataFormat(mov.data)}}</p><br />
-                            <p style="font-size: 120%;float:left;width:100%; color: {{getStyle(mov.valor)}}"> {{trataValores(mov.valor * ((mov.tipoPagamento.cobranca_juros + 100) / 100),  2, 'R$ ',  '', ',', '.')}}</p><br />
-                            <p style="font-size: 80%;float:left;width:100%;"> {{mov.tipoPagamento.nome}}</p><br />
-                            <div ng-if="mov.showMore">
-
-
-                                <br />
-                                <hr />
-                                <br />
-                                <p style="font-size: 80%;float:left;width:100%;font-weight: bolder;">Valor Bruto</p><br />
-                                <p style="font-size: 80%;float:left;width:100%; color: {{getStyle(mov.valor)}};">{{trataValores(mov.valor,  2, 'R$ ',  '', ',', '.')}}</p><br />
-                                <p style="font-size: 80%;float:left;width:100%;font-weight: bolder;">Juros</p><br />
-                                <p style="font-size: 80%;float:left;width:100%;color: {{getStyle(mov.tipoPagamento.cobranca_juros)}}">{{trataValores(mov.tipoPagamento.cobranca_juros,  2, ' ',  '%', ',', '.')}} </p><br />
-                                <p style="font-size: 80%;float:left;width:100%;font-weight: bolder;">Usuário</p><br />
-                                <p style="font-size: 80%;float:left;width:100%;">FELIPE</p><br />
-                                <p style="font-size: 80%;float:left;width:100%;font-weight: bolder;">Descrição</p><br />
-                                <p style="font-size: 80%;float:left;width:100%;">{{mov.descricao}}</p><br />
-                                <br />
-
+    <div class="section no-pad-bot " id="index-banner">
+        <div class="container">
+            <h5>Histórico</h5>
+            <div class="col l12 m12 s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col l6 m6 s12">
+                                <label>Selecione o mês:</label>
+                                <select class="browser-default" ng-model="oSearchDate" ng-change="Filtrar()">
+                                    <option value="1" selected>Todos</option>
+                                    <option ng-repeat="date in searchDate" ng-value="date" my-repeat-directive>{{date}}</option>
+                                </select>
                             </div>
-
-                        </div><div class="card-action purple-text" style="display: flex;">
-                            <a class="center" style="font-size: 80%; text-align:right; color:purple; cursor:pointer;" ng-if="!mov.showMore" ng-click="mov.showMore = !mov.showMore">Mais Detalhes</a>
-                            <a class="center" style="font-size: 80%; text-align:right; color:purple; cursor:pointer;" ng-if="mov.showMore" ng-click="mov.showMore = !mov.showMore">Menos Detalhes</a>
-                            <a class="center" style="font-size: 80%; text-align:right; color:purple; cursor:pointer;" ng-click="Apagar(mov)">Apagar</a>
+                            <div class="col l6 m6 s12">
+                                <label>Tipo de Movimentação:</label>
+                                <select class="browser-default" ng-model="oSearchTipo" ng-change="Filtrar()">
+                                    <option value="1" selected>Todos</option>
+                                    <option value="2">Entrada</option>
+                                    <option value="3">Saída</option>
+                                </select>
+                            </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="lstMovimentacao.length == 0" class="col l4 m6 s12">
+                Não há movimentações
+            </div>
+            <div ng-if="lstMovimentacao.length > 0" class="col l4 m6 s12" ng-repeat="mov in lstMovimentacaoFiltered  track by mov.id">
+                <div class="card">
+                    <div class="card-content">
+                        <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">{{mov.tipoMovimentacao.descricao}}</p>
+                        <p style="font-size: 60%;font-weight: bolder;color: gray;float:right;">{{dataFormat(mov.data)}}</p><br />
+                        <p style="font-size: 120%;float:left;width:100%; color: {{getStyle(mov.valor)}}"> {{trataValores(mov.valor * ((mov.tipoPagamento.cobranca_juros + 100) / 100),  2, 'R$ ',  '', ',', '.')}}</p><br />
+                        <p style="font-size: 80%;float:left;width:100%;"> {{mov.tipoPagamento.nome}}</p><br />
+                        <div ng-if="mov.showMore">
+                            <br />
+                            <hr />
+                            <br />
+                            <p style="font-size: 80%;float:left;width:100%;font-weight: bolder;">Valor Bruto</p><br />
+                            <p style="font-size: 80%;float:left;width:100%; color: {{getStyle(mov.valor)}};">{{trataValores(mov.valor,  2, 'R$ ',  '', ',', '.')}}</p><br />
+                            <p style="font-size: 80%;float:left;width:100%;font-weight: bolder;">Juros</p><br />
+                            <p style="font-size: 80%;float:left;width:100%;color: {{getStyle(mov.tipoPagamento.cobranca_juros)}}">{{trataValores(mov.tipoPagamento.cobranca_juros,  2, ' ',  '%', ',', '.')}} </p><br />
+                            <p style="font-size: 80%;float:left;width:100%;font-weight: bolder;">Usuário</p><br />
+                            <p style="font-size: 80%;float:left;width:100%;">FELIPE</p><br />
+                            <p style="font-size: 80%;float:left;width:100%;font-weight: bolder;">Descrição</p><br />
+                            <p style="font-size: 80%;float:left;width:100%;">{{mov.descricao}}</p><br />
+                            <br />
+
+                        </div>
+
+                    </div><div class="card-action purple-text" style="display: flex;">
+                        <a class="center" style="font-size: 80%; text-align:right; color:purple; cursor:pointer;" ng-if="!mov.showMore" ng-click="mov.showMore = !mov.showMore">Mais Detalhes</a>
+                        <a class="center" style="font-size: 80%; text-align:right; color:purple; cursor:pointer;" ng-if="mov.showMore" ng-click="mov.showMore = !mov.showMore">Menos Detalhes</a>
+                        <a class="center" style="font-size: 80%; text-align:right; color:purple; cursor:pointer;" ng-click="Apagar(mov)">Apagar</a>
                     </div>
                 </div>
             </div>
