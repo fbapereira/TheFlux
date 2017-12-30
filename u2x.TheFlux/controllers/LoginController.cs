@@ -13,8 +13,16 @@ namespace u2x.TheFlux.controllers
         [HttpPost]
         public Usuario Login([FromBody]Usuario value)
         {
-            Usuario oUsuario = new Usuario();
-            return oUsuario.Get(value.login, value.senha);
+            try
+            {
+                Usuario oUsuario = new Usuario();
+                return oUsuario.Get(value.login, value.senha);
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("LoginController", e, "POST", "");
+                throw e;
+            }
         }
 
     }

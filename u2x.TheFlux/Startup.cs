@@ -2,8 +2,10 @@
 using Microsoft.Owin;
 using Owin;
 using Microsoft.Owin.Security.OAuth;
-using U2X.TheFlux;
 using Microsoft.Owin.Cors;
+using u2x.TheFlux;
+using u2x.TheFlux.core;
+using u2x.TheFlux.dao;
 
 [assembly: OwinStartup(typeof(U2X.TheFlux.Startup))]
 namespace U2X.TheFlux
@@ -17,20 +19,38 @@ namespace U2X.TheFlux
 
         private void ConfigureAuth(IAppBuilder app)
         {
-            // Para utilizar o Header "Authorization" nas requisições
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-
-            // Ativar o método para gerar o OAuth Token
-            app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions()
+            try
             {
-                TokenEndpointPath = new PathString("/Token"),
-                Provider = new ApplicationOAuthProvider(),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-                AllowInsecureHttp = true
-            });
-                   
+                new HunterTesouro().SearchAsync();
+                new HunterPoupanca().SearchAsync();
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("Startup", e, "ConfigureAuth", "");
+            }
 
-            app.UseCors(CorsOptions.AllowAll);
+            try
+            {
+                // Para utilizar o Header "Authorization" nas requisições
+                app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+
+                // Ativar o método para gerar o OAuth Token
+                app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions()
+                {
+                    TokenEndpointPath = new PathString("/Token"),
+                    Provider = new ApplicationOAuthProvider(),
+                    AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                    AllowInsecureHttp = true
+                });
+
+
+                app.UseCors(CorsOptions.AllowAll);
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("Startup", e, "ConfigureAuth_part2", "");
+                throw e;
+            }
         }
     }
 }

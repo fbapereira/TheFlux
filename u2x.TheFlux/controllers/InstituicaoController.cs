@@ -11,18 +11,19 @@ namespace u2x.TheFlux.controllers
     [RoutePrefix("Instituicao")]
     public class InstituicaoController : ApiController
     {
-
         // GET api/<controller>/5
         public Instituicao Get(int id)
         {
-            return new Instituicao().GetByUser(id);
+            try
+            {
+                Instituicao _Instituicao = new Instituicao().GetByUser(id);
+                return _Instituicao;
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("InstituicaoController", e, "GET", "");
+                throw e;
+            }
         }
-
-        // POST api/<controller>
-        //public void Post([FromBody]Instituicao value)
-        //{
-        //    new Instituicao().Add(value.nome);
-        //}
-
     }
 }

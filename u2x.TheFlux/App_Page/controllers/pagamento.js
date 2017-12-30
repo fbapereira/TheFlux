@@ -38,7 +38,7 @@
 
     $scope.AddStatus = function () {
         if (!$scope.nome || $scope.nome == "") {
-            Materialize.toast('Digite o [nome] do novo tipo de pagamento.', 4000);
+            Materialize.toast('Digite o [nome] da nova forma de pagamento.', 4000);
             return;
         }
 
@@ -61,7 +61,7 @@
             url: dataservice.url + '/api/TipoPagamento_Adicionar',
             data: tipoPagamento
         }).then(function sucess(response) {
-            Materialize.toast('Tipo de Pagamento adicionado com sucesso', 4000);
+            Materialize.toast('Forma de Pagamento adicionada com sucesso', 4000);
             U2X_FechaLoader();
             $scope.CloseAddStatus();
             Populate();
@@ -88,7 +88,8 @@
                 return false;
             }
             //valida cancelado
-            if (bAtivos && !a.is_ativo) {
+            //if (bAtivos && !a.is_ativo) {
+            if (!a.is_ativo) {
                 return false;
             }
             return true;
@@ -98,7 +99,7 @@
     $scope.Alterar = function (tipoPagamento, is_ativo) {
         tipoPagamento.is_ativo = is_ativo;
 
-        var sOperacao = is_ativo ? "reativado" : "cancelado";
+        var sOperacao = is_ativo ? "reativada" : "cancelada";
         U2X_AbreLoader();
 
         $http({
@@ -106,7 +107,7 @@
             url: dataservice.url + '/api/TipoPagamento_Alterar',
             data: tipoPagamento
         }).then(function sucess(response) {
-            Materialize.toast('O tipo de pagamento foi ' + sOperacao, 4000);
+            Materialize.toast('A forma de pagamento foi ' + sOperacao, 4000);
             U2X_FechaLoader();
             Populate();
         }, function errorCallback(response) {

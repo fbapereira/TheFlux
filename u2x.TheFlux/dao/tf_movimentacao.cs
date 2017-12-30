@@ -17,7 +17,7 @@ namespace u2x.TheFlux.dao
         public int id { get; set; }
         public int id_usuario { get; set; }
         public int id_tipo_movimentacao { get; set; }
-        public bool is_entrada { get; set; }
+        public int is_entrada { get; set; }
         public string descricao { get; set; }
         public double valor { get; set; }
         public System.DateTime data { get; set; }

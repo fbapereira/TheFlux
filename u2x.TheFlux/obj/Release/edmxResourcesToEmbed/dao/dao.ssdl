@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="u2xMainModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tf_error">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="error" Type="varchar(max)" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" />
+    <Property Name="hora" Type="datetime" />
+    <Property Name="classe" Type="varchar" MaxLength="100" />
+    <Property Name="metodo" Type="varchar" MaxLength="100" />
+  </EntityType>
   <EntityType Name="tf_estrelas">
     <Key>
       <PropertyRef Name="id" />
@@ -27,7 +38,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_usuario" Type="int" Nullable="false" />
     <Property Name="id_tipo_movimentacao" Type="int" Nullable="false" />
-    <Property Name="is_entrada" Type="bit" Nullable="false" />
+    <Property Name="is_entrada" Type="int" Nullable="false" />
     <Property Name="descricao" Type="varchar(max)" Nullable="false" />
     <Property Name="valor" Type="float" Nullable="false" />
     <Property Name="data" Type="datetime" Nullable="false" />
@@ -43,6 +54,27 @@
     <Property Name="ano" Type="int" Nullable="false" />
     <Property Name="mes" Type="int" Nullable="false" />
     <Property Name="is_pago" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tf_poupanca">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="aporte" Type="date" />
+    <Property Name="rendimento" Type="decimal" Precision="14" Scale="4" />
+  </EntityType>
+  <EntityType Name="tf_tesouro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="titulo" Type="varchar" MaxLength="200" />
+    <Property Name="vencimento" Type="datetime" />
+    <Property Name="rendimento" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="valorMinimo" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="precoUnitario" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="loggedTime" Type="datetime" />
+    <Property Name="tipoOperacao" Type="int" />
   </EntityType>
   <EntityType Name="tf_tipo_movimentacao">
     <Key>
@@ -158,10 +190,13 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="u2xMainModelStoreContainer">
+    <EntitySet Name="tf_error" EntityType="Self.tf_error" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_estrelas" EntityType="Self.tf_estrelas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_instituicao" EntityType="Self.tf_instituicao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_movimentacao" EntityType="Self.tf_movimentacao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_pagamento" EntityType="Self.tf_pagamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tf_poupanca" EntityType="Self.tf_poupanca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tf_tesouro" EntityType="Self.tf_tesouro" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_tipo_movimentacao" EntityType="Self.tf_tipo_movimentacao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_tipo_pagamento" EntityType="Self.tf_tipo_pagamento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_usuario" EntityType="Self.tf_usuario" Schema="dbo" store:Type="Tables" />

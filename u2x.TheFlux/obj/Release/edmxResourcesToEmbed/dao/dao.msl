@@ -1,21 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="u2xMainModelStoreContainer" CdmEntityContainer="u2xMainEntities1">
-    <EntitySetMapping Name="tf_movimentacao">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_movimentacao">
-        <MappingFragment StoreEntitySet="tf_movimentacao">
-          <ScalarProperty Name="is_canceled" ColumnName="is_canceled" />
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-          <ScalarProperty Name="id_tipo_movimentacao" ColumnName="id_tipo_movimentacao" />
-          <ScalarProperty Name="is_entrada" ColumnName="is_entrada" />
-          <ScalarProperty Name="descricao" ColumnName="descricao" />
-          <ScalarProperty Name="valor" ColumnName="valor" />
-          <ScalarProperty Name="data" ColumnName="data" />
-          <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tf_pagamento">
       <EntityTypeMapping TypeName="u2xMainModel.tf_pagamento">
         <MappingFragment StoreEntitySet="tf_pagamento">
@@ -77,6 +62,56 @@
           <ScalarProperty Name="is_processed" ColumnName="is_processed" />
           <ScalarProperty Name="telefone" ColumnName="telefone" />
           <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_movimentacao">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_movimentacao">
+        <MappingFragment StoreEntitySet="tf_movimentacao">
+          <ScalarProperty Name="is_canceled" ColumnName="is_canceled" />
+          <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="is_entrada" ColumnName="is_entrada" />
+          <ScalarProperty Name="id_tipo_movimentacao" ColumnName="id_tipo_movimentacao" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_tesouro">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_tesouro">
+        <MappingFragment StoreEntitySet="tf_tesouro">
+          <ScalarProperty Name="tipoOperacao" ColumnName="tipoOperacao" />
+          <ScalarProperty Name="loggedTime" ColumnName="loggedTime" />
+          <ScalarProperty Name="precoUnitario" ColumnName="precoUnitario" />
+          <ScalarProperty Name="valorMinimo" ColumnName="valorMinimo" />
+          <ScalarProperty Name="rendimento" ColumnName="rendimento" />
+          <ScalarProperty Name="vencimento" ColumnName="vencimento" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_poupanca">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_poupanca">
+        <MappingFragment StoreEntitySet="tf_poupanca">
+          <ScalarProperty Name="rendimento" ColumnName="rendimento" />
+          <ScalarProperty Name="aporte" ColumnName="aporte" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_error">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_error">
+        <MappingFragment StoreEntitySet="tf_error">
+          <ScalarProperty Name="metodo" ColumnName="metodo" />
+          <ScalarProperty Name="classe" ColumnName="classe" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="error" ColumnName="error" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

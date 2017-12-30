@@ -1,8 +1,13 @@
 ﻿function U2X_ConfiguraInterface() {
     U2X_ConfigModal();
+
     $('.button-collapse').sideNav();
     $('select').material_select();
     $('.collapsible').collapsible();
+    $('ul.tabs').tabs();
+    $('.button-collapse').sideNav('hide');
+    $("body").css("overflow", "")
+
 }
 
 function U2X_ValidaLogin(oUsuario) {
@@ -25,6 +30,10 @@ function U2X_ConfigModal() {
     $('.modal').modal({
         dismissible: false, // Modal can be dismissed by clicking outside of the modal
         opacity: .8, // Opacity of modal background
+        ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+
+            Materialize.updateTextFields();
+        }
     });
 }
 function U2X_TrataErro(error) {
@@ -168,7 +177,10 @@ function verifica_cpf_cnpj(valor) {
  @param string soma_digitos A soma das multiplicações entre posições e dígitos
  @return string Os dígitos enviados concatenados com o último dígito
 */
-function calc_digitos_posicoes(digitos, posicoes = 10, soma_digitos = 0) {
+function calc_digitos_posicoes(digitos, posicoes, soma_digitos) {
+
+    if (!posicoes) { posicoes = 10 }
+    if (!soma_digitos) { soma_digitos = 0 }
 
     // Garante que o valor é uma string
     digitos = digitos.toString();

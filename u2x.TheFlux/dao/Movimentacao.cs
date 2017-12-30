@@ -11,14 +11,14 @@ namespace u2x.TheFlux.dao
         public Int32 idTipoMovimentacao;
         public Int32 idTipoPagamento;
         public Int32 idUsuario;
-        public Boolean isEntrada;
+        public Int32 isEntrada;
         public new String descricao;
         public new double valor;
         public new DateTime data;
 
         private u2xMainEntities1 db = new u2xMainEntities1();
 
-        public void Add(Int32 idTipoMovimentacao, Int32 idTipoPagamento, Int32 idUsuario, Boolean isEntrada, String descricao, double valor, DateTime data)
+        public void Add(Int32 idTipoMovimentacao, Int32 idTipoPagamento, Int32 idUsuario, Int32 isEntrada, String descricao, double valor, DateTime data)
         {
             tf_movimentacao movimentacao = new tf_movimentacao()
             {
@@ -34,6 +34,24 @@ namespace u2x.TheFlux.dao
             db.tf_movimentacao.Add(movimentacao);
             db.SaveChanges();
         }
+
+        public void Alterar(Int32 id, Int32 idTipoMovimentacao, Int32 idTipoPagamento, Int32 idUsuario, Int32 isEntrada, String descricao, double valor, DateTime data)
+        {
+            List<tf_movimentacao> lst = db.tf_movimentacao.Where(x => (x.id == id)).ToList<tf_movimentacao>();
+
+            if (lst.Count == 0) { return; }
+
+            lst[0].data = data;
+            lst[0].descricao = descricao;
+            lst[0].id_tipo_movimentacao = idTipoMovimentacao;
+            lst[0].id_tipo_pagamento = idTipoPagamento;
+            lst[0].id_usuario = idUsuario;
+            lst[0].is_entrada = isEntrada;
+            lst[0].valor = valor;
+
+            db.SaveChanges();
+        }
+
 
         public List<Movimentacao> GetByUser(Int32 idusuario, Int32 ano = 0, Int32 mes = 0)
         {

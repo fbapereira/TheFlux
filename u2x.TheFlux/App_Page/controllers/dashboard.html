@@ -1,8 +1,7 @@
 ﻿<div ng-app="myApp" ng-controller="dashboardCtrl">
-
-
     <div class="section no-pad-bot " id="index-banner ">
         <div class="container ">
+
             <h5>Resumo da Conta</h5>
             <div class="row">
                 <div class="col l6 m12 s12">
@@ -11,7 +10,8 @@
                             <img src="img/icon.png" alt="" class="circle">
                             <p style="font-size: 80%;float:left;width:100%;font-weight: bolder;">Bem-vindo {{usuario.login}}!</p><br />
                             <p style="font-size: 80%;float:left;width:100%;">Você já realizou {{lstMovimentacao.length}} registros.</p><br />
-                            <p style="font-size: 120%;float:left;width:100%; color: {{getStyle(entradaLiquida + saidaLiquida)}}"> {{trataValores(entradaLiquida + saidaLiquida,  2, 'R$ ',  '', ',', '.')}}</p><br />
+                            <p style="font-size: 120%;float:left;width:50%; color: {{getStyle(entradaLiquida + saidaLiquida - investimentoLiquida)}}"> {{trataValores(entradaLiquida + saidaLiquida - investimentoLiquida,  2, 'R$ ',  '', ',', '.')}}</p>
+                            <p style="font-size: 120%;float:right;width:50%; color:lightblue"> {{trataValores(investimentoLiquida,  2, 'R$ ',  '', ',', '.')}}</p><br />
                         </li>
 
                     </ul>
@@ -32,13 +32,18 @@
                                     <td width="50%">Saida</td>
                                     <td width="50%">{{trataValores(saidaLiquida , 2, 'R$ ',  '', ',', '.')}}</td>
                                 </tr>
+                                <tr>
+                                    <td width="50%">Investimento</td>
+                                    <td width="50%">{{trataValores(investimentoLiquida, 2, 'R$ ',  '', ',', '.')}}</td>
+                                </tr>
+
                             </table>
 
                             <hr />
                             <table>
                                 <tr>
                                     <td width="50%">Total</td>
-                                    <td width="50%" style="color: {{getStyle(entradaLiquida + saidaLiquida)}}">{{trataValores(entradaLiquida + saidaLiquida , 2, 'R$ ',  '', ',', '.')}}</td>
+                                    <td width="50%" style="color: {{getStyle(entradaLiquida + saidaLiquida - investimentoLiquida)}}">{{trataValores(entradaLiquida + saidaLiquida , 2, 'R$ ',  '', ',', '.')}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -60,13 +65,17 @@
                                     <td width="50%">Saida</td>
                                     <td width="50%">{{trataValores(saidaLiquidaFutura  , 2, 'R$ ',  '', ',', '.')}}</td>
                                 </tr>
+                                <tr>
+                                    <td width="50%">Investimetno</td>
+                                    <td width="50%">{{trataValores(investimentoLiquidaFutura  , 2, 'R$ ',  '', ',', '.')}}</td>
+                                </tr>
                             </table>
 
                             <hr />
                             <table>
                                 <tr>
                                     <td width="50%">Total</td>
-                                    <td width="50%" style="color: {{getStyle(entradaLiquidaFutura  + saidaLiquidaFutura)}}">{{trataValores(entradaLiquidaFutura  + saidaLiquidaFutura  , 2, 'R$ ',  '', ',', '.')}}</td>
+                                    <td width="50%" style="color: {{getStyle(entradaLiquidaFutura  + saidaLiquidaFutura - investimentoLiquidaFutura)}}">{{trataValores(entradaLiquidaFutura  + saidaLiquidaFutura - investimentoLiquidaFutura , 2, 'R$ ',  '', ',', '.')}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -81,11 +90,11 @@
                             <table>
                                 <tr>
                                     <td width="50%">Atual</td>
-                                    <td width="50%" style="color: {{getStyle(entradaLiquida + saidaLiquida)}}">{{trataValores(entradaLiquida + saidaLiquida , 2, 'R$ ',  '', ',', '.')}}</td>
+                                    <td width="50%" style="color: {{getStyle(entradaLiquida + saidaLiquida - investimentoLiquida)}}">{{trataValores(entradaLiquida + saidaLiquida - investimentoLiquida , 2, 'R$ ',  '', ',', '.')}}</td>
                                 </tr>
                                 <tr>
                                     <td width="50%">Futuro</td>
-                                    <td width="50%" style="color: {{getStyle(entradaLiquidaFutura  + saidaLiquidaFutura)}}">{{trataValores(entradaLiquidaFutura  + saidaLiquidaFutura  , 2, 'R$ ',  '', ',', '.')}}</td>
+                                    <td width="50%" style="color: {{getStyle(entradaLiquidaFutura  + saidaLiquidaFutura - investimentoLiquidaFutura)}}">{{trataValores(entradaLiquidaFutura  + saidaLiquidaFutura -investimentoLiquidaFutura , 2, 'R$ ',  '', ',', '.')}}</td>
                                 </tr>
                             </table>
 
@@ -99,83 +108,12 @@
                         </div>
                     </div>
                 </div>
-                <!--resumo da Juros ENtrada-->
-                <!--<div class="col l4 m6 s12">
-                    <div class="card">
-                        <div class="card-content">
-                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">Juros da Entrada</p>
-                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:right;">{{dataFormat(moment())}}</p><br />
-                            <table>
-                                <tr>
-                                    <td style="color: {{getStyle(entradaLiquida - entradaBruta)}}">
-                                        {{trataValores((entradaLiquida - entradaBruta),  2, 'R$ ',  '', ',', '.')}} (
-                                        {{trataValores((entradaLiquida/entradaBruta- 1),  2, '',  '%', ',', '.') }})
-                                    </td>
-                                </tr>
-                            </table>
-                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">Juros da Saída</p>
-                            <table>
-                                <tr>
-                                    <td style="color: {{getStyle(saidaBruta - saidaLiquida)}}">
-                                        {{trataValores((saidaBruta - saidaLiquida),  2, 'R$ ',  '', ',', '.')}} (
-                                        {{trataValores((saidaLiquida/saidaBruta - 1),  2, '',  '%', ',', '.')}})
-                                    </td>
-                                </tr>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>-->
-
             </div>
-            <!--Detalhes-->
-            <!--<ul class="collapsible" materialize="collapsible" data-collapsible="accordion ">
-            <li>
-                <div class="collapsible-header active ">
-                    <i class="material-icons ">filter_list</i>Resumo
-                </div>
-                <div class="collapsible-body ">
-                    <table>
-                        <tr>
-                            <td></td>
-                            <td>Bruto</td>
-                            <td>Liquido</td>
-                            <td> # </td>
-                        </tr>
-                        <tr>
-                            <td>Entrada</td>
-                            <td>{{trataValores(entradaBruta,2, 'R$ ',  '', ',','.')}}</td>
-                            <td>{{trataValores(entradaLiquida ,  2, 'R$ ',  '', ',', '.')}}</td>
-                            <td style="color: {{getStyle(entradaLiquida - entradaBruta)}}">
-                                {{trataValores((entradaLiquida - entradaBruta),  2, 'R$ ',  '', ',', '.')}} (
-                                {{trataValores((entradaLiquida/entradaBruta- 1),  2, '',  '%', ',', '.') }})
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Saida</td>
-                            <td>{{trataValores(saidaBruta ,  2, 'R$ ',  '', ',', '.')}}</td>
-                            <td>{{trataValores(saidaLiquida , 2, 'R$ ',  '', ',', '.')}}</td>
-                            <td style="color: {{getStyle(saidaBruta - saidaLiquida)}}">
-                                {{trataValores((saidaBruta - saidaLiquida),  2, 'R$ ',  '', ',', '.')}} (
-                                {{trataValores((saidaLiquida/saidaBruta - 1),  2, '',  '%', ',', '.')}})
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Total</td>
-                            <td style="color: {{getStyle(entradaBruta + saidaBruta)}}">{{trataValores(entradaBruta + saidaBruta,  2, 'R$ ',  '', ',', '.')}}</td>
-                            <td style="color: {{getStyle(entradaLiquida + saidaLiquida)}}">{{trataValores(entradaLiquida + saidaLiquida , 2, 'R$ ',  '', ',', '.')}}</td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-            </li>
-
-            </ul>-->
         </div>
     </div>
-    <div class="fixed-action-btn ">
-        <a class="btn-floating purple darken-3 " href="#!/addmovimentacao">
-            <i class="material-icons ">add</i>
-        </a>
-    </div>
+</div>
+<div class="fixed-action-btn ">
+    <a class="btn-floating purple darken-3 " href="#!/addmovimentacao">
+        <i class="material-icons ">add</i>
+    </a>
 </div>

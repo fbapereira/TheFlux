@@ -13,28 +13,47 @@ namespace U2X.TheFlux
     {
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext c)
         {
-            c.Validated();
+            try
+            {
+                c.Validated();
 
-            return Task.FromResult<object>(null);
+                return Task.FromResult<object>(null);
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("ApplicationOAuthProvider", e, "ValidateClientAuthentication", "");
+            }
+
+            return null;
         }
 
         public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext c)
         {
-            u2xMainEntities1 db = new u2xMainEntities1();
-            tf_usuario oUsuario = (tf_usuario)db.tf_usuario.Where(
-                    usuario => usuario.login == c.UserName && usuario.senha == c.Password).FirstOrDefault();
-
-            if (oUsuario != null)
+            try
             {
-                Claim claim = new Claim(ClaimTypes.Name, c.UserName);
-                Claim[] claims = new Claim[] { claim };
-                ClaimsIdentity claimsIdentity =
-                    new ClaimsIdentity(
-                       claims, OAuthDefaults.AuthenticationType);
-                c.Validated(claimsIdentity);
+                u2xMainEntities1 db = new u2xMainEntities1();
+                tf_usuario oUsuario = (tf_usuario)db.tf_usuario.Where(
+                        usuario => usuario.login == c.UserName && usuario.senha == c.Password).FirstOrDefault();
+
+                if (oUsuario != null)
+                {
+                    Claim claim = new Claim(ClaimTypes.Name, c.UserName);
+                    Claim[] claims = new Claim[] { claim };
+                    ClaimsIdentity claimsIdentity =
+                        new ClaimsIdentity(
+                           claims, OAuthDefaults.AuthenticationType);
+                    c.Validated(claimsIdentity);
+                }
+
+                return Task.FromResult<object>(null);
+
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("ApplicationOAuthProvider", e, "GrantResourceOwnerCredentials", "");
             }
 
-            return Task.FromResult<object>(null);
+            return null;
         }
     }
 }

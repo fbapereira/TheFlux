@@ -27,12 +27,13 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -283,6 +284,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -292,6 +294,7 @@
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
@@ -316,7 +319,9 @@
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -376,20 +381,38 @@
   <ItemGroup>
     <Content Include="App_Page\controllers\add_movimentacao.html" />
     <Content Include="App_Page\controllers\add_movimentacao.js" />
+    <Content Include="App_Page\controllers\add_movimentacao.min.html">
+      <DependentUpon>add_movimentacao.html</DependentUpon>
+    </Content>
     <Content Include="App_Page\controllers\add_usuario.html" />
     <Content Include="App_Page\controllers\add_usuario.js" />
     <Content Include="App_Page\controllers\cadastro.html" />
     <Content Include="App_Page\controllers\cadastro.js" />
     <Content Include="App_Page\controllers\dashboard.html" />
     <Content Include="App_Page\controllers\dashboard.js" />
+    <Content Include="App_Page\controllers\dashboard.min.js">
+      <DependentUpon>dashboard.js</DependentUpon>
+    </Content>
     <Content Include="App_Page\controllers\historico.js" />
     <Content Include="App_Page\controllers\historico.html" />
+    <Content Include="App_Page\controllers\historico.min.html">
+      <DependentUpon>historico.html</DependentUpon>
+    </Content>
+    <Content Include="App_Page\controllers\historico.min.js">
+      <DependentUpon>historico.js</DependentUpon>
+    </Content>
     <Content Include="App_Page\controllers\login.html" />
     <Content Include="App_Page\controllers\login.js" />
     <Content Include="App_Page\controllers\menu.html" />
     <Content Include="App_Page\controllers\menu.js" />
+    <Content Include="App_Page\controllers\menu.min.html">
+      <DependentUpon>menu.html</DependentUpon>
+    </Content>
     <Content Include="App_Page\controllers\movimentacao.html" />
     <Content Include="App_Page\controllers\movimentacao.js" />
+    <Content Include="App_Page\controllers\movimentacao.min.js">
+      <DependentUpon>movimentacao.js</DependentUpon>
+    </Content>
     <Content Include="App_Page\controllers\pagamento.html" />
     <Content Include="App_Page\controllers\pagamento.js" />
     <Content Include="App_Page\controllers\relatorio.html" />
@@ -403,6 +426,8 @@
     <Content Include="App_Page\css\style.css" />
     <Content Include="App_Page\favicon.png" />
     <Content Include="App_Page\img\icon.png" />
+    <Content Include="App_Page\img\logo_header.png" />
+    <Content Include="App_Page\img\menu.png" />
     <Content Include="App_Page\index.html" />
     <Content Include="App_Page\js\angular.min.js" />
     <Content Include="App_Page\js\filter.js" />
@@ -438,6 +463,7 @@
     <Content Include="App_Page\fonts\roboto\Roboto-Regular.woff2" />
     <Content Include="App_Page\fonts\roboto\Roboto-Thin.woff" />
     <Content Include="App_Page\fonts\roboto\Roboto-Thin.woff2" />
+    <None Include="bundleconfig.json" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
@@ -454,10 +480,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="controllers\AdicionarTipoPagamentoController.cs" />
     <Compile Include="controllers\Adicionar_EstrelaController.cs" />
-    <Compile Include="controllers\Instituicao_AddController.cs" />
     <Compile Include="controllers\Instituicao_AdicionarController.cs" />
+    <Compile Include="controllers\MovimentacaoPessoal_AlterarController.cs" />
     <Compile Include="controllers\Movimentacao_DeletarController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_ObtemController.cs" />
     <Compile Include="controllers\Obtem_EstrelaController.cs" />
@@ -472,6 +497,8 @@
     <Compile Include="controllers\TipoMovimentacaoController.cs" />
     <Compile Include="controllers\UsuarioAtualizaController.cs" />
     <Compile Include="controllers\UsuarioController.cs" />
+    <Compile Include="core\HunterTesouro.cs" />
+    <Compile Include="core\HunterPoupanca.cs" />
     <Compile Include="dao\dao.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -487,9 +514,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dao.edmx</DependentUpon>
     </Compile>
+    <Compile Include="dao\ErroHandler.cs" />
     <Compile Include="dao\Estrela.cs" />
     <Compile Include="dao\Instituicao.cs" />
     <Compile Include="dao\Movimentacao.cs" />
+    <Compile Include="dao\tf_error.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
     <Compile Include="dao\tf_estrelas.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
@@ -500,6 +531,12 @@
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\tf_pagamento.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\tf_poupanca.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\tf_tesouro.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\tf_tipo_movimentacao.cs">

@@ -52,8 +52,8 @@ app.factory('dataservice', function () {
     var usuario;
 
     return {
-        url: 'http://TheFlux.u2x.com.br',
-        
+        url: 'http://app.basicflux.com',
+           
         setUsuario: function (usuario) {
             if (!usuario || !usuario.login) {
                 setCookie("usuario", "");

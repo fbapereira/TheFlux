@@ -2,7 +2,6 @@
     //variaveis 
     var oUsuario;
     var lstMovimentacao;
-    var lstTipoPagamento;
 
     //Inicia Processo
     U2X_ConfiguraInterface();
@@ -41,7 +40,7 @@
                 url: dataservice.url + '/api/TipoPagamento_Obtem',
                 data: { "id_instituicao": oUsuario.id_instituicao }
             }).then(function sucess(response) {
-                lstTipoPagamento = response.data;
+                $scope.lstTipoPagamento = response.data;
 
                 if (!$scope.lstMovimentacao || $scope.lstMovimentacao.length == 0) {
                     U2X_FechaLoader();
@@ -51,43 +50,64 @@
                 //adiciona tipo de pagamento
                 $scope.lstMovimentacao.forEach(function (movimentacao) {
                     movimentacao.showMore = false;
-                    if (!movimentacao.isEntrada) {
+                    if (movimentacao.isEntrada == 0) {
                         movimentacao.valor = movimentacao.valor * -1;
                     }
 
-                    movimentacao.tipoPagamento = lstTipoPagamento.filter(function (tipoPagamento) {
+                    movimentacao.tipoPagamento = $scope.lstTipoPagamento.filter(function (tipoPagamento) {
                         return tipoPagamento.id == movimentacao.idTipoPagamento;
                     })[0];
                 })
+                $scope.lstTipoPagamento = $scope.lstTipoPagamento.filter(function (tipoPagamento) {
+                    return tipoPagamento.is_ativo;
+                });
 
                 // calculo
                 $scope.entradaLiquida = 0;
                 $scope.entradaBruta = 0;
                 $scope.saidaLiquida = 0;
                 $scope.saidaBruta = 0;
-
+                $scope.investimentoLiquida = 0;
+                $scope.investimentoBruta = 0;
 
                 $scope.entradaLiquidaFutura = 0;
                 $scope.entradaBrutaFutura = 0;
                 $scope.saidaLiquidaFutura = 0;
                 $scope.saidaBrutaFutura = 0;
+                $scope.investimentoLiquidaFutura = 0;
+                $scope.investimentoBrutaFutura = 0;
 
                 $scope.lstMovimentacao.forEach(function (movimentacao) {
                     if (moment(movimentacao.data).isBefore(moment(Date()))) {
-                        if (movimentacao.isEntrada) {
-                            $scope.entradaLiquida = $scope.entradaLiquida + (movimentacao.valor * ((movimentacao.tipoPagamento.cobranca_juros + 100) / 100))
-                            $scope.entradaBruta = $scope.entradaBruta + movimentacao.valor;
-                        } else {
+                        if (movimentacao.isEntrada == 0) {
                             $scope.saidaLiquida = $scope.saidaLiquida + (movimentacao.valor * ((movimentacao.tipoPagamento.cobranca_juros + 100) / 100))
                             $scope.saidaBruta = $scope.saidaBruta + movimentacao.valor;
                         }
+
+                        if (movimentacao.isEntrada == 1) {
+                            $scope.entradaLiquida = $scope.entradaLiquida + (movimentacao.valor * ((movimentacao.tipoPagamento.cobranca_juros + 100) / 100))
+                            $scope.entradaBruta = $scope.entradaBruta + movimentacao.valor;
+                        }
+
+                        if (movimentacao.isEntrada == 2) {
+                            $scope.investimentoLiquida = $scope.investimentoLiquida + (movimentacao.valor * ((movimentacao.tipoPagamento.cobranca_juros + 100) / 100))
+                            $scope.investimentoBruta = $scope.investimentoBruta + movimentacao.valor;
+                        }
                     } else {
-                        if (movimentacao.isEntrada) {
-                            $scope.entradaLiquidaFutura = $scope.entradaLiquidaFutura + (movimentacao.valor * ((movimentacao.tipoPagamento.cobranca_juros + 100) / 100))
-                            $scope.entradaBrutaFutura = $scope.entradaBrutaFutura + movimentacao.valor;
-                        } else {
+
+                        if (movimentacao.isEntrada == 0) {
                             $scope.saidaLiquidaFutura = $scope.saidaLiquidaFutura + (movimentacao.valor * ((movimentacao.tipoPagamento.cobranca_juros + 100) / 100))
                             $scope.saidaBrutaFutura = $scope.saidaBrutaFutura + movimentacao.valor;
+                        }
+
+                        if (movimentacao.isEntrada == 1) {
+                            $scope.entradaLiquidaFutura = $scope.entradaLiquidaFutura + (movimentacao.valor * ((movimentacao.tipoPagamento.cobranca_juros + 100) / 100))
+                            $scope.entradaBrutaFutura = $scope.entradaBrutaFutura + movimentacao.valor;
+                        }
+
+                        if (movimentacao.isEntrada == 2) {
+                            $scope.investimentoLiquidaFutura = $scope.investimentoLiquidaFutura + (movimentacao.valor * ((movimentacao.tipoPagamento.cobranca_juros + 100) / 100))
+                            $scope.investimentoBrutaFutura = $scope.investimentoBrutaFutura + movimentacao.valor;
                         }
                     }
                 });
@@ -115,5 +135,25 @@
     $scope.dataFormat = function (data) {
 
         return moment(data).format("DD/MM/YYYY");
+    }
+
+
+
+    function carregaTipoMovimentacao() {
+        $http({
+            method: 'GET',
+            url: dataservice.url + "/api/TipoMovimentacao/" + oUsuario.id_instituicao
+        }).then(function sucess(response) {
+
+            var lst = response.data;
+            if (lst && lst.length > 0) {
+                $scope.lstTipoMovimentacao = lst.filter(function (oTipoMovimentacao) {
+                    return !oTipoMovimentacao.is_canceled;
+                });
+            }
+        }, function errorCallback(response) {
+            console.log(response);
+            Materialize.toast('Não foi possível realizar a operação', 4000);
+        });
     }
 });

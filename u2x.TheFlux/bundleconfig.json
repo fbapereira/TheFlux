@@ -1,0 +1,38 @@
+[
+  {
+    "outputFileName": "App_Page/controllers/add_movimentacao.min.html",
+    "inputFiles": [
+      "App_Page/controllers/add_movimentacao.html"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/movimentacao.min.js",
+    "inputFiles": [
+      "App_Page/controllers/movimentacao.js"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/historico.min.js",
+    "inputFiles": [
+      "App_Page/controllers/historico.js"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/dashboard.min.js",
+    "inputFiles": [
+      "App_Page/controllers/dashboard.js"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/menu.min.html",
+    "inputFiles": [
+      "App_Page/controllers/menu.html"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/historico.min.html",
+    "inputFiles": [
+      "App_Page/controllers/historico.html"
+    ]
+  }
+]

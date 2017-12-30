@@ -32,7 +32,7 @@
 
     $scope.AddStatus = function () {
         if (!$scope.descricao || $scope.descricao == "") {
-            Materialize.toast('Digite o [descricao] do novo tipo de Movimentacao.', 4000);
+            Materialize.toast('Digite o [descricao] do novo Tipo de Gasto.', 4000);
             return;
         }
 
@@ -49,7 +49,7 @@
             url: dataservice.url + '/api/TipoMovimentacao',
             data: tipoMovimentacao
         }).then(function sucess(response) {
-            Materialize.toast('Tipo de Movimentacao adicionado com sucesso', 4000);
+            Materialize.toast('Tipo de Gasto adicionado com sucesso', 4000);
             U2X_FechaLoader();
             $scope.CloseAddStatus();
             Populate();
@@ -76,7 +76,8 @@
                 return false;
             }
             //valida cancelado
-            if (bAtivos && !a.is_ativo) {
+            //if (bAtivos && !a.is_ativo) {
+            if (a.is_canceled) {
                 return false;
             }
             return true;
@@ -86,7 +87,7 @@
     $scope.Alterar = function (tipoMovimentacao, is_ativo) {
         tipoMovimentacao.is_canceled = !is_ativo;
 
-        var sOperacao = tipoMovimentacao.is_canceled ? "cancelado" : "reativado";
+        var sOperacao = tipoMovimentacao.is_canceled ? "reativado" : "cancelado";
         var id = tipoMovimentacao.is_canceled ? 1 : 0;
         U2X_AbreLoader();
         $http({
@@ -94,7 +95,7 @@
             url: dataservice.url + '/api/TipoMovimentacao/AlteraStatus/' + tipoMovimentacao.id + "/" + id,
             data: tipoMovimentacao
         }).then(function sucess(response) {
-            Materialize.toast('O tipo de Movimentacao foi ' + sOperacao, 4000);
+            Materialize.toast('O Tipo de Gasto foi ' + sOperacao, 4000);
             U2X_FechaLoader();
             Populate();
         }, function errorCallback(response) {

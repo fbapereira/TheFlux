@@ -14,7 +14,15 @@ namespace u2x.TheFlux.controllers
         // Get
         public void Get(int id)
         {
-            new Movimentacao().Delete(id);
+            try
+            {
+                new Movimentacao().Delete(id);
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("RemoveMovimentacaoPessoal", e, "POST", "");
+                throw e;
+            }
         }
     }
 }

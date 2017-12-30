@@ -1,4 +1,5 @@
-﻿app.controller('cadastroCtrl', function ($scope, $rootScope, $http, $location, dataservice) {
+﻿
+app.controller('cadastroCtrl', function ($scope, $rootScope, $http, $location, dataservice) {
     //Inicia Processo
     U2X_ConfiguraInterface();
 

@@ -14,7 +14,15 @@ namespace u2x.TheFlux.controllers
         [HttpPost]
         public List<TipoPagamento> Post([FromBody]TipoPagamento value)
         {
-            return new TipoPagamento().Get((int)value.id_instituicao);
+            try
+            {
+                return new TipoPagamento().Get((int)value.id_instituicao);
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("TipoPagamento_Obtem", e, "POST", "");
+                throw e;
+            }
         }
     }
 }

@@ -14,9 +14,17 @@ namespace u2x.TheFlux.controllers
         // Post
         public bool Post([FromBody]Movimentacao value)
         {
-            if (value.descricao == null) { value.descricao = ""; }
-            new Movimentacao().Add(value.idTipoMovimentacao, value.idTipoPagamento, value.idUsuario, value.isEntrada, value.descricao, value.valor, value.data);
-            return true;
+            try
+            {
+                if (value.descricao == null) { value.descricao = ""; }
+                new Movimentacao().Add(value.idTipoMovimentacao, value.idTipoPagamento, value.idUsuario, value.isEntrada, value.descricao, value.valor, value.data);
+                return true;
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("MovimentacaoPessoal_Adicionar", e, "POST", "");
+                throw e;
+            }
         }
 
     }

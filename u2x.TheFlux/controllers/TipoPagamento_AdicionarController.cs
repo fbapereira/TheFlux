@@ -12,8 +12,16 @@ namespace u2x.TheFlux.controllers
     {
         public bool Post([FromBody]TipoPagamento value)
         {
-            new TipoPagamento().Add(value);
-            return true;
+            try
+            {
+                new TipoPagamento().Add(value);
+                return true;
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("TipoPagamento_Adicionar", e, "POST", "");
+                throw e;
+            }
         }
     }
 }

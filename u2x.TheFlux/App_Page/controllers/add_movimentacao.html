@@ -8,19 +8,30 @@
                 <div class="collapsible-body">
                     <div class="row">
                         <div class="col l8 offset-l2 s12">
-                            <label>Tipo de Movimentação</label>
+                            <label>Tipo de Gasto</label>
                             <select class="browser-default" ng-model="movimentacao.tipoMovimentacao.id">
-                                <option value="" disabled selected>Escolha o tipo de movimentação</option>
+                                <option value="" disabled selected>Escolha o tipo do gasto</option>
                                 <option ng-repeat="oTipoMovimentacao in lstTipoMovimentacao" ng-value="oTipoMovimentacao.id" my-repeat-directive>{{oTipoMovimentacao.descricao}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col l8 offset-l2 s12">
-                            <label>Tipo de Pagamento</label>
+                            <label>Forma de Pagamento</label>
                             <select class="browser-default" ng-model="movimentacao.tipoPagamento.id">
-                                <option value="" disabled selected>Escolha o tipo de pagamento</option>
+                                <option value="" disabled selected>Escolha a forma de pagamento</option>
                                 <option ng-repeat="oTipoPagamento in lstTipoPagamento" ng-value="oTipoPagamento.id" my-repeat-directive>{{oTipoPagamento.nome}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l8 offset-l2 s12">
+                            <label>Direção</label>
+                            <select class="browser-default" ng-model="movimentacao.isEntrada">
+                                <option value="" disabled selected>Escolha um tipo</option>
+                                <option value="0">Saída</option>
+                                <option value="1">Entrada</option>
+                                <!--<option value="2">Investimento</option>-->
                             </select>
                         </div>
                     </div>
@@ -47,15 +58,11 @@
                             <label for="txtDescription">Descrição</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col l8 offset-l2 s12">
-                            <input type="checkbox" id="test5" ng-model="movimentacao.isEntrada" />
-                            <label for="test5">É entrada?</label>
-                        </div>
-                    </div>
+                   
+
                     <div class="row">
                         <div class="col l3 offset-l2 s12">
-                            <a href="#!/dashboard" class="btn-large waves-effect waves-light purple lighten-4" style="width: 100%; margin-bottom:15px">
+                            <a href="#!/dashboard" class="btn-large waves-effect waves-light black" style="width: 100%; margin-bottom:15px">
                                 Voltar
                             </a>
                         </div>

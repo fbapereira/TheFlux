@@ -14,14 +14,30 @@ namespace u2x.TheFlux.controllers
         // POST api/<controller>
         public bool Post([FromBody]Usuario value)
         {
-            new Usuario().Add(value.login, value.senha, value.isAdmin, value.id_instituicao);
-            return true;
+            try
+            {
+                new Usuario().Add(value.login, value.senha, value.isAdmin, value.id_instituicao);
+                return true;
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("Usuario", e, "POST", "");
+                throw e;
+            }
         }
 
         // POST api/<controller>
         public List<Usuario> Get(int id)
         {
-            return new Usuario().GetAll(id);
+            try
+            {
+                return new Usuario().GetAll(id);
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("Usuario", e, "Get", "");
+                throw e;
+            }
         }
     }
 }

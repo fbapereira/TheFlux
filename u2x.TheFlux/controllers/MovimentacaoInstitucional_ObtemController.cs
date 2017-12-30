@@ -14,8 +14,15 @@ namespace u2x.TheFlux.controllers
         // Get
         public List<Movimentacao> Post([FromBody]Usuario value)
         {
-            
-            return new Movimentacao().GetByInstituition(value.id_instituicao);
+            try
+            {
+                return new Movimentacao().GetByInstituition(value.id_instituicao);
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("MovimentacaoInstitucional_Obtem", e, "POST", "");
+                throw e;
+            }
         }
 
     }

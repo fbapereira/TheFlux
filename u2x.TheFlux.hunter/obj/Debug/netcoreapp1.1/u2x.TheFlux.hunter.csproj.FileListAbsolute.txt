@@ -1,0 +1,8 @@
+C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux.hunter\bin\Debug\netcoreapp1.1\u2x.TheFlux.hunter.deps.json
+C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux.hunter\bin\Debug\netcoreapp1.1\u2x.TheFlux.hunter.dll
+C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux.hunter\bin\Debug\netcoreapp1.1\u2x.TheFlux.hunter.pdb
+C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux.hunter\obj\Debug\netcoreapp1.1\u2x.TheFlux.hunter.csprojResolveAssemblyReference.cache
+C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux.hunter\obj\Debug\netcoreapp1.1\u2x.TheFlux.hunter.csproj.CoreCompileInputs.cache
+C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux.hunter\obj\Debug\netcoreapp1.1\u2x.TheFlux.hunter.AssemblyInfo.cs
+C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux.hunter\obj\Debug\netcoreapp1.1\u2x.TheFlux.hunter.dll
+C:\Projetos\Personal\TheFlux.Core\u2x.TheFlux.hunter\obj\Debug\netcoreapp1.1\u2x.TheFlux.hunter.pdb

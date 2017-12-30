@@ -82,12 +82,12 @@
 
     $scope.btnAdd = function () {
         if (!$scope.movimentacao.tipoMovimentacao.id || $scope.movimentacao.tipoMovimentacao.id == 0) {
-            Materialize.toast('Selecione o [Tipo de Movimentação].', 4000);
+            Materialize.toast('Selecione o [Tipo de Gasto].', 4000);
             return;
         }
 
         if (!$scope.movimentacao.tipoPagamento.id || $scope.movimentacao.tipoPagamento.id == 0) {
-            Materialize.toast('Selecione o [Tipo de Pagamento].', 4000);
+            Materialize.toast('Selecione o [Forma de Pagamento].', 4000);
             return;
         }
 

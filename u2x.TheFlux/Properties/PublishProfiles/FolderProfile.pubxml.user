@@ -16,70 +16,94 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/23/2017 01:03:07</publishTime>
     </File>
     <File Include="App_Page/controllers/add_movimentacao.html">
-      <publishTime>12/14/2017 16:00:43</publishTime>
+      <publishTime>12/29/2017 16:27:14</publishTime>
     </File>
     <File Include="App_Page/controllers/add_movimentacao.js">
-      <publishTime>12/14/2017 15:59:57</publishTime>
+      <publishTime>12/23/2017 10:46:11</publishTime>
+    </File>
+    <File Include="App_Page/controllers/add_movimentacao.min.html">
+      <publishTime>12/29/2017 16:27:08</publishTime>
     </File>
     <File Include="App_Page/controllers/add_movimentacao.min.js">
       <publishTime>12/14/2017 23:23:18</publishTime>
     </File>
     <File Include="App_Page/controllers/add_usuario.html">
-      <publishTime>12/13/2017 11:47:17</publishTime>
+      <publishTime>12/29/2017 16:11:07</publishTime>
     </File>
     <File Include="App_Page/controllers/add_usuario.js">
       <publishTime>12/14/2017 10:12:53</publishTime>
     </File>
     <File Include="App_Page/controllers/cadastro.html">
-      <publishTime>12/14/2017 08:00:43</publishTime>
+      <publishTime>12/29/2017 16:11:07</publishTime>
     </File>
     <File Include="App_Page/controllers/cadastro.js">
-      <publishTime>12/14/2017 08:55:55</publishTime>
+      <publishTime>12/14/2017 23:53:38</publishTime>
     </File>
     <File Include="App_Page/controllers/dashboard.html">
-      <publishTime>12/14/2017 20:21:00</publishTime>
+      <publishTime>12/23/2017 14:35:40</publishTime>
     </File>
     <File Include="App_Page/controllers/dashboard.js">
-      <publishTime>12/14/2017 15:17:07</publishTime>
+      <publishTime>12/24/2017 16:41:28</publishTime>
+    </File>
+    <File Include="App_Page/controllers/dashboard.min.js">
+      <publishTime>12/23/2017 14:35:11</publishTime>
     </File>
     <File Include="App_Page/controllers/historico.html">
-      <publishTime>12/14/2017 19:57:17</publishTime>
+      <publishTime>12/29/2017 16:11:07</publishTime>
     </File>
     <File Include="App_Page/controllers/historico.js">
-      <publishTime>12/14/2017 19:56:56</publishTime>
+      <publishTime>12/29/2017 16:48:14</publishTime>
+    </File>
+    <File Include="App_Page/controllers/historico.min.html">
+      <publishTime>12/29/2017 16:11:04</publishTime>
+    </File>
+    <File Include="App_Page/controllers/historico.min.js">
+      <publishTime>12/29/2017 16:47:41</publishTime>
     </File>
     <File Include="App_Page/controllers/login.html">
-      <publishTime>12/13/2017 22:40:31</publishTime>
+      <publishTime>12/29/2017 15:47:49</publishTime>
     </File>
     <File Include="App_Page/controllers/login.js">
       <publishTime>12/13/2017 10:48:19</publishTime>
     </File>
     <File Include="App_Page/controllers/menu.html">
-      <publishTime>12/13/2017 14:01:36</publishTime>
+      <publishTime>12/29/2017 16:59:29</publishTime>
     </File>
     <File Include="App_Page/controllers/menu.js">
       <publishTime>12/13/2017 08:40:55</publishTime>
     </File>
+    <File Include="App_Page/controllers/menu.min.html">
+      <publishTime>12/29/2017 16:59:29</publishTime>
+    </File>
     <File Include="App_Page/controllers/movimentacao.html">
-      <publishTime>12/14/2017 12:31:13</publishTime>
+      <publishTime>12/29/2017 16:11:07</publishTime>
     </File>
     <File Include="App_Page/controllers/movimentacao.js">
-      <publishTime>12/14/2017 15:59:14</publishTime>
+      <publishTime>12/23/2017 11:06:23</publishTime>
+    </File>
+    <File Include="App_Page/controllers/movimentacao.min.js">
+      <publishTime>12/23/2017 11:06:24</publishTime>
     </File>
     <File Include="App_Page/controllers/pagamento.html">
-      <publishTime>12/14/2017 12:53:01</publishTime>
+      <publishTime>12/29/2017 16:11:07</publishTime>
     </File>
     <File Include="App_Page/controllers/pagamento.js">
-      <publishTime>12/14/2017 12:53:28</publishTime>
+      <publishTime>12/23/2017 11:08:35</publishTime>
+    </File>
+    <File Include="App_Page/controllers/relatorio.html">
+      <publishTime>12/26/2017 12:02:58</publishTime>
+    </File>
+    <File Include="App_Page/controllers/relatorio.js">
+      <publishTime>12/26/2017 12:04:56</publishTime>
     </File>
     <File Include="App_Page/controllers/usuario.html">
-      <publishTime>12/14/2017 10:15:44</publishTime>
+      <publishTime>12/29/2017 16:11:07</publishTime>
     </File>
     <File Include="App_Page/controllers/usuario.js">
       <publishTime>12/13/2017 12:15:37</publishTime>
     </File>
     <File Include="App_Page/controllers/widget_estrela.html">
-      <publishTime>12/14/2017 20:44:27</publishTime>
+      <publishTime>12/29/2017 16:11:07</publishTime>
     </File>
     <File Include="App_Page/controllers/widget_estrela.js">
       <publishTime>12/14/2017 20:44:36</publishTime>
@@ -129,8 +153,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="App_Page/img/icon.png">
       <publishTime>12/12/2017 17:31:42</publishTime>
     </File>
+    <File Include="App_Page/img/logo_header.png">
+      <publishTime>12/29/2017 15:53:47</publishTime>
+    </File>
+    <File Include="App_Page/img/menu.png">
+      <publishTime>12/15/2017 16:04:41</publishTime>
+    </File>
     <File Include="App_Page/index.html">
-      <publishTime>12/14/2017 23:30:36</publishTime>
+      <publishTime>12/29/2017 12:38:02</publishTime>
     </File>
     <File Include="App_Page/js/angular.min.js">
       <publishTime>12/11/2017 16:08:16</publishTime>
@@ -145,7 +175,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/12/2017 16:07:42</publishTime>
     </File>
     <File Include="App_Page/js/init.js">
-      <publishTime>12/14/2017 23:17:07</publishTime>
+      <publishTime>12/29/2017 13:57:30</publishTime>
     </File>
     <File Include="App_Page/js/materialize.js">
       <publishTime>12/11/2017 16:05:00</publishTime>
@@ -157,7 +187,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/13/2017 12:46:36</publishTime>
     </File>
     <File Include="App_Page/js/u2x.functions.js">
-      <publishTime>12/14/2017 10:39:56</publishTime>
+      <publishTime>12/29/2017 16:48:14</publishTime>
     </File>
     <File Include="assets/css/materialize.css">
       <publishTime>12/08/2017 14:13:32</publishTime>
@@ -630,6 +660,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/System.Web.Cors.dll">
       <publishTime>10/01/2013 20:54:22</publishTime>
     </File>
+    <File Include="bin/System.Web.dll">
+      <publishTime>11/05/2015 21:36:48</publishTime>
+    </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>01/28/2015 05:04:30</publishTime>
     </File>
@@ -661,10 +694,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/29/2015 22:35:22</publishTime>
     </File>
     <File Include="bin/u2x.TheFlux.dll">
-      <publishTime>12/14/2017 23:38:10</publishTime>
+      <publishTime>12/29/2017 16:33:24</publishTime>
     </File>
     <File Include="bin/u2x.TheFlux.pdb">
-      <publishTime>12/14/2017 23:38:10</publishTime>
+      <publishTime>12/29/2017 16:33:24</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>09/10/2013 17:28:38</publishTime>
@@ -676,7 +709,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/20/2017 00:33:55</publishTime>
     </File>
     <File Include="dao/dao.edmx.diagram">
-      <publishTime>12/14/2017 20:06:11</publishTime>
+      <publishTime>12/28/2017 08:20:47</publishTime>
     </File>
     <File Include="dashboard.html">
       <publishTime>11/23/2017 01:03:06</publishTime>
@@ -775,7 +808,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/08/2017 14:13:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/14/2017 23:38:11</publishTime>
+      <publishTime>12/28/2017 09:43:13</publishTime>
     </File>
   </ItemGroup>
 </Project>

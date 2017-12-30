@@ -11,7 +11,15 @@ namespace u2x.TheFlux.controllers
     {
         public Boolean Post([FromBody]Usuario value)
         {
-            return new Movimentacao().Delete(value.id);
+            try
+            {
+                return new Movimentacao().Delete(value.id);
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("Movimentacao_Deletar", e, "POST", "");
+                throw e;
+            }
         }
     }
 }

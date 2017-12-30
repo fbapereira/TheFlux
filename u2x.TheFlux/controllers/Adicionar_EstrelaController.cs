@@ -13,8 +13,16 @@ namespace u2x.TheFlux.controllers
         [HttpPost]
         public bool Post([FromBody]dynamic value)
         {
-            new Estrela().Add(Convert.ToInt32(value.id_usuario.ToString()), value.telefone.ToString(), value.email.ToString());
-            return true;
+            try
+            {
+                new Estrela().Add(Convert.ToInt32(value.id_usuario.ToString()), value.telefone.ToString(), value.email.ToString());
+                return true;
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("Adicionar_EstrelaController", e, "POST", "");
+                throw e;
+            }
         }
     }
 }

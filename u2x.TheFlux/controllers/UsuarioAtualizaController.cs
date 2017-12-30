@@ -14,7 +14,15 @@ namespace u2x.TheFlux.controllers
         // POST api/<controller>
         public void Post([FromBody]Usuario value)
         {
-            new Usuario().Update(value.id, value.senha, value.isAdmin, value.id_instituicao);
+            try
+            {
+                new Usuario().Update(value.id, value.senha, value.isAdmin, value.id_instituicao);
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("UsuarioAtualiza", e, "POST", "");
+                throw e;
+            }
         }
     }
 }

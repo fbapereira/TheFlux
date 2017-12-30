@@ -11,7 +11,15 @@ namespace u2x.TheFlux.controllers
     {
         public List<Movimentacao> Post([FromBody]Usuario value)
         {
-            return new Movimentacao().GetByUser(value.id);
+            try
+            {
+                return new Movimentacao().GetByUser(value.id);
+            }
+            catch (Exception e)
+            {
+                ErroHandler.Log("MovimentacaoPessoal_Obtem", e, "POST", "");
+                throw e;
+            }
         }
     }
 }
