@@ -48,6 +48,17 @@ namespace u2x.TheFlux.dao
             return ToUsuario(temp);
         }
 
+        public Usuario Get(String login)
+        {
+
+            tf_usuario temp = db.tf_usuario.Where(usuario =>
+                usuario.login == login).FirstOrDefault();
+
+            if (temp == null) { return null; }
+
+            return ToUsuario(temp);
+        }
+
         public List<Usuario> GetAll(Int32 idInstituicao)
         {
             List<tf_usuario> temp = db.tf_usuario.Where(usuario => usuario.id_instituicao == idInstituicao).ToList<tf_usuario>();

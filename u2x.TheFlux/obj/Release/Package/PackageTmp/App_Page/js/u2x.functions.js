@@ -28,7 +28,7 @@ function U2X_FechaLoader() {
 
 function U2X_ConfigModal() {
     $('.modal').modal({
-        dismissible: false, // Modal can be dismissed by clicking outside of the modal
+        dismissible: true, // Modal can be dismissed by clicking outside of the modal
         opacity: .8, // Opacity of modal background
         ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
 

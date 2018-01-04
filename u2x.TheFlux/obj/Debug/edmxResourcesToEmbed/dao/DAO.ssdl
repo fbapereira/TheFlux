@@ -31,6 +31,33 @@
     <Property Name="telefone" Type="varchar" MaxLength="20" />
     <Property Name="documento" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="tf_investimento_RF">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="is_ativo" Type="bit" Nullable="false" />
+    <Property Name="id_instituicao" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tf_investimento_RF_aporte">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id_investimento_RF" Type="int" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="data_compra" Type="date" />
+    <Property Name="valor_aporte" Type="decimal" Precision="14" Scale="4" />
+  </EntityType>
+  <EntityType Name="tf_investimento_RF_variacao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id_investimento_RF" Type="int" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="data" Type="date" />
+    <Property Name="valor" Type="decimal" Precision="14" Scale="4" />
+  </EntityType>
   <EntityType Name="tf_movimentacao">
     <Key>
       <PropertyRef Name="id" />
@@ -193,6 +220,9 @@
     <EntitySet Name="tf_error" EntityType="Self.tf_error" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_estrelas" EntityType="Self.tf_estrelas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_instituicao" EntityType="Self.tf_instituicao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tf_investimento_RF" EntityType="Self.tf_investimento_RF" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tf_investimento_RF_aporte" EntityType="Self.tf_investimento_RF_aporte" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tf_investimento_RF_variacao" EntityType="Self.tf_investimento_RF_variacao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_movimentacao" EntityType="Self.tf_movimentacao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_pagamento" EntityType="Self.tf_pagamento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_poupanca" EntityType="Self.tf_poupanca" Schema="dbo" store:Type="Tables" />

@@ -401,6 +401,8 @@
     <Content Include="App_Page\controllers\historico.min.js">
       <DependentUpon>historico.js</DependentUpon>
     </Content>
+    <Content Include="App_Page\controllers\investimento.js" />
+    <Content Include="App_Page\controllers\investimento.html" />
     <Content Include="App_Page\controllers\login.html" />
     <Content Include="App_Page\controllers\login.js" />
     <Content Include="App_Page\controllers\menu.html" />
@@ -415,6 +417,8 @@
     </Content>
     <Content Include="App_Page\controllers\pagamento.html" />
     <Content Include="App_Page\controllers\pagamento.js" />
+    <Content Include="App_Page\controllers\recuperar.html" />
+    <Content Include="App_Page\controllers\recuperar.js" />
     <Content Include="App_Page\controllers\relatorio.html" />
     <Content Include="App_Page\controllers\relatorio.js" />
     <Content Include="App_Page\controllers\usuario.js" />
@@ -465,6 +469,7 @@
     <Content Include="App_Page\fonts\roboto\Roboto-Thin.woff2" />
     <None Include="bundleconfig.json" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -481,11 +486,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controllers\Adicionar_EstrelaController.cs" />
+    <Compile Include="controllers\Aporte_AdicionarController.cs" />
+    <Compile Include="controllers\Aporte_ObtemController.cs" />
     <Compile Include="controllers\Instituicao_AdicionarController.cs" />
+    <Compile Include="controllers\InvestimentoRF_AdicionarController.cs" />
+    <Compile Include="controllers\InvestimentoRF_ObtemController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_AlterarController.cs" />
     <Compile Include="controllers\Movimentacao_DeletarController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_ObtemController.cs" />
     <Compile Include="controllers\Obtem_EstrelaController.cs" />
+    <Compile Include="controllers\Senha_ResetarController.cs" />
     <Compile Include="controllers\TipoPagamento_ObtemController.cs" />
     <Compile Include="controllers\TipoPagamento_AlterarController.cs" />
     <Compile Include="controllers\TipoPagamento_AdicionarController.cs" />
@@ -497,8 +507,11 @@
     <Compile Include="controllers\TipoMovimentacaoController.cs" />
     <Compile Include="controllers\UsuarioAtualizaController.cs" />
     <Compile Include="controllers\UsuarioController.cs" />
+    <Compile Include="controllers\Variacao_AdicionarController.cs" />
+    <Compile Include="controllers\Variacao_ObtemController.cs" />
     <Compile Include="core\HunterTesouro.cs" />
     <Compile Include="core\HunterPoupanca.cs" />
+    <Compile Include="core\Mailer.cs" />
     <Compile Include="dao\dao.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -518,6 +531,7 @@
     <Compile Include="dao\Estrela.cs" />
     <Compile Include="dao\Instituicao.cs" />
     <Compile Include="dao\Movimentacao.cs" />
+    <Compile Include="dao\RendaFixa.cs" />
     <Compile Include="dao\tf_error.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
@@ -525,6 +539,15 @@
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\tf_instituicao.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\tf_investimento_RF.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\tf_investimento_RF_aporte.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\tf_investimento_RF_variacao.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\tf_movimentacao.cs">

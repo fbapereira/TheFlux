@@ -23,6 +23,9 @@ app
             .when("/movimentacao", {
                 templateUrl: "controllers/movimentacao.html"
             })
+            .when("/recuperar", {
+                templateUrl: "controllers/recuperar.html"
+            })
             .when("/pagamento", {
                 templateUrl: "controllers/pagamento.html"
             })
@@ -41,9 +44,12 @@ app
             .when("/relatorio", {
                 templateUrl: "controllers/relatorio.html"
             })
+            .when("/investimento", {
+                templateUrl: "controllers/investimento.html"
+            })
             .when("/cadastro", {
                 templateUrl: "controllers/cadastro.html"
-            });
+            }); 
     });
 
 

@@ -33,17 +33,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tf_usuario">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_usuario">
-        <MappingFragment StoreEntitySet="tf_usuario">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
-          <ScalarProperty Name="login" ColumnName="login" />
-          <ScalarProperty Name="senha" ColumnName="senha" />
-          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tf_instituicao">
       <EntityTypeMapping TypeName="u2xMainModel.tf_instituicao">
         <MappingFragment StoreEntitySet="tf_instituicao">
@@ -112,6 +101,47 @@
           <ScalarProperty Name="hora" ColumnName="hora" />
           <ScalarProperty Name="usuario" ColumnName="usuario" />
           <ScalarProperty Name="error" ColumnName="error" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_investimento_RF">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_investimento_RF">
+        <MappingFragment StoreEntitySet="tf_investimento_RF">
+          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
+          <ScalarProperty Name="is_ativo" ColumnName="is_ativo" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_investimento_RF_aporte">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_investimento_RF_aporte">
+        <MappingFragment StoreEntitySet="tf_investimento_RF_aporte">
+          <ScalarProperty Name="valor_aporte" ColumnName="valor_aporte" />
+          <ScalarProperty Name="data_compra" ColumnName="data_compra" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_investimento_RF" ColumnName="id_investimento_RF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_investimento_RF_variacao">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_investimento_RF_variacao">
+        <MappingFragment StoreEntitySet="tf_investimento_RF_variacao">
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_investimento_RF" ColumnName="id_investimento_RF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_usuario">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_usuario">
+        <MappingFragment StoreEntitySet="tf_usuario">
+          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

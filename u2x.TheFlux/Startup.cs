@@ -21,8 +21,9 @@ namespace U2X.TheFlux
         {
             try
             {
-                new HunterTesouro().SearchAsync();
-                new HunterPoupanca().SearchAsync();
+                // new Mailer().RecuperaSenha();
+                //new HunterTesouro().SearchAsync();
+                //new HunterPoupanca().SearchAsync();
             }
             catch (Exception e)
             {

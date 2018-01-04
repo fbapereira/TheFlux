@@ -1,28 +1,32 @@
 ﻿<div ng-app="myApp" ng-controller="dashboardCtrl">
     <div class="section no-pad-bot " id="index-banner ">
         <div class="container ">
-
+            <!--TESTE DE PUBLICACAO-->
             <h5>Resumo da Conta</h5>
             <div class="row">
                 <div class="col l6 m12 s12">
                     <ul class="collection">
-                        <li class="collection-item avatar">
+                        <li class="collection-item avatar" id="menu">
                             <img src="img/icon.png" alt="" class="circle">
                             <p style="font-size: 80%;float:left;width:100%;font-weight: bolder;">Bem-vindo {{usuario.login}}!</p><br />
-                            <p style="font-size: 80%;float:left;width:100%;">Você já realizou {{lstMovimentacao.length}} registros.</p><br />
                             <p style="font-size: 120%;float:left;width:50%; color: {{getStyle(entradaLiquida + saidaLiquida - investimentoLiquida)}}"> {{trataValores(entradaLiquida + saidaLiquida - investimentoLiquida,  2, 'R$ ',  '', ',', '.')}}</p>
-                            <p style="font-size: 120%;float:right;width:50%; color:lightblue"> {{trataValores(investimentoLiquida,  2, 'R$ ',  '', ',', '.')}}</p><br />
+                            <p style="font-size: 80%;float:left;width:100%;">Saldo do dia de {{dataFormat(moment())}}.</p><br />
+
+                            <!--     <p style="font-size: 120%;float:right;width:50%; color:lightblue"> {{trataValores(investimentoLiquida,  2, 'R$ ',  '', ',', '.')}}</p><br />-->
                         </li>
 
                     </ul>
                 </div>
                 <div ng-include="'./controllers/widget_estrela.html'"></div>
+            </div>
+
+            <div class="row">
                 <!--resumo da COnta-->
                 <div class="col l4 m6 s12">
                     <div class="card">
                         <div class="card-content">
                             <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">Saldo Atual</p>
-                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:right;">{{dataFormat(moment())}}</p><br />
+                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:right; cursor:pointer"><i class="material-icons" ng-click="showAjudaAtual()">help_outline</i></p><br />
                             <table>
                                 <tr>
                                     <td width="50%">Entrada</td>
@@ -32,10 +36,10 @@
                                     <td width="50%">Saida</td>
                                     <td width="50%">{{trataValores(saidaLiquida , 2, 'R$ ',  '', ',', '.')}}</td>
                                 </tr>
-                                <tr>
+                                <!--<tr>
                                     <td width="50%">Investimento</td>
                                     <td width="50%">{{trataValores(investimentoLiquida, 2, 'R$ ',  '', ',', '.')}}</td>
-                                </tr>
+                                </tr>-->
 
                             </table>
 
@@ -55,7 +59,7 @@
                     <div class="card">
                         <div class="card-content">
                             <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">Lançamentos Futuros</p>
-                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:right;">{{dataFormat(moment())}}</p><br />
+                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:right; cursor:pointer"><i class="material-icons" ng-click="showAjudaFuturo()">help_outline</i></p><br />
                             <table>
                                 <tr>
                                     <td width="50%">Entrada</td>
@@ -65,10 +69,10 @@
                                     <td width="50%">Saida</td>
                                     <td width="50%">{{trataValores(saidaLiquidaFutura  , 2, 'R$ ',  '', ',', '.')}}</td>
                                 </tr>
-                                <tr>
-                                    <td width="50%">Investimetno</td>
+                                <!--<tr>
+                                    <td width="50%">Investimento</td>
                                     <td width="50%">{{trataValores(investimentoLiquidaFutura  , 2, 'R$ ',  '', ',', '.')}}</td>
-                                </tr>
+                                </tr>-->
                             </table>
 
                             <hr />
@@ -86,7 +90,7 @@
                     <div class="card">
                         <div class="card-content">
                             <p style="font-size: 60%;font-weight: bolder;color: gray;float:left;">Saldo Consolidado</p>
-                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:right;">{{dataFormat(moment())}}</p><br />
+                            <p style="font-size: 60%;font-weight: bolder;color: gray;float:right; cursor:pointer"><i class="material-icons" ng-click="showAjudaConsolidado()">help_outline</i></p><br />
                             <table>
                                 <tr>
                                     <td width="50%">Atual</td>
@@ -113,7 +117,102 @@
     </div>
 </div>
 <div class="fixed-action-btn ">
-    <a class="btn-floating purple darken-3 " href="#!/addmovimentacao">
+    <a class="btn-floating purple darken-3 " id="btnLancamento" href="#!/addmovimentacao">
         <i class="material-icons ">add</i>
     </a>
+</div>
+
+<!-- Tap Target Structure -->
+<div class="tap-target purple " data-activates="btnLancamento">
+    <div class="tap-target-content white-text">
+        <h5>Lançamento</h5>
+        <p>Faça o seu primeiro lançamento de dispesa ou ganho e aproveite os beneficios de TheFlux e de uma vida financeira saudável.</p>
+    </div>
+</div>
+
+<!-- Ajuda -->
+<div id="mdlAjudaAtual" class="modal" materialize="modal">
+    <div class="modal-content">
+        <h4 class="center">Ajuda</h4>
+
+        <p>Entenda o saldo atual</p>
+        <ul>
+            <li>
+                <b>Entrada </b> -
+                Soma de todos os valores que entraram em sua conta até hoje.
+            </li>
+            <li>
+                <b>Saída </b> -
+                Soma de todos os valores que saíram de sua conta até hoje.
+            </li>
+            <li>
+                <b>Total </b> -
+                Saldo final entre todos os valores de entrada e saída até hoje.
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col s10 offset-s1 offset-l4  l4">
+                <button onclick="$('.modal').modal('close');" class="btn-large waves-effect waves-light black" style="width: 100%; margin-bottom:15px">
+                    Voltar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="mdlAjudaFuturo" class="modal" materialize="modal">
+    <div class="modal-content">
+        <h4 class="center">Ajuda</h4>
+
+        <p>Entenda os lançamentos futuros</p>
+        <ul>
+            <li>
+                <b>Entrada </b> -
+                Soma de todos os valores que entrarão em sua conta futuramente
+            </li>
+            <li>
+                <b>Saída </b> -
+                Soma de todos os valores que sairão de sua conta futuramente
+            </li>
+            <li>
+                <b>Total </b> -
+                Saldo final entre todos os valores de entradas e saídas em sua conta futuramente
+            </li>
+
+        </ul>
+        <div class="row">
+            <div class="col s10 offset-s1 offset-l4  l4">
+                <a onclick="$('.modal').modal('close');" class="btn-large waves-effect waves-light black" style="width: 100%; margin-bottom:15px">
+                    Voltar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="mdlAjudaConsolidado" class="modal" materialize="modal">
+    <div class="modal-content">
+        <h4 class="center">Ajuda</h4>
+
+        <p>Entenda o saldo consolidado.</p>
+        <ul>
+            <li>
+                <b>Atual</b> -
+                Saldo final entre todos os valores de entradas e saídas em sua conta até hoje.
+            </li>
+            <li>
+                <b>Futuro</b> -
+                Saldo final entre todos os valores de entradas e saídas em sua conta futuramente.
+            </li>
+            <li>
+                <b>Total</b> -
+                Saldo final entre todos os valores de entradas e saídas em sua conta até hoje e futuramente.
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col s10 offset-s1 offset-l4  l4">
+                <a onclick="$('.modal').modal('close');" class="btn-large waves-effect waves-light black" style="width: 100%; margin-bottom:15px">
+                    Voltar
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

@@ -8,20 +8,23 @@
         <EntityTypeShape EntityType="u2xMainModel.tf_pagamento" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="u2xMainModel.tf_tipo_movimentacao" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="u2xMainModel.tf_tipo_pagamento" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="u2xMainModel.tf_usuario" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="u2xMainModel.tf_instituicao" Width="1.5" PointX="0.75" PointY="4.875" />
         <AssociationConnector Association="u2xMainModel.FK_tf_pagamento_tf_instituicao" />
         <AssociationConnector Association="u2xMainModel.FK_tf_tipo_pagamento_tf_instituicao" />
-        <AssociationConnector Association="u2xMainModel.FK_tf_usuario_tf_instituicao" />
         <EntityTypeShape EntityType="u2xMainModel.tf_estrelas" Width="1.5" PointX="5.25" PointY="10.875" />
-        <AssociationConnector Association="u2xMainModel.FK_tf_estrelas_tf_usuario" />
         <EntityTypeShape EntityType="u2xMainModel.tf_movimentacao" Width="1.5" PointX="5.25" PointY="6.375" />
         <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_tipo_movimentacao" />
         <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_tipo_pagamento" />
-        <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_usuario" />
         <EntityTypeShape EntityType="u2xMainModel.tf_tesouro" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="u2xMainModel.tf_poupanca" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="u2xMainModel.tf_error" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_investimento_RF" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_investimento_RF_aporte" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_investimento_RF_variacao" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_usuario" Width="1.5" PointX="3" PointY="7.875" />
+        <AssociationConnector Association="u2xMainModel.FK_tf_estrelas_tf_usuario" />
+        <AssociationConnector Association="u2xMainModel.FK_tf_usuario_tf_instituicao" />
+        <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

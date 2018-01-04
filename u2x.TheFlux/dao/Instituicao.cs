@@ -77,6 +77,7 @@ namespace u2x.TheFlux.dao
             {
                 id = obj.id,
                 nome = obj.nome,
+                email = obj.email,
             };
         }
     }

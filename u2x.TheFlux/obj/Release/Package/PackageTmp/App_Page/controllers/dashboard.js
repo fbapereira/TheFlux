@@ -28,6 +28,9 @@
             data: oUsuario
         }).then(function sucess(response) {
             $scope.lstMovimentacao = response.data;
+            if (!$scope.lstMovimentacao || $scope.lstMovimentacao.length == 0) {
+                $('.tap-target').tapTarget('open');
+            }
         }, function errorCallback(response) {
             console.log(response);
             Materialize.toast('Não foi possível realizar a operação', 4000);
@@ -156,4 +159,27 @@
             Materialize.toast('Não foi possível realizar a operação', 4000);
         });
     }
+
+
+    $scope.showAjudaConsolidado = function () {
+        $('#mdlAjudaConsolidado').modal('open');
+    }
+    $scope.CloseAjudaConsolidado = function () {
+        $('.modal').modal('close');
+    }
+
+    $scope.showAjudaFuturo = function () {
+        $('#mdlAjudaFuturo').modal('open');
+    }
+    $scope.CloseAjudaFuturo = function () {
+        $('.modal').modal('close');
+    }
+
+    $scope.showAjudaAtual = function () {
+        $('#mdlAjudaAtual').modal('open');
+    }
+    $scope.CloseAjudaAtual = function () {
+        $('.modal').modal('close');
+    }
+
 });

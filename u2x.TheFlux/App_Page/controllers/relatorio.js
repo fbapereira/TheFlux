@@ -320,7 +320,7 @@
 
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('pieFormaPagamento'));
+        var chart = new google.visualization.ColumnChart(document.getElementById('pieFormaPagamento'));
         chart.draw(data, options);
     }
 

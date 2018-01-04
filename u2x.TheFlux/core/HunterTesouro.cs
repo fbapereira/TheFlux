@@ -117,19 +117,14 @@ namespace u2x.TheFlux.core
             {
                 String index = "Atualizado em: ";
                 Int32 startIndex = body.IndexOf(index);
-                ErroHandler.LogFake("HunterTesouro", body, "ValidaDados", "");
 
                 body = body.Substring(startIndex + index.Length);
-                ErroHandler.LogFake("HunterTesouro", body, "ValidaDados", "");
 
                 body = body.Replace("<b>", "");
-                ErroHandler.LogFake("HunterTesouro", body, "ValidaDados", "");
 
                 body = body.Replace("</b>", "");
-                ErroHandler.LogFake("HunterTesouro", body, "ValidaDados", "");
 
                 body = body.Substring(0, 10);
-                ErroHandler.LogFake("HunterTesouro", body, "ValidaDados", "");
 
                 this.AtualImport = DateTime.ParseExact(body, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 return ultimoImport < AtualImport;
