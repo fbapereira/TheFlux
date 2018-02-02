@@ -34,5 +34,35 @@
     "inputFiles": [
       "App_Page/controllers/historico.html"
     ]
+  },
+  {
+    "outputFileName": "App_Page/js/init.min.js",
+    "inputFiles": [
+      "App_Page/js/init.js"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/contas_futuras.min.html",
+    "inputFiles": [
+      "App_Page/controllers/contas_futuras.html"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/investimento.min.html",
+    "inputFiles": [
+      "App_Page/controllers/investimento.html"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/contas_futuras.min.js",
+    "inputFiles": [
+      "App_Page/controllers/contas_futuras.js"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/investimento.min.js",
+    "inputFiles": [
+      "App_Page/controllers/investimento.js"
+    ]
   }
 ]

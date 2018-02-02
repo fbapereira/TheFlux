@@ -7,6 +7,7 @@
     $('ul.tabs').tabs();
     $('.button-collapse').sideNav('hide');
     $("body").css("overflow", "")
+    $(".dropdown-button").dropdown();
 
 }
 

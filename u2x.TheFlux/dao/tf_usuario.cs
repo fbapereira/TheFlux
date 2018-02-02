@@ -19,6 +19,7 @@ namespace u2x.TheFlux.dao
         {
             this.tf_estrelas = new HashSet<tf_estrelas>();
             this.tf_movimentacao = new HashSet<tf_movimentacao>();
+            this.tf_movimentacao_futura = new HashSet<tf_movimentacao_futura>();
         }
     
         public int id { get; set; }
@@ -32,5 +33,7 @@ namespace u2x.TheFlux.dao
         public virtual tf_instituicao tf_instituicao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tf_movimentacao> tf_movimentacao { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tf_movimentacao_futura> tf_movimentacao_futura { get; set; }
     }
 }

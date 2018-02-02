@@ -71,6 +71,19 @@
     <Property Name="data" Type="datetime" Nullable="false" />
     <Property Name="id_tipo_pagamento" Type="int" />
     <Property Name="is_canceled" Type="bit" />
+    <Property Name="id_parcela_futura" Type="int" />
+  </EntityType>
+  <EntityType Name="tf_movimentacao_futura">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="100" />
+    <Property Name="id_tipo_movimentacao" Type="int" />
+    <Property Name="id_tipo_pagamento" Type="int" />
+    <Property Name="valor_base" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="is_entrada" Type="bit" />
   </EntityType>
   <EntityType Name="tf_pagamento">
     <Key>
@@ -81,6 +94,18 @@
     <Property Name="ano" Type="int" Nullable="false" />
     <Property Name="mes" Type="int" Nullable="false" />
     <Property Name="is_pago" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tf_parcela_futura">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_movimentacao_futura" Type="int" />
+    <Property Name="dt_include" Type="date" />
+    <Property Name="valor_real" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="is_pago" Type="bit" />
+    <Property Name="email" Type="varchar(max)" />
+    <Property Name="is_email_sent" Type="bit" />
   </EntityType>
   <EntityType Name="tf_poupanca">
     <Key>
@@ -132,6 +157,98 @@
     <Property Name="senha" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="isAdmin" Type="bit" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_pagar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_email_conta_a_pagar">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="nome" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="login" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="800" />
+    <Property Name="conta" Type="varchar" MaxLength="100" />
+    <Property Name="valor_base" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="dt_include" Type="date" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_email_conta_a_receber">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="nome" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="login" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="800" />
+    <Property Name="conta" Type="varchar" MaxLength="100" />
+    <Property Name="valor_base" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="dt_include" Type="date" />
+  </EntityType>
+  <Association Name="FK__tf_movime__id_pa__14E61A24">
+    <End Role="tf_parcela_futura" Type="Self.tf_parcela_futura" Multiplicity="0..1" />
+    <End Role="tf_movimentacao" Type="Self.tf_movimentacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_parcela_futura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_movimentacao">
+        <PropertyRef Name="id_parcela_futura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tf_movime__id_ti__10216507">
+    <End Role="tf_tipo_movimentacao" Type="Self.tf_tipo_movimentacao" Multiplicity="0..1" />
+    <End Role="tf_movimentacao_futura" Type="Self.tf_movimentacao_futura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_tipo_movimentacao">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_movimentacao_futura">
+        <PropertyRef Name="id_tipo_movimentacao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tf_movime__id_ti__11158940">
+    <End Role="tf_tipo_pagamento" Type="Self.tf_tipo_pagamento" Multiplicity="0..1" />
+    <End Role="tf_movimentacao_futura" Type="Self.tf_movimentacao_futura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_tipo_pagamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_movimentacao_futura">
+        <PropertyRef Name="id_tipo_pagamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tf_movime__id_us__15DA3E5D">
+    <End Role="tf_usuario" Type="Self.tf_usuario" Multiplicity="0..1" />
+    <End Role="tf_movimentacao_futura" Type="Self.tf_movimentacao_futura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_movimentacao_futura">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tf_parcel__id_mo__13F1F5EB">
+    <End Role="tf_movimentacao_futura" Type="Self.tf_movimentacao_futura" Multiplicity="0..1" />
+    <End Role="tf_parcela_futura" Type="Self.tf_parcela_futura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_movimentacao_futura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_parcela_futura">
+        <PropertyRef Name="id_movimentacao_futura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tf_estrelas_tf_usuario">
     <End Role="tf_usuario" Type="Self.tf_usuario" Multiplicity="1" />
     <End Role="tf_estrelas" Type="Self.tf_estrelas" Multiplicity="*" />
@@ -224,12 +341,56 @@
     <EntitySet Name="tf_investimento_RF_aporte" EntityType="Self.tf_investimento_RF_aporte" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_investimento_RF_variacao" EntityType="Self.tf_investimento_RF_variacao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_movimentacao" EntityType="Self.tf_movimentacao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tf_movimentacao_futura" EntityType="Self.tf_movimentacao_futura" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_pagamento" EntityType="Self.tf_pagamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tf_parcela_futura" EntityType="Self.tf_parcela_futura" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_poupanca" EntityType="Self.tf_poupanca" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_tesouro" EntityType="Self.tf_tesouro" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_tipo_movimentacao" EntityType="Self.tf_tipo_movimentacao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_tipo_pagamento" EntityType="Self.tf_tipo_pagamento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_usuario" EntityType="Self.tf_usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_email_conta_a_pagar" EntityType="Self.vw_email_conta_a_pagar" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_email_conta_a_pagar].[id] AS [id], 
+    [vw_email_conta_a_pagar].[login] AS [login], 
+    [vw_email_conta_a_pagar].[nome] AS [nome], 
+    [vw_email_conta_a_pagar].[email] AS [email], 
+    [vw_email_conta_a_pagar].[conta] AS [conta], 
+    [vw_email_conta_a_pagar].[valor_base] AS [valor_base], 
+    [vw_email_conta_a_pagar].[dt_include] AS [dt_include]
+    FROM [dbo].[vw_email_conta_a_pagar] AS [vw_email_conta_a_pagar]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_email_conta_a_receber" EntityType="Self.vw_email_conta_a_receber" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_email_conta_a_receber].[id] AS [id], 
+    [vw_email_conta_a_receber].[login] AS [login], 
+    [vw_email_conta_a_receber].[nome] AS [nome], 
+    [vw_email_conta_a_receber].[email] AS [email], 
+    [vw_email_conta_a_receber].[conta] AS [conta], 
+    [vw_email_conta_a_receber].[valor_base] AS [valor_base], 
+    [vw_email_conta_a_receber].[dt_include] AS [dt_include]
+    FROM [dbo].[vw_email_conta_a_receber] AS [vw_email_conta_a_receber]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__tf_movime__id_pa__14E61A24" Association="Self.FK__tf_movime__id_pa__14E61A24">
+      <End Role="tf_parcela_futura" EntitySet="tf_parcela_futura" />
+      <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tf_movime__id_ti__10216507" Association="Self.FK__tf_movime__id_ti__10216507">
+      <End Role="tf_tipo_movimentacao" EntitySet="tf_tipo_movimentacao" />
+      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tf_movime__id_ti__11158940" Association="Self.FK__tf_movime__id_ti__11158940">
+      <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
+      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tf_movime__id_us__15DA3E5D" Association="Self.FK__tf_movime__id_us__15DA3E5D">
+      <End Role="tf_usuario" EntitySet="tf_usuario" />
+      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tf_parcel__id_mo__13F1F5EB" Association="Self.FK__tf_parcel__id_mo__13F1F5EB">
+      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
+      <End Role="tf_parcela_futura" EntitySet="tf_parcela_futura" />
+    </AssociationSet>
     <AssociationSet Name="FK_tf_estrelas_tf_usuario" Association="Self.FK_tf_estrelas_tf_usuario">
       <End Role="tf_usuario" EntitySet="tf_usuario" />
       <End Role="tf_estrelas" EntitySet="tf_estrelas" />

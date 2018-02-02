@@ -30,7 +30,6 @@ namespace u2x.TheFlux.dao
         public virtual DbSet<tf_tipo_pagamento> tf_tipo_pagamento { get; set; }
         public virtual DbSet<tf_instituicao> tf_instituicao { get; set; }
         public virtual DbSet<tf_estrelas> tf_estrelas { get; set; }
-        public virtual DbSet<tf_movimentacao> tf_movimentacao { get; set; }
         public virtual DbSet<tf_tesouro> tf_tesouro { get; set; }
         public virtual DbSet<tf_poupanca> tf_poupanca { get; set; }
         public virtual DbSet<tf_error> tf_error { get; set; }
@@ -38,5 +37,10 @@ namespace u2x.TheFlux.dao
         public virtual DbSet<tf_investimento_RF_aporte> tf_investimento_RF_aporte { get; set; }
         public virtual DbSet<tf_investimento_RF_variacao> tf_investimento_RF_variacao { get; set; }
         public virtual DbSet<tf_usuario> tf_usuario { get; set; }
+        public virtual DbSet<tf_parcela_futura> tf_parcela_futura { get; set; }
+        public virtual DbSet<tf_movimentacao> tf_movimentacao { get; set; }
+        public virtual DbSet<tf_movimentacao_futura> tf_movimentacao_futura { get; set; }
+        public virtual DbSet<vw_email_conta_a_pagar> vw_email_conta_a_pagar { get; set; }
+        public virtual DbSet<vw_email_conta_a_receber> vw_email_conta_a_receber { get; set; }
     }
 }

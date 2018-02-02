@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using u2x.TheFlux.core;
 using u2x.TheFlux.dao;
 
 namespace u2x.TheFlux
@@ -15,6 +16,13 @@ namespace u2x.TheFlux
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            try
+            {
+                new HunterContasFuturas().SearchAsync();
+            }
+            catch
+            {
+            }
 
             new HttpConfiguration().MapHttpAttributeRoutes();
             RouteTable.Routes.MapHttpRoute(

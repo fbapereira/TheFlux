@@ -388,6 +388,14 @@
     <Content Include="App_Page\controllers\add_usuario.js" />
     <Content Include="App_Page\controllers\cadastro.html" />
     <Content Include="App_Page\controllers\cadastro.js" />
+    <Content Include="App_Page\controllers\contas_futuras.js" />
+    <Content Include="App_Page\controllers\contas_futuras.html" />
+    <Content Include="App_Page\controllers\contas_futuras.min.html">
+      <DependentUpon>contas_futuras.html</DependentUpon>
+    </Content>
+    <Content Include="App_Page\controllers\contas_futuras.min.js">
+      <DependentUpon>contas_futuras.js</DependentUpon>
+    </Content>
     <Content Include="App_Page\controllers\dashboard.html" />
     <Content Include="App_Page\controllers\dashboard.js" />
     <Content Include="App_Page\controllers\dashboard.min.js">
@@ -403,6 +411,12 @@
     </Content>
     <Content Include="App_Page\controllers\investimento.js" />
     <Content Include="App_Page\controllers\investimento.html" />
+    <Content Include="App_Page\controllers\investimento.min.html">
+      <DependentUpon>investimento.html</DependentUpon>
+    </Content>
+    <Content Include="App_Page\controllers\investimento.min.js">
+      <DependentUpon>investimento.js</DependentUpon>
+    </Content>
     <Content Include="App_Page\controllers\login.html" />
     <Content Include="App_Page\controllers\login.js" />
     <Content Include="App_Page\controllers\menu.html" />
@@ -428,6 +442,7 @@
     <Content Include="App_Page\css\materialize.css" />
     <Content Include="App_Page\css\materialize.min.css" />
     <Content Include="App_Page\css\style.css" />
+    <Content Include="App_Page\directives\phoneDir.js" />
     <Content Include="App_Page\favicon.png" />
     <Content Include="App_Page\img\icon.png" />
     <Content Include="App_Page\img\logo_header.png" />
@@ -436,6 +451,10 @@
     <Content Include="App_Page\js\angular.min.js" />
     <Content Include="App_Page\js\filter.js" />
     <Content Include="App_Page\js\init.js" />
+    <Content Include="App_Page\js\init.min.js">
+      <DependentUpon>init.js</DependentUpon>
+    </Content>
+    <Content Include="App_Page\js\jquery.mask.js" />
     <Content Include="App_Page\js\materialize.js" />
     <Content Include="App_Page\js\materialize.min.js" />
     <Content Include="App_Page\js\moment.min.js" />
@@ -488,13 +507,21 @@
     <Compile Include="controllers\Adicionar_EstrelaController.cs" />
     <Compile Include="controllers\Aporte_AdicionarController.cs" />
     <Compile Include="controllers\Aporte_ObtemController.cs" />
+    <Compile Include="controllers\Aporte_RemoveController.cs" />
+    <Compile Include="controllers\ContaFutura_CriarController.cs" />
+    <Compile Include="controllers\ContaFutura_ObtemController.cs" />
     <Compile Include="controllers\Instituicao_AdicionarController.cs" />
     <Compile Include="controllers\InvestimentoRF_AdicionarController.cs" />
+    <Compile Include="controllers\InvestimentoRF_DeletaController.cs" />
     <Compile Include="controllers\InvestimentoRF_ObtemController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_AlterarController.cs" />
     <Compile Include="controllers\Movimentacao_DeletarController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_ObtemController.cs" />
     <Compile Include="controllers\Obtem_EstrelaController.cs" />
+    <Compile Include="controllers\ParcelaFutura_ComprovanteController.cs" />
+    <Compile Include="controllers\ParcelaFutura_CriarController.cs" />
+    <Compile Include="controllers\ParcelaFutura_ObtemController.cs" />
+    <Compile Include="controllers\ParcelaFutura_PagarController.cs" />
     <Compile Include="controllers\Senha_ResetarController.cs" />
     <Compile Include="controllers\TipoPagamento_ObtemController.cs" />
     <Compile Include="controllers\TipoPagamento_AlterarController.cs" />
@@ -509,9 +536,12 @@
     <Compile Include="controllers\UsuarioController.cs" />
     <Compile Include="controllers\Variacao_AdicionarController.cs" />
     <Compile Include="controllers\Variacao_ObtemController.cs" />
+    <Compile Include="controllers\Variacao_RemoveController.cs" />
+    <Compile Include="core\HunterContasFuturas.cs" />
     <Compile Include="core\HunterTesouro.cs" />
     <Compile Include="core\HunterPoupanca.cs" />
     <Compile Include="core\Mailer.cs" />
+    <Compile Include="dao\ContasFuturas.cs" />
     <Compile Include="dao\dao.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -553,7 +583,13 @@
     <Compile Include="dao\tf_movimentacao.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
+    <Compile Include="dao\tf_movimentacao_futura.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
     <Compile Include="dao\tf_pagamento.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\tf_parcela_futura.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\tf_poupanca.cs">
@@ -574,6 +610,12 @@
     <Compile Include="dao\TipoPagamento.cs" />
     <Compile Include="dao\TipoMovimentacao.cs" />
     <Compile Include="dao\Usuario.cs" />
+    <Compile Include="dao\vw_email_conta_a_pagar.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\vw_email_conta_a_receber.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

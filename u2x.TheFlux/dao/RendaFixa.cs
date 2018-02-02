@@ -53,8 +53,8 @@ namespace u2x.TheFlux.dao
 
         public void RemoveAporte(Int32 id_investimento_RF)
         {
-
-            db.tf_investimento_RF_aporte.RemoveRange(db.tf_investimento_RF_aporte.Where(inv => inv.id_investimento_RF == id_investimento_RF));
+            db.tf_investimento_RF_aporte.RemoveRange(db.tf_investimento_RF_aporte.Where(inv => inv.id == id_investimento_RF));
+            db.SaveChanges();
 
         }
 
@@ -73,7 +73,9 @@ namespace u2x.TheFlux.dao
 
         public void RemoveRegistro(Int32 id_investimento_RF)
         {
-            db.tf_investimento_RF_variacao.RemoveRange(db.tf_investimento_RF_variacao.Where(inv => inv.id_investimento_RF == id_investimento_RF));
+            db.tf_investimento_RF_variacao.RemoveRange(db.tf_investimento_RF_variacao.Where(inv => inv.id == id_investimento_RF));
+            db.SaveChanges();
+
 
         }
 

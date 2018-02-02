@@ -12,19 +12,31 @@
         <AssociationConnector Association="u2xMainModel.FK_tf_pagamento_tf_instituicao" />
         <AssociationConnector Association="u2xMainModel.FK_tf_tipo_pagamento_tf_instituicao" />
         <EntityTypeShape EntityType="u2xMainModel.tf_estrelas" Width="1.5" PointX="5.25" PointY="10.875" />
-        <EntityTypeShape EntityType="u2xMainModel.tf_movimentacao" Width="1.5" PointX="5.25" PointY="6.375" />
-        <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_tipo_movimentacao" />
-        <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_tipo_pagamento" />
         <EntityTypeShape EntityType="u2xMainModel.tf_tesouro" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="u2xMainModel.tf_poupanca" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="u2xMainModel.tf_error" Width="1.5" PointX="7.375" PointY="3.75" />
-        <EntityTypeShape EntityType="u2xMainModel.tf_investimento_RF" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_investimento_RF" Width="1.5" PointX="8.625" PointY="6.625" />
         <EntityTypeShape EntityType="u2xMainModel.tf_investimento_RF_aporte" Width="1.5" PointX="9.375" PointY="0.75" />
         <EntityTypeShape EntityType="u2xMainModel.tf_investimento_RF_variacao" Width="1.5" PointX="9.375" PointY="3.75" />
         <EntityTypeShape EntityType="u2xMainModel.tf_usuario" Width="1.5" PointX="3" PointY="7.875" />
         <AssociationConnector Association="u2xMainModel.FK_tf_estrelas_tf_usuario" />
         <AssociationConnector Association="u2xMainModel.FK_tf_usuario_tf_instituicao" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_parcela_futura" Width="1.5" PointX="12.75" PointY="6.75" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_movimentacao" Width="1.5" PointX="15" PointY="7" />
+        <AssociationConnector Association="u2xMainModel.FK__tf_movime__id_pa__1332DBDC" />
+        <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_tipo_movimentacao" />
+        <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_tipo_pagamento" />
         <AssociationConnector Association="u2xMainModel.FK_tf_movimentacao_tf_usuario" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_movimentacao_futura" Width="1.5" PointX="17.25" PointY="6.25" />
+        <AssociationConnector Association="u2xMainModel.FK__tf_movime__id_ti__0E6E26BF" />
+        <AssociationConnector Association="u2xMainModel.FK__tf_movime__id_ti__1BC821DD" />
+        <AssociationConnector Association="u2xMainModel.FK__tf_movime__id_ti__1CBC4616" />
+        <AssociationConnector Association="u2xMainModel.FK__tf_movime__id_ti__1DB06A4F" />
+        <AssociationConnector Association="u2xMainModel.FK__tf_movime__id_us__1AD3FDA4" />
+        <AssociationConnector Association="u2xMainModel.FK__tf_parcel__id_mo__123EB7A3" />
+        <AssociationConnector Association="u2xMainModel.FK__tf_movime__id_ti__2739D489" />
+        <EntityTypeShape EntityType="u2xMainModel.vw_email_conta_a_pagar" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="u2xMainModel.vw_email_conta_a_receber" Width="1.5" PointX="7.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

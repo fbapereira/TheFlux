@@ -49,7 +49,10 @@ app
             })
             .when("/cadastro", {
                 templateUrl: "controllers/cadastro.html"
-            }); 
+            })
+            .when("/contas", {
+                templateUrl: "controllers/contas_futuras.html"
+            });
     });
 
 
@@ -58,8 +61,8 @@ app.factory('dataservice', function () {
     var usuario;
 
     return {
-        url: 'http://app.basicflux.com',
-           
+        url: 'http://localhost:64010',
+
         setUsuario: function (usuario) {
             if (!usuario || !usuario.login) {
                 setCookie("usuario", "");

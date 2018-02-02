@@ -7,7 +7,13 @@
     $('ul.tabs').tabs();
     $('.button-collapse').sideNav('hide');
     $("body").css("overflow", "")
+    $(".dropdown-button").dropdown();
 
+}
+
+
+function U2X_TrataMoney(model) {
+    return model.split(".").join("");
 }
 
 function U2X_ValidaLogin(oUsuario) {

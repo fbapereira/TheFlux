@@ -31,19 +31,22 @@ namespace U2X.TheFlux
         {
             try
             {
-                u2xMainEntities1 db = new u2xMainEntities1();
-                tf_usuario oUsuario = (tf_usuario)db.tf_usuario.Where(
-                        usuario => usuario.login == c.UserName && usuario.senha == c.Password).FirstOrDefault();
+                //u2xMainEntities1 db = new u2xMainEntities1();
+                //tf_usuario oUsuario = (tf_usuario)db.tf_usuario.Where(
+                //        usuario => usuario.login == c.UserName && usuario.senha == c.Password).FirstOrDefault();
 
-                if (oUsuario != null)
-                {
-                    Claim claim = new Claim(ClaimTypes.Name, c.UserName);
-                    Claim[] claims = new Claim[] { claim };
-                    ClaimsIdentity claimsIdentity =
-                        new ClaimsIdentity(
-                           claims, OAuthDefaults.AuthenticationType);
-                    c.Validated(claimsIdentity);
-                }
+                //if (oUsuario != null)
+                //{
+                //Claim claim = new Claim(ClaimTypes.Name, c.UserName);
+
+                var identity = new ClaimsIdentity();
+                identity.AddClaim(new Claim(ClaimTypes.Name, "userNameTeste"));
+
+                c.Validated(identity);
+
+                //}
+
+
 
                 return Task.FromResult<object>(null);
 

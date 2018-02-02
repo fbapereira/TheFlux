@@ -16,6 +16,25 @@
             top: 20%;
             color: white;
         }
+
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+            background-color: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #CCC;
+        }
+
+      
     </style>
 
 </head>
@@ -49,7 +68,7 @@
     <script src="js/moment.min.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+    <script src="js/jquery.mask.js"></script>
     <script src="js/u2x.functions.js"></script>
     <script src="js/init.js"></script>
     <script src="js/filter.js"></script>
@@ -67,5 +86,7 @@
     <script src="controllers/relatorio.js"></script>
     <script src="controllers/investimento.js"></script>
     <script src="controllers/recuperar.js"></script>
+    <script src="controllers/contas_futuras.js"></script>
+    <script src="directives/phoneDir.js"></script>
 </body>
 </html>
