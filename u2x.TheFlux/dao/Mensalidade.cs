@@ -30,9 +30,14 @@ namespace u2x.TheFlux.dao
             return (from item in db.tf_mensalidade
                     where item.id_aluno == id_aluno
                     select item)
-         .OrderBy(c => c.ano).ThenBy(n => n.mes)
- .ToList();
+         .OrderBy(c => c.ano).ThenBy(n => n.mes).ToList();
 
+        }
+
+        public void Remove(Int32 id)
+        {
+            db.tf_mensalidade.RemoveRange(db.tf_mensalidade.Where(inv => inv.id == id));
+            db.SaveChanges();
         }
 
         public Mensalidade ToMensalidade(tf_mensalidade obj)

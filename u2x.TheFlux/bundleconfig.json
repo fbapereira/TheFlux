@@ -88,5 +88,11 @@
     "inputFiles": [
       "App_Page/controllers/alunos.html"
     ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/mensalidade.min.html",
+    "inputFiles": [
+      "App_Page/controllers/mensalidade.html"
+    ]
   }
 ]

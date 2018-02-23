@@ -8,6 +8,31 @@
     U2X_AbreLoader();
     ObtemMensalidades();
 
+
+    $scope.OpenPagamento = function () {
+        $('#mdlPagamento').modal('open');
+    }
+
+    $scope.ClosePagamento = function () {
+        $('#mdlPagamento').modal('close');
+    }
+
+    $scope.RealizaPagamento = function () {
+        $('#mdlPagamento').modal('close');
+        $('#mdlComprovante').modal('open');
+    }
+
+    $scope.CloseComprovante = function () {
+        $('#mdlComprovante').modal('close');
+    }
+
+    $scope.EnviaComprovante = function () {
+        $('#mdlComprovante').modal('close');
+    }
+
+
+
+
     $scope.OpenAddMensalidade = function () {
         $scope.plano.parcelas = 1;
         $scope.plano.valor = 0;
@@ -44,6 +69,8 @@
         }).then(function sucess(response) {
             U2X_FechaLoader();
             ObtemMensalidades();
+            $('#mdlChangePassword').modal('close');
+
         }, function errorCallback(response) {
             console.log(response);
             Materialize.toast('Não foi possível realizar a operação', 4000);
@@ -52,6 +79,37 @@
 
         });
     }
+
+    
+    
+    $scope.CloseDeletar = function () {
+        $('#mdlDeletar').modal('close');
+    }
+
+    $scope.targetDeleteMensalidade;
+    $scope.OpenDeletar = function (mensalidade) {
+        $scope.targetDeleteMensalidade = mensalidade;
+        $('#mdlDeletar').modal('open');
+    }
+
+    $scope.DeleteMensalidade = function (mensalidade) {
+        $http({
+            method: 'POST',
+            url: dataservice.url + "/api/Mensalidade_Remove",
+            data: $scope.targetDeleteMensalidade
+        }).then(function sucess(response) {
+            U2X_FechaLoader();
+            ObtemMensalidades();
+            Materialize.toast('Mensalidade deletada com sucesso', 4000);
+
+        }, function errorCallback(response) {
+            console.log(response);
+            Materialize.toast('Não foi possível realizar a operação', 4000);
+            U2X_FechaLoader();
+            $('#mdlChangePassword').modal('close');
+
+        });
+    };
 
     $scope.trataValores = U2X_TrataValores;
 

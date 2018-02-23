@@ -432,6 +432,9 @@
     </Content>
     <Content Include="App_Page\controllers\login.html" />
     <Content Include="App_Page\controllers\login.js" />
+    <Content Include="App_Page\controllers\mensalidade.min.html">
+      <DependentUpon>mensalidade.html</DependentUpon>
+    </Content>
     <Content Include="App_Page\controllers\mensalidade.min.js">
       <DependentUpon>mensalidade.js</DependentUpon>
     </Content>
@@ -542,6 +545,7 @@
     <Compile Include="controllers\InvestimentoRF_ObtemController.cs" />
     <Compile Include="controllers\Mensalidade_AdicionarController.cs" />
     <Compile Include="controllers\Mensalidade_ObtemController.cs" />
+    <Compile Include="controllers\Mensalidade_RemoveController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_AlterarController.cs" />
     <Compile Include="controllers\Movimentacao_DeletarController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_ObtemController.cs" />
