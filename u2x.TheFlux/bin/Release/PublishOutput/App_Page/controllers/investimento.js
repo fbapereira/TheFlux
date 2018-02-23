@@ -8,30 +8,6 @@
     carregaDados();
 
 
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['', 'Aporte', 'Lucro'],
-            ['30/12', 4287.06, 4245.76],
-            ['29/12', 4287.06, 4249.02],
-        ]);
-
-        var docheight = $(window).height() / 3 * 2;
-        var docwidth = $('#divPadrao').width() / 5 * 4;
-        var options = {
-            title: 'Lucro sobre Aporte',
-            isStacked: true,
-            height: docheight,
-            width: docwidth
-        };
-
-        var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
-
-        chart.draw(data, options);
-    }
-
     //Carrega Dados
     function validaLogin() {
         $scope.loggedUsuario = dataservice.getUsuario();
@@ -77,6 +53,13 @@
             data: inv
         }).then(function sucess(response) {
             inv.aportes = response.data;
+
+            inv.aportes = inv.aportes.sort(function (b, a) {
+                if (moment(b.data_compra).isBefore(moment(a.data_compra))) return -1;
+                else if (moment(b.data_compra).isAfter(moment(a.data_compra))) return 1;
+                else return 0;
+            });
+
         }, function errorCallback(response) {
             U2X_TrataErro(response);
             U2X_FechaLoader();
@@ -91,6 +74,11 @@
         }).then(function sucess(response) {
             inv.variacao = response.data;
 
+            inv.variacao = inv.variacao.sort(function (b, a) {
+                if (moment(b.data).isBefore(moment(a.data))) return -1;
+                else if (moment(b.data).isAfter(moment(a.data))) return 1;
+                else return 0;
+            });
         }, function errorCallback(response) {
             U2X_TrataErro(response);
             U2X_FechaLoader();
@@ -101,6 +89,8 @@
     //Variacao
     $scope.variacao = {}
     $scope.ShowVariacao = function () {
+        $scope.variacao = {}
+
         $('#mdlNovoVariacao').modal('open');
     }
     $scope.CloseVariacao = function () {
@@ -145,11 +135,42 @@
     //Aporte
     $scope.aporte = {}
     $scope.showAporte = function () {
+        $scope.aporte = {};
         $('#mdlNovoAporte').modal('open');
     }
     $scope.CloseAporte = function () {
         $('#mdlNovoAporte').modal('close');
     }
+
+    $scope.targetRemoveInvestimento = {}
+
+    $scope.AbreremoveInvestimento = function (obj) {
+        $scope.targetRemoveInvestimento = obj;
+        $('#mdlRemoveInvestimento').modal('open');
+    }
+    $scope.FecharemoveInvestimento = function () {
+        $('#mdlRemoveInvestimento').modal('close');
+
+    }
+
+    $scope.removeInvestimento = function () {
+        U2X_AbreLoader();
+        $http({
+            method: 'POST',
+            url: dataservice.url + '/api/InvestimentoRF_Deleta',
+            data: $scope.targetRemoveInvestimento
+        }).then(function sucess(response) {
+            carregaDados();
+            U2X_FechaLoader();
+            $('#mdlRemoveInvestimento').modal('close');
+            Materialize.toast('Investimento removido com sucesso', 4000);
+        }, function errorCallback(response) {
+            U2X_TrataErro(response);
+            U2X_FechaLoader();
+            return;
+        });
+    }
+
     $scope.AddAporte = function () {
 
 
@@ -202,6 +223,7 @@
     }
 
     $scope.ShowInvestimento = function () {
+        $scope.novoNome = '';
         $('#mdlNovoInvestimento').modal('open');
     }
     $scope.CloseInvestimento = function () {
@@ -273,6 +295,65 @@
     $scope.dataFormat = function (data) {
 
         return moment(data).format("DD/MM/YYYY");
+    }
+
+    //Aporte
+    $scope.removeAporte = {}
+
+    $scope.AbreRemoveAporte = function (obj) {
+        $scope.removeAporte = obj;
+        $('#mdlRemoveAporte').modal('open');
+    }
+    $scope.FechaRemoveAporte = function () {
+        $('#mdlRemoveAporte').modal('close');
+
+    }
+
+    $scope.RemoveAporte = function () {
+        U2X_AbreLoader();
+        $http({
+            method: 'POST',
+            url: dataservice.url + '/api/Aporte_Remove',
+            data: $scope.removeAporte
+        }).then(function sucess(response) {
+            carregaDados();
+            U2X_FechaLoader();
+            $('#mdlRemoveAporte').modal('close');
+            Materialize.toast('Aporte removido com sucesso', 4000);
+        }, function errorCallback(response) {
+            U2X_TrataErro(response);
+            U2X_FechaLoader();
+            return;
+        });
+    }
+    // Variacao
+    $scope.removeVariacao = {}
+
+    $scope.AbreRemoveVariacao= function (obj) {
+        $scope.removeVariacao= obj;
+        $('#mdlRemoveVariacao').modal('open');
+    }
+    $scope.FechaRemoveVariacao= function () {
+        $('#mdlRemoveVariacao').modal('close');
+
+    }
+
+    $scope.RemoveVariacao = function () {
+        U2X_AbreLoader();
+        $http({
+            method: 'POST',
+            url: dataservice.url + '/api/Variacao_Remove',
+            data: $scope.removeVariacao
+        }).then(function sucess(response) {
+            carregaDados();
+            U2X_FechaLoader();
+            $('#mdlRemoveVariacao').modal('close');
+            Materialize.toast('Variação removido com sucesso', 4000);
+        }, function errorCallback(response) {
+            U2X_TrataErro(response);
+            U2X_FechaLoader();
+            return;
+        });
     }
 
 });

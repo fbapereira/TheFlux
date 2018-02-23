@@ -31,13 +31,6 @@
             if (!$scope.lstMovimentacao || $scope.lstMovimentacao.length == 0) {
                 $('.tap-target').tapTarget('open');
             }
-        }, function errorCallback(response) {
-            console.log(response);
-            Materialize.toast('Não foi possível realizar a operação', 4000);
-            $location.path("/");
-            U2X_FechaLoader();
-            return;
-        }).then(function sucess(response) {
             $http({
                 method: 'POST',
                 url: dataservice.url + '/api/TipoPagamento_Obtem',
@@ -126,7 +119,13 @@
                 U2X_FechaLoader();
                 return;
             });
-        });
+        }, function errorCallback(response) {
+            console.log(response);
+            Materialize.toast('Não foi possível realizar a operação', 4000);
+            $location.path("/");
+            U2X_FechaLoader();
+            return;
+        })
     }
 
 

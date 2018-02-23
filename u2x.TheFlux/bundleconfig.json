@@ -64,5 +64,29 @@
     "inputFiles": [
       "App_Page/controllers/investimento.js"
     ]
+  },
+  {
+    "outputFileName": "App_Page/js/filter.min.js",
+    "inputFiles": [
+      "App_Page/js/filter.js"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/movimentacao.min.html",
+    "inputFiles": [
+      "App_Page/controllers/movimentacao.html"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/mensalidade.min.js",
+    "inputFiles": [
+      "App_Page/controllers/mensalidade.js"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/alunos.min.html",
+    "inputFiles": [
+      "App_Page/controllers/alunos.html"
+    ]
   }
 ]

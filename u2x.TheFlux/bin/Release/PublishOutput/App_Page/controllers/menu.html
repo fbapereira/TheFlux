@@ -5,6 +5,7 @@
             background-color: purple !important;
         }
     </style>
+    <!--Configuracao-->
     <ul id="dropdown1" class="dropdown-content">
 
         <li>
@@ -16,6 +17,24 @@
 
         <li>
             <a href="#!/usuario" class="purple-text white">Usuário</a>
+        </li>
+        <li>
+            <a href="#!/alunos" class="purple-text white">Alunos</a>
+        </li>
+    </ul>
+    <!--Transacoes-->
+    <ul id="ddTransacoes" class="dropdown-content">
+        <li>
+            <a href="#!/historico" class="purple-text white">Lançamentos</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a href="#!/contas" class="purple-text white">Mensalidades</a>
+        </li>
+        <li class="divider" ng-if="false"></li>
+
+        <li>
+            <a href="#!/investimento" ng-if="usuario.isAdmin" class="purple-text white">Investimento</a>
         </li>
     </ul>
 
@@ -31,23 +50,14 @@
             </div>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-
                 <li>
-                    <a href="#!/historico">Histórico</a>
+                    <a href="#!/dashboard">Home</a>
                 </li>
-                <li>
-                    <a href="#!/investimento" ng-if="usuario.isAdmin && (usuario.login =='fba_pereira' || usuario.login =='renato')">Investimento</a>
-                </li>
-                <li>
-                    <a href="#!/contas" ng-if="usuario.isAdmin && (usuario.login =='fba_pereira' || usuario.login =='renato')">Contas Futuras</a>
-                </li>
-
+                <li><a class="dropdown-button" href="#!" data-activates="ddTransacoes">Movimentações<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Configurações<i class="material-icons right">arrow_drop_down</i></a></li>
                 <li>
                     <a href="#!/relatorio" ng-if="usuario.isAdmin">Relatório</a>
                 </li>
-
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Configurações<i class="material-icons right">arrow_drop_down</i></a></li>
-
                 <li>
                     <a ng-click="LogOut()">Sair</a>
                 </li>
@@ -67,17 +77,36 @@
                 <li>
                     <a href="#!/dashboard"><i class="material-icons">home</i>Inicio</a>
                 </li>
-                <li>
-                    <a href="#!/historico"><i class="material-icons">history</i>Histórico</a>
+
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header">Movimentações<i class="material-icons">arrow_drop_down</i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#!/historico"><i class="material-icons">history</i> Lançamentos</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!/contas" ng-if="usuario.isAdmin && (usuario.login =='fba_pereira' || usuario.login =='renato')"><i class="material-icons">today</i>Contas a Pagar</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#!/contas" ng-if="usuario.isAdmin && (usuario.login =='fba_pereira' || usuario.login =='renato')"><i class="material-icons">today</i>Contas a Receber</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#!/investimento" ng-if="usuario.isAdmin && (usuario.login =='fba_pereira' || usuario.login =='renato')"><i class="material-icons">equalizer</i>Investimento</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
 
 
-                <li>
-                    <a href="#!/investimento" ng-if="usuario.isAdmin && (usuario.login =='fba_pereira' || usuario.login =='renato')"><i class="material-icons">equalizer</i>Investimento</a>
-                </li>
-                <li>
-                    <a href="#!/contas" ng-if="usuario.isAdmin && (usuario.login =='fba_pereira' || usuario.login =='renato')"><i class="material-icons">equalizer</i>Contas Futuras</a>
-                </li>
                 <li>
                     <a href="#!/relatorio" ng-if="usuario.isAdmin"><i class="material-icons">insert_chart</i>Relatório</a>
                 </li>
@@ -87,6 +116,7 @@
                             <a class="collapsible-header">Configurações<i class="material-icons">arrow_drop_down</i></a>
                             <div class="collapsible-body">
                                 <ul>
+                                    <li class="divider"></li>
                                     <li>
                                         <a href="#!/movimentacao" ng-if="usuario.isAdmin"><i class="material-icons">compare_arrows</i>Tipo de Movimentação</a>
                                     </li>
@@ -96,13 +126,12 @@
                                     <li>
                                         <a href="#!/usuario"><i class="material-icons">person</i>Usuário</a>
                                     </li>
+                                    <li class="divider"></li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </li>
-
-                <li><div class="divider"></div></li>
                 <li>
                     <a ng-click="LogOut()"><i class="material-icons">exit_to_app</i>Sair</a>
                 </li>

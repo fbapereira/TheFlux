@@ -36,6 +36,7 @@
     <EntitySetMapping Name="tf_instituicao">
       <EntityTypeMapping TypeName="u2xMainModel.tf_instituicao">
         <MappingFragment StoreEntitySet="tf_instituicao">
+          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
           <ScalarProperty Name="documento" ColumnName="documento" />
           <ScalarProperty Name="telefone" ColumnName="telefone" />
           <ScalarProperty Name="email" ColumnName="email" />
@@ -195,6 +196,30 @@
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="nome" ColumnName="nome" />
           <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_aluno">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_aluno">
+        <MappingFragment StoreEntitySet="tf_aluno">
+          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_mensalidade">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_mensalidade">
+        <MappingFragment StoreEntitySet="tf_mensalidade">
+          <ScalarProperty Name="ano" ColumnName="ano" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="dt_pagamento" ColumnName="dt_pagamento" />
+          <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="id_aluno" ColumnName="id_aluno" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

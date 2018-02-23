@@ -12,7 +12,7 @@
                             <div class="row">
 
                                 <p style="font-size: 60%;font-weight: bolder;color: gray;float:right; cursor:pointer"><i class="material-icons" ng-click="ShowAjuda()">help_outline</i></p><br />
-                                <table class="bordered" id="divPadrao">
+                                <table id="divPadrao" class="responsive-table">
                                     <thead>
                                         <tr>
                                             <th>Nome</th>
@@ -21,19 +21,22 @@
                                             <th>Variação R$</th>
                                             <th>Variação %</th>
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody ng-repeat="mov in investimentos track by mov.id">
-                                        <tr>
+                                    <tbody>
+                                        <tr ng-repeat="mov in investimentos track by mov.id">
                                             <td>{{mov.nome}}</td>
                                             <td> {{trataValores(CalculaValorAporteTotal(mov),  2, 'R$ ',  '', ',', '.')}}</td>
                                             <td> {{trataValores(CalculaValorAtual(mov),  2, 'R$ ',  '', ',', '.')}}</td>
                                             <td> {{trataValores(CalculaValorAtual(mov) - CalculaValorAporteTotal(mov) ,  2, 'R$ ',  '', ',', '.')}}</td>
                                             <td> {{trataValores(CalculaPercentual(mov),  2, '',  '%', ',', '.')}}</td>
                                             <td> <i class="material-icons" ng-click="ViewInvestimento(mov)" style="cursor:pointer">send</i></td>
+                                            <td> <i class="material-icons" ng-click="AbreremoveInvestimento(mov)" style="cursor:pointer">close</i></td>
                                         </tr>
                                     </tbody>
                                 </table>
+
                             </div>
 
                             <div class="row">
@@ -49,51 +52,14 @@
 
 
 
-                    <ul class="collapsible popout" data-collapsible="accordion" ng-hide="!targetInvestimento">
-                        <li>
-                            <div class="collapsible-header active"><i class="material-icons">insert_chart   </i>Relatório</div>
-                            <div class="collapsible-body ">
-                                <div id="chart_div"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header "><i class="material-icons">monetization_on</i>Aporte</div>
-                            <div class="collapsible-body ">
-                                <div class="row">
-                                    <table class="bordered" ng-if="targetInvestimento.aportes">
-                                        <thead>
-                                            <tr>
-                                                <th>Data</th>
-                                                <th>Valor Aporte</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody ng-repeat="mov in targetInvestimento.aportes track by mov.id">
-                                            <tr>
-                                                <td>{{dataFormat(mov.data_compra)}}</td>
-                                                <td> {{trataValores(mov.valor_aporte,  2, 'R$ ',  '', ',', '.')}}</td>
-                                                <td> <i class="material-icons">edit</i></td>
-                                                <td> <i class="material-icons">close</i></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                    <ul class="collapsible" data-collapsible="accordion" ng-hide="!targetInvestimento">
 
-                                <div class="row">
-                                    <div class="col l3 offset-l9 s12">
-                                        <a id="btn_entrar" ng-click="showAporte()" class="btn waves-effect waves-light purple darken-3" style="width: 100%; margin-bottom:15px">
-                                            Novo
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
 
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">timeline</i>Variação</div>
+                            <div class="collapsible-header active"><i class="material-icons">timeline</i>Variação</div>
                             <div class="collapsible-body ">
                                 <div class="row">
-                                    <table class="bordered">
+                                    <table class="bordered responsive-table">
                                         <thead>
                                             <tr>
                                                 <th>Data</th>
@@ -101,12 +67,11 @@
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody ng-repeat="mov in targetInvestimento.variacao track by mov.id">
-                                            <tr>
+                                        <tbody>
+                                            <tr ng-repeat="mov in targetInvestimento.variacao track by mov.id">
                                                 <td>{{dataFormat(mov.data)}}</td>
                                                 <td> {{trataValores(mov.valor,  2, 'R$ ',  '', ',', '.')}}</td>
-                                                <td> <i class="material-icons">edit</i></td>
-                                                <td> <i class="material-icons">close</i></td>
+                                                <td> <i class="material-icons" ng-click="AbreRemoveVariacao(mov)">close</i></td>
                                             </tr>
 
                                         </tbody>
@@ -122,7 +87,111 @@
                                 </div>
                             </div>
                         </li>
+
+                        <li>
+                            <div class="collapsible-header "><i class="material-icons">monetization_on</i>Aporte</div>
+                            <div class="collapsible-body ">
+                                <div class="row">
+                                    <table class="bordered responsive-table" ng-if="targetInvestimento.aportes">
+                                        <thead>
+                                            <tr>
+                                                <th>Data</th>
+                                                <th>Valor Aporte</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="mov in targetInvestimento.aportes track by mov.id">
+                                                <td>{{dataFormat(mov.data_compra)}}</td>
+                                                <td> {{trataValores(mov.valor_aporte,  2, 'R$ ',  '', ',', '.')}}</td>
+                                                <td> <i class="material-icons" ng-click="AbreRemoveAporte(mov)">close</i></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col l3 offset-l9 s12">
+                                        <a id="btn_entrar" ng-click="showAporte()" class="btn waves-effect waves-light purple darken-3" style="width: 100%; margin-bottom:15px">
+                                            Novo
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- REmove Variacao -->
+    <div id="mdlRemoveVariacao" class="modal" materialize="modal">
+        <div class="modal-content">
+            <h4>Remove Variação</h4>
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    Tem certeza que deseja remover esta variação?
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s10 offset-s1 offset-l1  l4">
+                    <a ng-click="FechaRemoveVariacao()" class="btn-large waves-effect waves-light black" style="width: 100%; margin-bottom:15px">
+                        Voltar
+                    </a>
+                </div>
+                <div class="col s10 offset-s1 offset-l2 l4">
+                    <a id="btn_entrar" ng-click="RemoveVariacao()" class="btn-large waves-effect waves-light purple darken-3" style="width: 100%">
+                        Remover
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REmove Aporte -->
+    <div id="mdlRemoveAporte" class="modal" materialize="modal">
+        <div class="modal-content">
+            <h4>Remove Aporte</h4>
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    Tem certeza que deseja remover este aporte?
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s10 offset-s1 offset-l1  l4">
+                    <a ng-click="FechaRemoveAporte()" class="btn-large waves-effect waves-light black" style="width: 100%; margin-bottom:15px">
+                        Voltar
+                    </a>
+                </div>
+                <div class="col s10 offset-s1 offset-l2 l4">
+                    <a id="btn_entrar" ng-click="RemoveAporte()" class="btn-large waves-effect waves-light purple darken-3" style="width: 100%">
+                        Remover
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REmove Investimento -->
+    <div id="mdlRemoveInvestimento" class="modal" materialize="modal">
+        <div class="modal-content">
+            <h4>Remove Investimento</h4>
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    Tem certeza que deseja remover o "{{targetRemoveInvestimento.nome}}"?
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s10 offset-s1 offset-l1  l4">
+                    <a ng-click="FecharemoveInvestimento()" class="btn-large waves-effect waves-light black" style="width: 100%; margin-bottom:15px">
+                        Voltar
+                    </a>
+                </div>
+                <div class="col s10 offset-s1 offset-l2 l4">
+                    <a id="btn_entrar" ng-click="removeInvestimento()" class="btn-large waves-effect waves-light purple darken-3" style="width: 100%">
+                        Remover
+                    </a>
                 </div>
             </div>
         </div>

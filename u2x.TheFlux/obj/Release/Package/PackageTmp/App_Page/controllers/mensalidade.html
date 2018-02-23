@@ -1,0 +1,120 @@
+﻿<div class="section no-pad-bot " id="index-banner " ng-app="myApp" ng-controller="mensalidadeCtrl">
+    <div class="container ">
+        <ul materialize="collapsible" class="collapsible " data-collapsible="accordion ">
+            <li>
+                <div class="collapsible-header">
+                    <i class="material-icons ">add</i>Adicionar Plano
+                </div>
+                <div class="collapsible-body ">
+                    <div class="row">
+                        <div class="input-field col s3 ">
+                            <input id="txtBusca" ng-model="plano.parcelas" placeholder="Parcelas" class="validate">
+                        </div>
+                        <div class="input-field col s3 ">
+                            <input id="txtBusca" ng-model="plano.valor" placeholder="Valor" class="validate">
+                        </div>
+                        <div class="input-field col s6 ">
+                            <input type="date" id="txtBusca" ng-model="plano.data" placeholder="Data Inicial" class="validate">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col  offset-l9 l3 ">
+                            <a ng-click="btnAdicionarMensalidade();" class="btn-large waves-effect waves-light purple darken-3" style="width: 100%; margin-bottom:15px">
+                                Adicionar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header active ">
+                    <i class="material-icons ">filter_list</i>Mensalidades
+                </div>
+                <div class="collapsible-body">
+
+                    <p ng-if="!mensalidades || mensalidades.length == 0">
+                        Nenhum aluno foi encontrado
+                    </p>
+                    <table ng-if="mensalidades && mensalidades.length > 0">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat=" mensalidade in mensalidades  track by mensalidade.id" my-repeat-directive style="color:{{getStyle(mensalidade)}}">
+                                <td>{{mensalidade.mes}}/{{mensalidade.ano}}</td>
+                                <td>{{trataValores(mensalidade.valor,  2, 'R$ ',  '', ',', '.')}}</td>
+                                <td>{{getStatus(mensalidade)}}</td>
+
+                                <td>
+                                    <a class="btn-flat  purple-text" ng-if="mensalidade.dt_pagamento==null" ng-click="AbreModalPagamento(oParcela, oConta)">Pagar </a>
+                                    <p ng-if="mensalidade.dt_pagamento != null">{{dataFormat(mensalidade.dt_include)}}</p>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="fixed-action-btn ">
+        <a class="btn-floating purple darken-3 " id="btnLancamento" ng-click="AbreModalCriaAluno();">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+    <!-- Novo Conta-->
+    <div id="mdlNovoAluno" class="modal" materialize="modal">
+        <div class="modal-content">
+            <h4 ng-if="isEditing">Editar Aluno</h4>
+            <h4 ng-if="!isEditing">Novo Aluno</h4>
+            <div class="row">
+                <div class="row">
+                    <div class="input-field col l8 offset-l2 s12">
+                        <input id="txtValor" class="validate" ng-model="aluno.nome">
+                        <label for="txtValor" class="active">Nome</label>
+                    </div>
+                </div><div class="row">
+                    <div class="input-field col l8 offset-l2 s12">
+                        <input id="txtValor" class="validate" ng-model="aluno.cpf" doc-dir>
+                        <label for="txtValor" class="active">CPF</label>
+                    </div>
+                </div><div class="row">
+                    <div class="input-field col l8 offset-l2 s12">
+                        <input id="txtValor" class="validate" ng-model="aluno.email">
+                        <label for="txtValor" class="active">E-mail</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row">
+                    <div class="col l3 offset-l2 s12">
+                        <a ng-click="FechaModal();" class="btn-large waves-effect waves-light black" style="width: 100%; margin-bottom:15px">
+                            Voltar
+                        </a>
+                    </div>
+                    <div class="col l3 offset-l2 s12" ng-if="!isEditing">
+                        <a id="btn_entrar" ng-click="btnAdd()" class="btn-large waves-effect waves-light purple darken-3" style="width: 100%; margin-bottom:15px">
+                            Adicionar
+                        </a>
+                    </div>
+                    <div class="col l3 offset-l2 s12" ng-if="isEditing">
+                        <a id="btn_entrar" ng-click="btnAdd()" class="btn-large waves-effect waves-light purple darken-3" style="width: 100%; margin-bottom:15px">
+                            Salvar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -379,6 +379,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Page\controllers\add_movimentacao - Copy.min - Copy.html">
+      <DependentUpon>mensalidade.html</DependentUpon>
+    </Content>
+    <Content Include="App_Page\controllers\alunos.min.html">
+      <DependentUpon>alunos.html</DependentUpon>
+    </Content>
+    <Content Include="App_Page\controllers\mensalidade.html" />
+    <Content Include="App_Page\controllers\mensalidade.js" />
+    <Content Include="App_Page\controllers\alunos.html" />
+    <Content Include="App_Page\controllers\alunos.js" />
+    <Content Include="App_Page\controllers\add_movimentacao - Copy.min.html">
+      <DependentUpon>alunos.html</DependentUpon>
+    </Content>
     <Content Include="App_Page\controllers\add_movimentacao.html" />
     <Content Include="App_Page\controllers\add_movimentacao.js" />
     <Content Include="App_Page\controllers\add_movimentacao.min.html">
@@ -419,6 +432,9 @@
     </Content>
     <Content Include="App_Page\controllers\login.html" />
     <Content Include="App_Page\controllers\login.js" />
+    <Content Include="App_Page\controllers\mensalidade.min.js">
+      <DependentUpon>mensalidade.js</DependentUpon>
+    </Content>
     <Content Include="App_Page\controllers\menu.html" />
     <Content Include="App_Page\controllers\menu.js" />
     <Content Include="App_Page\controllers\menu.min.html">
@@ -426,6 +442,9 @@
     </Content>
     <Content Include="App_Page\controllers\movimentacao.html" />
     <Content Include="App_Page\controllers\movimentacao.js" />
+    <Content Include="App_Page\controllers\movimentacao.min.html">
+      <DependentUpon>movimentacao.html</DependentUpon>
+    </Content>
     <Content Include="App_Page\controllers\movimentacao.min.js">
       <DependentUpon>movimentacao.js</DependentUpon>
     </Content>
@@ -450,6 +469,9 @@
     <Content Include="App_Page\index.html" />
     <Content Include="App_Page\js\angular.min.js" />
     <Content Include="App_Page\js\filter.js" />
+    <Content Include="App_Page\js\filter.min.js">
+      <DependentUpon>filter.js</DependentUpon>
+    </Content>
     <Content Include="App_Page\js\init.js" />
     <Content Include="App_Page\js\init.min.js">
       <DependentUpon>init.js</DependentUpon>
@@ -458,6 +480,7 @@
     <Content Include="App_Page\js\materialize.js" />
     <Content Include="App_Page\js\materialize.min.js" />
     <Content Include="App_Page\js\moment.min.js" />
+    <Content Include="App_Page\js\SAM.js" />
     <Content Include="App_Page\js\u2x.functions.js" />
     <Content Include="dao\dao.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -505,6 +528,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controllers\Adicionar_EstrelaController.cs" />
+    <Compile Include="controllers\Aluno_AdicionarController.cs" />
+    <Compile Include="controllers\Aluno_EditarController.cs" />
+    <Compile Include="controllers\Aluno_ObtemController.cs" />
     <Compile Include="controllers\Aporte_AdicionarController.cs" />
     <Compile Include="controllers\Aporte_ObtemController.cs" />
     <Compile Include="controllers\Aporte_RemoveController.cs" />
@@ -514,6 +540,8 @@
     <Compile Include="controllers\InvestimentoRF_AdicionarController.cs" />
     <Compile Include="controllers\InvestimentoRF_DeletaController.cs" />
     <Compile Include="controllers\InvestimentoRF_ObtemController.cs" />
+    <Compile Include="controllers\Mensalidade_AdicionarController.cs" />
+    <Compile Include="controllers\Mensalidade_ObtemController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_AlterarController.cs" />
     <Compile Include="controllers\Movimentacao_DeletarController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_ObtemController.cs" />
@@ -522,6 +550,7 @@
     <Compile Include="controllers\ParcelaFutura_CriarController.cs" />
     <Compile Include="controllers\ParcelaFutura_ObtemController.cs" />
     <Compile Include="controllers\ParcelaFutura_PagarController.cs" />
+    <Compile Include="controllers\Plano_AdicionarController.cs" />
     <Compile Include="controllers\Senha_ResetarController.cs" />
     <Compile Include="controllers\TipoPagamento_ObtemController.cs" />
     <Compile Include="controllers\TipoPagamento_AlterarController.cs" />
@@ -541,6 +570,7 @@
     <Compile Include="core\HunterTesouro.cs" />
     <Compile Include="core\HunterPoupanca.cs" />
     <Compile Include="core\Mailer.cs" />
+    <Compile Include="dao\Aluno.cs" />
     <Compile Include="dao\ContasFuturas.cs" />
     <Compile Include="dao\dao.Context.cs">
       <AutoGen>True</AutoGen>
@@ -560,8 +590,12 @@
     <Compile Include="dao\ErroHandler.cs" />
     <Compile Include="dao\Estrela.cs" />
     <Compile Include="dao\Instituicao.cs" />
+    <Compile Include="dao\Mensalidade.cs" />
     <Compile Include="dao\Movimentacao.cs" />
     <Compile Include="dao\RendaFixa.cs" />
+    <Compile Include="dao\tf_aluno.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
     <Compile Include="dao\tf_error.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
@@ -578,6 +612,9 @@
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\tf_investimento_RF_variacao.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\tf_mensalidade.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\tf_movimentacao.cs">

@@ -42,5 +42,7 @@ namespace u2x.TheFlux.dao
         public virtual DbSet<tf_movimentacao_futura> tf_movimentacao_futura { get; set; }
         public virtual DbSet<vw_email_conta_a_pagar> vw_email_conta_a_pagar { get; set; }
         public virtual DbSet<vw_email_conta_a_receber> vw_email_conta_a_receber { get; set; }
+        public virtual DbSet<tf_aluno> tf_aluno { get; set; }
+        public virtual DbSet<tf_mensalidade> tf_mensalidade { get; set; }
     }
 }

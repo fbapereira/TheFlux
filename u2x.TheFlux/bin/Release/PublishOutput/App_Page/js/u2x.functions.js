@@ -11,6 +11,11 @@
 
 }
 
+
+function U2X_TrataMoney(model) {
+    return model.split(".").join("");
+}
+
 function U2X_ValidaLogin(oUsuario) {
     if (!oUsuario) {
         $location.path("/login");

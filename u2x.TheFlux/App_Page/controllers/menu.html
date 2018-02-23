@@ -18,6 +18,9 @@
         <li>
             <a href="#!/usuario" class="purple-text white">Usuário</a>
         </li>
+        <li>
+            <a href="#!/alunos" class="purple-text white">Alunos</a>
+        </li>
     </ul>
     <!--Transacoes-->
     <ul id="ddTransacoes" class="dropdown-content">
@@ -26,11 +29,7 @@
         </li>
         <li class="divider"></li>
         <li>
-            <a href="#!/contas" ng-if="usuario.isAdmin && (usuario.login =='fba_pereira' || usuario.login =='renato')" class="purple-text white">Contas a Pagar</a>
-        </li>
-
-        <li>
-            <a href="#!/contas" ng-if="usuario.isAdmin && (usuario.login =='fba_pereira' || usuario.login =='renato')" class="purple-text white">Contas a Receber</a>
+            <a href="#!/contas" class="purple-text white">Mensalidades</a>
         </li>
         <li class="divider" ng-if="false"></li>
 

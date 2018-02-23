@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="u2xMainModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tf_aluno">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="200" />
+          <Property Name="cpf" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="200" />
+          <Property Name="id_instituicao" Type="int" />
+        </EntityType>
         <EntityType Name="tf_error">
           <Key>
             <PropertyRef Name="id" />
@@ -35,6 +45,7 @@
           <Property Name="email" Type="varchar" MaxLength="800" />
           <Property Name="telefone" Type="varchar" MaxLength="20" />
           <Property Name="documento" Type="varchar" MaxLength="50" />
+          <Property Name="idTipo" Type="int" />
         </EntityType>
         <EntityType Name="tf_investimento_RF">
           <Key>
@@ -62,6 +73,18 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="data" Type="date" />
           <Property Name="valor" Type="decimal" Precision="14" Scale="4" />
+        </EntityType>
+        <EntityType Name="tf_mensalidade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_aluno" Type="int" />
+          <Property Name="valor" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="id_tipo_pagamento" Type="int" />
+          <Property Name="dt_pagamento" Type="datetime" />
+          <Property Name="mes" Type="int" />
+          <Property Name="ano" Type="int" />
         </EntityType>
         <EntityType Name="tf_movimentacao">
           <Key>
@@ -254,6 +277,18 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_tf_aluno_tf_instituicao">
+          <End Role="tf_instituicao" Type="Self.tf_instituicao" Multiplicity="0..1" />
+          <End Role="tf_aluno" Type="Self.tf_aluno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tf_instituicao">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tf_aluno">
+              <PropertyRef Name="id_instituicao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tf_estrelas_tf_usuario">
           <End Role="tf_usuario" Type="Self.tf_usuario" Multiplicity="1" />
           <End Role="tf_estrelas" Type="Self.tf_estrelas" Multiplicity="*" />
@@ -263,6 +298,30 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
             </Principal>
             <Dependent Role="tf_estrelas">
               <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tf_mensalidade_tf_aluno">
+          <End Role="tf_aluno" Type="Self.tf_aluno" Multiplicity="0..1" />
+          <End Role="tf_mensalidade" Type="Self.tf_mensalidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tf_aluno">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tf_mensalidade">
+              <PropertyRef Name="id_aluno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tf_mensalidade_tf_tipo_pagamento">
+          <End Role="tf_tipo_pagamento" Type="Self.tf_tipo_pagamento" Multiplicity="0..1" />
+          <End Role="tf_mensalidade" Type="Self.tf_mensalidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tf_tipo_pagamento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tf_mensalidade">
+              <PropertyRef Name="id_tipo_pagamento" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -339,12 +398,14 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="u2xMainModelStoreContainer">
+          <EntitySet Name="tf_aluno" EntityType="Self.tf_aluno" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_error" EntityType="Self.tf_error" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_estrelas" EntityType="Self.tf_estrelas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_instituicao" EntityType="Self.tf_instituicao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_investimento_RF" EntityType="Self.tf_investimento_RF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_investimento_RF_aporte" EntityType="Self.tf_investimento_RF_aporte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_investimento_RF_variacao" EntityType="Self.tf_investimento_RF_variacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tf_mensalidade" EntityType="Self.tf_mensalidade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_movimentacao" EntityType="Self.tf_movimentacao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_movimentacao_futura" EntityType="Self.tf_movimentacao_futura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tf_pagamento" EntityType="Self.tf_pagamento" Schema="dbo" store:Type="Tables" />
@@ -396,9 +457,21 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
             <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
             <End Role="tf_parcela_futura" EntitySet="tf_parcela_futura" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_tf_aluno_tf_instituicao" Association="Self.FK_dbo_tf_aluno_tf_instituicao">
+            <End Role="tf_instituicao" EntitySet="tf_instituicao" />
+            <End Role="tf_aluno" EntitySet="tf_aluno" />
+          </AssociationSet>
           <AssociationSet Name="FK_tf_estrelas_tf_usuario" Association="Self.FK_tf_estrelas_tf_usuario">
             <End Role="tf_usuario" EntitySet="tf_usuario" />
             <End Role="tf_estrelas" EntitySet="tf_estrelas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tf_mensalidade_tf_aluno" Association="Self.FK_tf_mensalidade_tf_aluno">
+            <End Role="tf_aluno" EntitySet="tf_aluno" />
+            <End Role="tf_mensalidade" EntitySet="tf_mensalidade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tf_mensalidade_tf_tipo_pagamento" Association="Self.FK_tf_mensalidade_tf_tipo_pagamento">
+            <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
+            <End Role="tf_mensalidade" EntitySet="tf_mensalidade" />
           </AssociationSet>
           <AssociationSet Name="FK_tf_movimentacao_tf_tipo_movimentacao" Association="Self.FK_tf_movimentacao_tf_tipo_movimentacao">
             <End Role="tf_tipo_movimentacao" EntitySet="tf_tipo_movimentacao" />
@@ -463,6 +536,7 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
           <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_tf_tipo_pagamento_tf_instituicao" FromRole="tf_tipo_pagamento" ToRole="tf_instituicao" />
           <NavigationProperty Name="tf_movimentacao" Relationship="u2xMainModel.FK_tf_movimentacao_tf_tipo_pagamento" FromRole="tf_tipo_pagamento" ToRole="tf_movimentacao" />
           <NavigationProperty Name="tf_movimentacao_futura" Relationship="u2xMainModel.FK__tf_movime__id_ti__1DB06A4F" FromRole="tf_tipo_pagamento" ToRole="tf_movimentacao_futura" />
+          <NavigationProperty Name="tf_mensalidade" Relationship="u2xMainModel.FK_tf_mensalidade_tf_tipo_pagamento" FromRole="tf_tipo_pagamento" ToRole="tf_mensalidade" />
         </EntityType>
         <EntityContainer Name="u2xMainEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tf_pagamento" EntityType="Self.tf_pagamento" />
@@ -542,6 +616,20 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
           </AssociationSet>
           <EntitySet Name="vw_email_conta_a_pagar" EntityType="u2xMainModel.vw_email_conta_a_pagar" />
           <EntitySet Name="vw_email_conta_a_receber" EntityType="u2xMainModel.vw_email_conta_a_receber" />
+          <EntitySet Name="tf_aluno" EntityType="u2xMainModel.tf_aluno" />
+          <EntitySet Name="tf_mensalidade" EntityType="u2xMainModel.tf_mensalidade" />
+          <AssociationSet Name="FK_dbo_tf_aluno_tf_instituicao" Association="u2xMainModel.FK_dbo_tf_aluno_tf_instituicao">
+            <End Role="tf_instituicao" EntitySet="tf_instituicao" />
+            <End Role="tf_aluno" EntitySet="tf_aluno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tf_mensalidade_tf_aluno" Association="u2xMainModel.FK_tf_mensalidade_tf_aluno">
+            <End Role="tf_aluno" EntitySet="tf_aluno" />
+            <End Role="tf_mensalidade" EntitySet="tf_mensalidade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tf_mensalidade_tf_tipo_pagamento" Association="u2xMainModel.FK_tf_mensalidade_tf_tipo_pagamento">
+            <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
+            <End Role="tf_mensalidade" EntitySet="tf_mensalidade" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="tf_instituicao">
           <Key>
@@ -555,6 +643,8 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
           <Property Name="telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tf_usuario" Relationship="u2xMainModel.FK_tf_usuario_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_usuario" />
+          <NavigationProperty Name="tf_aluno" Relationship="u2xMainModel.FK_dbo_tf_aluno_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_aluno" />
+          <Property Name="idTipo" Type="Int32" />
         </EntityType>
         <Association Name="FK_tf_pagamento_tf_instituicao">
           <End Type="u2xMainModel.tf_instituicao" Role="tf_instituicao" Multiplicity="1" />
@@ -903,6 +993,68 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
           <Property Name="valor_base" Type="Decimal" Precision="16" Scale="2" />
           <Property Name="dt_include" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="tf_aluno">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="cpf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="id_instituicao" Type="Int32" />
+          <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_dbo_tf_aluno_tf_instituicao" FromRole="tf_aluno" ToRole="tf_instituicao" />
+          <NavigationProperty Name="tf_mensalidade" Relationship="u2xMainModel.FK_tf_mensalidade_tf_aluno" FromRole="tf_aluno" ToRole="tf_mensalidade" />
+        </EntityType>
+        <EntityType Name="tf_mensalidade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_aluno" Type="Int32" />
+          <Property Name="valor" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="id_tipo_pagamento" Type="Int32" />
+          <Property Name="dt_pagamento" Type="DateTime" Precision="3" />
+          <Property Name="mes" Type="Int32" />
+          <Property Name="ano" Type="Int32" />
+          <NavigationProperty Name="tf_aluno" Relationship="u2xMainModel.FK_tf_mensalidade_tf_aluno" FromRole="tf_mensalidade" ToRole="tf_aluno" />
+          <NavigationProperty Name="tf_tipo_pagamento" Relationship="u2xMainModel.FK_tf_mensalidade_tf_tipo_pagamento" FromRole="tf_mensalidade" ToRole="tf_tipo_pagamento" />
+        </EntityType>
+        <Association Name="FK_dbo_tf_aluno_tf_instituicao">
+          <End Type="u2xMainModel.tf_instituicao" Role="tf_instituicao" Multiplicity="0..1" />
+          <End Type="u2xMainModel.tf_aluno" Role="tf_aluno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tf_instituicao">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tf_aluno">
+              <PropertyRef Name="id_instituicao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tf_mensalidade_tf_aluno">
+          <End Type="u2xMainModel.tf_aluno" Role="tf_aluno" Multiplicity="0..1" />
+          <End Type="u2xMainModel.tf_mensalidade" Role="tf_mensalidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tf_aluno">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tf_mensalidade">
+              <PropertyRef Name="id_aluno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tf_mensalidade_tf_tipo_pagamento">
+          <End Type="u2xMainModel.tf_tipo_pagamento" Role="tf_tipo_pagamento" Multiplicity="0..1" />
+          <End Type="u2xMainModel.tf_mensalidade" Role="tf_mensalidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tf_tipo_pagamento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tf_mensalidade">
+              <PropertyRef Name="id_tipo_pagamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -944,6 +1096,7 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
           <EntitySetMapping Name="tf_instituicao">
             <EntityTypeMapping TypeName="u2xMainModel.tf_instituicao">
               <MappingFragment StoreEntitySet="tf_instituicao">
+                <ScalarProperty Name="idTipo" ColumnName="idTipo" />
                 <ScalarProperty Name="documento" ColumnName="documento" />
                 <ScalarProperty Name="telefone" ColumnName="telefone" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -1103,6 +1256,30 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="nome" ColumnName="nome" />
                 <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tf_aluno">
+            <EntityTypeMapping TypeName="u2xMainModel.tf_aluno">
+              <MappingFragment StoreEntitySet="tf_aluno">
+                <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="cpf" ColumnName="cpf" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tf_mensalidade">
+            <EntityTypeMapping TypeName="u2xMainModel.tf_mensalidade">
+              <MappingFragment StoreEntitySet="tf_mensalidade">
+                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="dt_pagamento" ColumnName="dt_pagamento" />
+                <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="id_aluno" ColumnName="id_aluno" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -107,7 +107,7 @@
         sendData.idTipoMovimentacao = $scope.movimentacao.tipoMovimentacao.id;
         sendData.idTipoPagamento = $scope.movimentacao.tipoPagamento.id;
         sendData.descricao = $scope.movimentacao.descricao;
-        sendData.valor = $scope.movimentacao.valor;
+        sendData.valor = U2X_TrataMoney($scope.movimentacao.valor);
 
         sendData.data = moment($scope.movimentacao.data);//.add(_i, "M");
 

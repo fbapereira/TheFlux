@@ -50,6 +50,12 @@ app
             .when("/cadastro", {
                 templateUrl: "controllers/cadastro.html"
             })
+            .when("/alunos", {
+                templateUrl: "controllers/alunos.html"
+            })
+            .when("/mensalidade", {
+                templateUrl: "controllers/mensalidade.html"
+            })
             .when("/contas", {
                 templateUrl: "controllers/contas_futuras.html"
             });
@@ -59,9 +65,10 @@ app
 app.factory('dataservice', function () {
 
     var usuario;
+    var aluno;
 
     return {
-        url: 'http://localhost:64010',
+        url: 'http://app.basicflux.com',
 
         setUsuario: function (usuario) {
             if (!usuario || !usuario.login) {
@@ -76,6 +83,27 @@ app.factory('dataservice', function () {
                 var oUsuario = JSON.parse(getCookie("usuario"));
                 if (oUsuario.login) {
                     return oUsuario;
+                }
+                return undefined;
+            } catch (e) {
+                return undefined;
+            }
+        },
+
+
+        setAluno: function (aluno) {
+            if (!aluno || !aluno.id) {
+                setCookie("aluno", "");
+            }
+
+            aluno = aluno;
+            setCookie("aluno", JSON.stringify(aluno));
+        },
+        getAluno: function () {
+            try {
+                var oAluno = JSON.parse(getCookie("aluno"));
+                if (oAluno.id) {
+                    return oAluno;
                 }
                 return undefined;
             } catch (e) {

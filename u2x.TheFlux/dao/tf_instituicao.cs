@@ -20,6 +20,7 @@ namespace u2x.TheFlux.dao
             this.tf_pagamento = new HashSet<tf_pagamento>();
             this.tf_tipo_pagamento = new HashSet<tf_tipo_pagamento>();
             this.tf_usuario = new HashSet<tf_usuario>();
+            this.tf_aluno = new HashSet<tf_aluno>();
         }
     
         public int id { get; set; }
@@ -27,6 +28,7 @@ namespace u2x.TheFlux.dao
         public string email { get; set; }
         public string telefone { get; set; }
         public string documento { get; set; }
+        public Nullable<int> idTipo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tf_pagamento> tf_pagamento { get; set; }
@@ -34,5 +36,7 @@ namespace u2x.TheFlux.dao
         public virtual ICollection<tf_tipo_pagamento> tf_tipo_pagamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tf_usuario> tf_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tf_aluno> tf_aluno { get; set; }
     }
 }
