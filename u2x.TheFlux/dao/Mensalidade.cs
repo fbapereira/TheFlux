@@ -34,6 +34,19 @@ namespace u2x.TheFlux.dao
 
         }
 
+        public tf_mensalidade Pagar(Int32 id)
+        {
+            List<tf_mensalidade> lst = db.tf_mensalidade.Where(x => (x.id == id)).ToList<tf_mensalidade>();
+
+            //Pagar 
+            if (lst.Count == 0) { return null; }
+            lst[0].dt_pagamento = DateTime.Now;
+            db.SaveChanges();
+            return lst[0];
+
+        }
+
+
         public void Remove(Int32 id)
         {
             db.tf_mensalidade.RemoveRange(db.tf_mensalidade.Where(inv => inv.id == id));

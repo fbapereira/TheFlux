@@ -22,7 +22,12 @@
         }).then(function sucess(response) {
             $scope.alunos = response.data;
             $scope.alunosFiltered = $scope.alunos;
+            if ($scope.sBusca) {
+                $scope.changeBusca($scope.sBusca)
+            }
             U2X_FechaLoader();
+
+            $("#mdlNovoAluno").modal("close");
         }, function errorCallback(response) {
             console.log(response);
             Materialize.toast('Não foi possível realizar a operação', 4000);
@@ -99,7 +104,12 @@
         }).then(function sucess(response) {
             $("#mdlNovoAluno").modal("close");
             ObtemAlunos();
-            Materialize.toast('Aluno cadastrado com sucesso.', 4000);
+            if ($scope.isEditing) {
+                Materialize.toast('Aluno editado com sucesso.', 4000);
+            } else {
+                Materialize.toast('Aluno cadastrado com sucesso.', 4000);
+
+            }
             U2X_FechaLoader();
 
         }, function errorCallback(response) {
@@ -123,8 +133,12 @@
 
 
     $scope.FechaModal = function () {
-        ObtemAlunos();
-        $("#mdlNovoAluno").modal("close");
+        if ($scope.aluno) {
+            ObtemAlunos();
+        } else {
+            $("#mdlNovoAluno").modal("close");
+        }
     }
+
 
 });

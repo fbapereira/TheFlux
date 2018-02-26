@@ -39,6 +39,17 @@ namespace u2x.TheFlux.dao
         }
 
 
+        public tf_aluno ObtemUnico(int id_Aluno)
+        {
+            return (from item in db.tf_aluno
+                    where item.id == id_Aluno
+                    select item)
+                    .OrderByDescending(x => x.nome)
+            .ToList()[0];
+
+        }
+
+
         public tf_aluno Editar(tf_aluno aluno)
         {
 

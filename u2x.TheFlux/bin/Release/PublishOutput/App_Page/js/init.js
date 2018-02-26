@@ -20,6 +20,9 @@ app
             .when("/dashboard", {
                 templateUrl: "controllers/dashboard.html"
             })
+            .when("/dashboard_admin", {
+                templateUrl: "controllers/dashboard_admin.html"
+            })
             .when("/movimentacao", {
                 templateUrl: "controllers/movimentacao.html"
             })
@@ -64,11 +67,35 @@ app
 
 app.factory('dataservice', function () {
 
+    var instituicao;
     var usuario;
     var aluno;
 
     return {
         url: 'http://app.basicflux.com',
+        _url: 'http://localhost:64010',
+        
+        setInstituicao: function (oInstituicao) {
+            if (!oInstituicao || !oInstituicao.id) {
+                setCookie("instituicao", "");
+            }
+
+            instituicao = oInstituicao;
+            setCookie("instituicao", JSON.stringify(oInstituicao));
+        },
+
+        getInstituicao: function () {
+            try {
+                var oInstituicao = JSON.parse(getCookie("instituicao"));
+                if (oInstituicao.id) {
+                    return oInstituicao;
+                }
+                return undefined;
+            } catch (e) {
+                return undefined;
+            }
+        },
+
 
         setUsuario: function (usuario) {
             if (!usuario || !usuario.login) {

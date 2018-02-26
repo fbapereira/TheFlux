@@ -379,11 +379,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Page\e2e\conf.js" />
     <Content Include="App_Page\controllers\add_movimentacao - Copy.min - Copy.html">
       <DependentUpon>mensalidade.html</DependentUpon>
     </Content>
     <Content Include="App_Page\controllers\alunos.min.html">
       <DependentUpon>alunos.html</DependentUpon>
+    </Content>
+    <Content Include="App_Page\controllers\dashboard_admin.html" />
+    <Content Include="App_Page\controllers\dashboard_admin.js" />
+    <Content Include="App_Page\controllers\dashboard - Copy.min.js">
+      <DependentUpon>dashboard_admin.js</DependentUpon>
     </Content>
     <Content Include="App_Page\controllers\mensalidade.html" />
     <Content Include="App_Page\controllers\mensalidade.js" />
@@ -465,6 +471,7 @@
     <Content Include="App_Page\css\materialize.min.css" />
     <Content Include="App_Page\css\style.css" />
     <Content Include="App_Page\directives\phoneDir.js" />
+    <Content Include="App_Page\e2e\login.spec.js" />
     <Content Include="App_Page\favicon.png" />
     <Content Include="App_Page\img\icon.png" />
     <Content Include="App_Page\img\logo_header.png" />
@@ -545,6 +552,7 @@
     <Compile Include="controllers\InvestimentoRF_ObtemController.cs" />
     <Compile Include="controllers\Mensalidade_AdicionarController.cs" />
     <Compile Include="controllers\Mensalidade_ObtemController.cs" />
+    <Compile Include="controllers\Mensalidade_PagarController.cs" />
     <Compile Include="controllers\Mensalidade_RemoveController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_AlterarController.cs" />
     <Compile Include="controllers\Movimentacao_DeletarController.cs" />

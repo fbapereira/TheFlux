@@ -21,31 +21,71 @@
         LoginAtServer();
     };
 
+    function ValidaTipoUsuario() {
+        return new Promise(
+            function (resolve, reject) {
+                $http({
+                    method: 'GET',
+                    url: dataservice.url + '/api/Instituicao/' + oUsuario.id,
+                    data: oUsuario
+                }).then(function sucess(response) {
+                    if (response && response.data) {
+                        resolve(response.data);
+                    }
+                    resolve(0);
+
+                }, function errorCallback(response) {
+                    resolve(0);
+                });
+
+            });
+    }
 
     function LoginAtServer() {
+        U2X_AbreLoader();
         $http({
             method: 'POST',
             url: dataservice.url + '/api/Login',
             data: oUsuario
         }).then(function sucess(response) {
-            //obtem 
-            var obj = response.data;
-
             //Valida Dados
-            if (!obj) {
+            oUsuario = response.data;
+
+            if (!oUsuario) {
                 dataservice.setUsuario({});
                 Materialize.toast('Usuario ou senha inválidos', 4000)
                 $location.path("/");
                 U2X_FechaLoader();
                 return;
             }
-
             // Trata cabecalho
-            dataservice.setUsuario(obj);
-            $scope.$emit('usuario_logado', obj);
-            $location.path("/dashboard");
-            U2X_FechaLoader();
+            dataservice.setUsuario(oUsuario);
 
+            ValidaTipoUsuario()
+                .then(function sucess(response) {
+                    $scope.$emit('usuario_logado', dataservice.getUsuario());
+                    U2X_FechaLoader();
+                    dataservice.setInstituicao(response);
+                }, function errorCallback(response) {
+                    console.log(response);
+                    Materialize.toast('Não foi possível realizar o login', 4000);
+                    $location.path("/");
+                    U2X_FechaLoader();
+                    return;
+                }).then(function () {
+                    var oInstituicao = dataservice.getInstituicao();
+                    if (oInstituicao.idTipo == 1) {
+                        $location.path("/dashboard_admin");
+                        $scope.$apply()
+                        return;
+
+                    } else {
+                        $location.path("/dashboard");
+                        $scope.$apply()
+                        return;
+
+                    }
+                })
         }, function errorCallback(response) {
             console.log(response);
             Materialize.toast('Não foi possível realizar o login', 4000);

@@ -1,35 +1,53 @@
 ﻿app.controller('mensalidadeCtrl', function ($scope, $rootScope, $http, $location, dataservice) {
     $scope.loggedUsuario = dataservice.getUsuario();
     $scope.plano = {};
+    $scope.mensalidade = {};
 
 
     //Inicia Processo
     U2X_ConfiguraInterface();
     U2X_AbreLoader();
+    ObtemAluno();
     ObtemMensalidades();
+    function ObtemAluno() {
+        $scope.aluno = dataservice.getAluno();
 
+    }
 
-    $scope.OpenPagamento = function () {
+    $scope.OpenPagamento = function (mensalidade) {
+        $scope.mensalidade = mensalidade;
         $('#mdlPagamento').modal('open');
     }
 
     $scope.ClosePagamento = function () {
+        $scope.mensalidade = {};
         $('#mdlPagamento').modal('close');
     }
 
     $scope.RealizaPagamento = function () {
+        U2X_AbreLoader();
+        $http({
+            method: 'POST',
+            url: dataservice.url + "/api/Mensalidade_Pagar",
+            data: $scope.mensalidade
+        }).then(function sucess(response) {
+            U2X_FechaLoader();
+            ObtemMensalidades();
+
+            Materialize.toast('Mensalidade paga e comprovante enviado com sucesso', 4000);
+            $('#mdlPagamento').modal('close');
+
+        }, function errorCallback(response) {
+            console.log(response);
+            Materialize.toast('Não foi possível realizar a operação', 4000);
+            U2X_FechaLoader();
+            $('#mdlPagamento').modal('close');
+
+        });
+
+
         $('#mdlPagamento').modal('close');
-        $('#mdlComprovante').modal('open');
     }
-
-    $scope.CloseComprovante = function () {
-        $('#mdlComprovante').modal('close');
-    }
-
-    $scope.EnviaComprovante = function () {
-        $('#mdlComprovante').modal('close');
-    }
-
 
 
 
@@ -60,6 +78,8 @@
             return;
         }
 
+        $scope.plano.valor = ($scope.plano.valor).split(".").join("");
+
         U2X_AbreLoader();
         $scope.plano.id_aluno = dataservice.getAluno().id;
         $http({
@@ -80,8 +100,8 @@
         });
     }
 
-    
-    
+
+
     $scope.CloseDeletar = function () {
         $('#mdlDeletar').modal('close');
     }

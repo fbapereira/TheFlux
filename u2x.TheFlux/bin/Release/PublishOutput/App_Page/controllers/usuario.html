@@ -2,6 +2,10 @@
 
     <div class="section no-pad-bot " id="index-banner" ng-if="lstUsuario && lstUsuario.length > 0 ">
         <div class="container ">
+            <ul class="breadcrumb">
+                <li><a href="#!/dashboard_admin">Home</a></li>
+                <li>Usuario</li>
+            </ul>
             <ul materialize="collapsible" class="collapsible " data-collapsible="accordion " ng-if="loggedUsuario.isAdmin && lstUsuario.length > 10">
                 <li>
                     <div class="collapsible-header">

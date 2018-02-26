@@ -1,55 +1,48 @@
 ﻿<div class="section no-pad-bot " id="index-banner " ng-app="myApp" ng-controller="alunosCtrl">
     <div class="container ">
-        <ul materialize="collapsible" class="collapsible " data-collapsible="accordion " ng-if="alunos.length > 5">
-            <li>
-                <div class="collapsible-header">
-                    <i class="material-icons ">filter_list</i>Filtro
-                </div>
-                <div class="collapsible-body ">
-                    <div class="row">
-                        <div class="input-field col s8 offset-s2 ">
-                            <input id="txtBusca" ng-model="sBusca" placeholder="Buscar" class="validate" ng-keyup="changeBusca(sBusca)">
-                        </div>
+        <ul class="breadcrumb">
+            <li><a href="#!/dashboard_admin">Home</a></li>
+            <li>Alunos</li>
+        </ul>
+
+        <ul class="collection">
+            <li class="collection-item">
+                <i class="material-icons ">filter_list</i>Filtro
+            </li>
+            <li class="collection-item">
+                <div class="row">
+                    <div class="input-field col s8 offset-s2 ">
+                        <input id="txtBusca" ng-model="sBusca" placeholder="Buscar" class="validate" ng-keyup="changeBusca(sBusca)">
                     </div>
                 </div>
             </li>
-        </ul>
-        <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
-            <li>
-                <div class="collapsible-header active ">
-                    <i class="material-icons ">add</i>Alunos
-                </div>
-                <div class="collapsible-body">
+            <li class="collection-item">
+                <p ng-if="!alunosFiltered || alunosFiltered.length == 0">
+                    Nenhum aluno foi encontrado
+                </p>
+                <table ng-if="alunosFiltered && alunosFiltered.length > 0" class="responsive-table">
+                    <thead>
+                        <tr>
+                            <th>CPF</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat=" aluno in alunosFiltered track by aluno.id" my-repeat-directive>
+                            <td>{{aluno.cpf}}</td>
+                            <td>{{aluno.nome}}</td>
+                            <td>{{aluno.email}}</td>
+                            <td><i class="material-icons" style="cursor: pointer;" ng-click="AbreModalCriaAluno(aluno);">create</i></td>
+                            <td><i class="material-icons" style="cursor: pointer;" ng-click="AddMensalidades(aluno);">payment</i></td>
+                        </tr>
 
-                    <p ng-if="!alunosFiltered || alunosFiltered.length == 0">
-                        Nenhum aluno foi encontrado
-                    </p>
-                    <table ng-if="alunosFiltered && alunosFiltered.length > 0"  class="responsive-table">
-                        <thead>
-                            <tr>
-                                <th>CPF</th>
-                                <th>Nome</th>
-                                <th>E-mail</th>
-                                <th colspan="2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat=" aluno in alunosFiltered track by aluno.id" my-repeat-directive>
-                                <td>{{aluno.cpf}}</td>
-                                <td>{{aluno.nome}}</td>
-                                <td>{{aluno.email}}</td>
-                                <td><i class="material-icons" style="cursor: pointer;" ng-click="AbreModalCriaAluno(aluno);">create</i></td>
-                                <td><i class="material-icons" style="cursor: pointer;"  ng-click="AddMensalidades(aluno);">payment</i></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-
-
-                </div>
+                    </tbody>
+                </table>
             </li>
         </ul>
+
     </div>
     <div class="fixed-action-btn ">
         <a class="btn-floating purple darken-3 " id="btnLancamento" ng-click="AbreModalCriaAluno();">

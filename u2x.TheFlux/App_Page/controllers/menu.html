@@ -43,7 +43,21 @@
             <a id="logo-container" href="#!/dashboard" class="brand-logo center"><img src="img/logo_header.png" style="height:40px; vertical-align:middle" /></a>
         </div>
     </nav>
-    <nav ng-if="usuario">
+    <nav ng-if="usuario && instituicao.idTipo == 1">
+        <div class="nav-wrapper black">
+            <div class="black container">
+                <a id="logo-container" href="#!/dashboard" class="brand-logo center"><img src="img/logo_header.png" style="height:40px; vertical-align:middle" /></a>
+            </div>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a id="btnSair" ng-click="LogOut()">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <nav ng-if="usuario && instituicao.idTipo != 1">
         <div class="nav-wrapper black">
             <div class="black container">
                 <a id="logo-container" href="#!/dashboard" class="brand-logo "><img src="img/logo_header.png" style="height:40px; vertical-align:middle" /></a>
@@ -59,7 +73,7 @@
                     <a href="#!/relatorio" ng-if="usuario.isAdmin">Relatório</a>
                 </li>
                 <li>
-                    <a ng-click="LogOut()">Sair</a>
+                    <a id="btnSair" ng-click="LogOut()">Sair</a>
                 </li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
@@ -133,7 +147,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a ng-click="LogOut()"><i class="material-icons">exit_to_app</i>Sair</a>
+                    <a id="btnSair" ng-click="LogOut()"><i class="material-icons">exit_to_app</i>Sair</a>
                 </li>
 
             </ul>

@@ -9,7 +9,7 @@
 
     //Valida Login
     validaLogin();
-    carregaDados();
+
 
     //Carrega Dados
     function validaLogin() {
