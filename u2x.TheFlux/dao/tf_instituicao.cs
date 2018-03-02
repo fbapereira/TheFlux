@@ -29,6 +29,8 @@ namespace u2x.TheFlux.dao
         public string telefone { get; set; }
         public string documento { get; set; }
         public Nullable<int> idTipo { get; set; }
+        public string token { get; set; }
+        public string token_dev { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tf_pagamento> tf_pagamento { get; set; }

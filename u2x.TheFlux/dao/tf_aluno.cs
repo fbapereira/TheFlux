@@ -25,9 +25,11 @@ namespace u2x.TheFlux.dao
         public string cpf { get; set; }
         public string email { get; set; }
         public Nullable<int> id_instituicao { get; set; }
+        public Nullable<int> id_usuario { get; set; }
     
         public virtual tf_instituicao tf_instituicao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tf_mensalidade> tf_mensalidade { get; set; }
+        public virtual tf_usuario tf_usuario { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace u2x.TheFlux.dao
 
         private u2xMainEntities1 db = new u2xMainEntities1();
 
-        public bool Add(String login, String senha, Boolean isAdmin, Int32 idInstituicao)
+        public Int32 Add(String login, String senha, Boolean isAdmin, Int32 idInstituicao)
         {
             List<tf_usuario> lstUsuario;
 
@@ -33,7 +33,7 @@ namespace u2x.TheFlux.dao
             };
             db.tf_usuario.Add(temp);
             db.SaveChanges();
-            return true;
+            return temp.id;
         }
 
         public Usuario Get(String login, String senha)

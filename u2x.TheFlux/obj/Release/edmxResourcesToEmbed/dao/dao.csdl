@@ -128,6 +128,10 @@
       <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
       <End Role="tf_mensalidade" EntitySet="tf_mensalidade" />
     </AssociationSet>
+    <AssociationSet Name="FK_tf_aluno_tf_usuario" Association="u2xMainModel.FK_tf_aluno_tf_usuario">
+      <End Role="tf_usuario" EntitySet="tf_usuario" />
+      <End Role="tf_aluno" EntitySet="tf_aluno" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="tf_instituicao">
     <Key>
@@ -251,6 +255,7 @@
     <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_tf_usuario_tf_instituicao" FromRole="tf_usuario" ToRole="tf_instituicao" />
     <NavigationProperty Name="tf_movimentacao" Relationship="u2xMainModel.FK_tf_movimentacao_tf_usuario" FromRole="tf_usuario" ToRole="tf_movimentacao" />
     <NavigationProperty Name="tf_movimentacao_futura" Relationship="u2xMainModel.FK__tf_movime__id_us__1AD3FDA4" FromRole="tf_usuario" ToRole="tf_movimentacao_futura" />
+    <NavigationProperty Name="tf_aluno" Relationship="u2xMainModel.FK_tf_aluno_tf_usuario" FromRole="tf_usuario" ToRole="tf_aluno" />
   </EntityType>
   <Association Name="FK_tf_estrelas_tf_usuario">
     <End Type="u2xMainModel.tf_usuario" Role="tf_usuario" Multiplicity="1" />
@@ -502,6 +507,8 @@
     <Property Name="id_instituicao" Type="Int32" />
     <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_dbo_tf_aluno_tf_instituicao" FromRole="tf_aluno" ToRole="tf_instituicao" />
     <NavigationProperty Name="tf_mensalidade" Relationship="u2xMainModel.FK_tf_mensalidade_tf_aluno" FromRole="tf_aluno" ToRole="tf_mensalidade" />
+    <Property Name="id_usuario" Type="Int32" />
+    <NavigationProperty Name="tf_usuario" Relationship="u2xMainModel.FK_tf_aluno_tf_usuario" FromRole="tf_aluno" ToRole="tf_usuario" />
   </EntityType>
   <EntityType Name="tf_mensalidade">
     <Key>
@@ -550,6 +557,18 @@
       </Principal>
       <Dependent Role="tf_mensalidade">
         <PropertyRef Name="id_tipo_pagamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tf_aluno_tf_usuario">
+    <End Type="u2xMainModel.tf_usuario" Role="tf_usuario" Multiplicity="0..1" />
+    <End Type="u2xMainModel.tf_aluno" Role="tf_aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_aluno">
+        <PropertyRef Name="id_usuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

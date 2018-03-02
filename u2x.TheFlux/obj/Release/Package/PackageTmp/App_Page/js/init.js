@@ -23,6 +23,9 @@ app
             .when("/dashboard_admin", {
                 templateUrl: "controllers/dashboard_admin.html"
             })
+            .when("/dashboard_aluno", {
+                templateUrl: "controllers/dashboard_aluno.html"
+            })
             .when("/movimentacao", {
                 templateUrl: "controllers/movimentacao.html"
             })

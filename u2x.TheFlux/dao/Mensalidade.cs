@@ -46,6 +46,11 @@ namespace u2x.TheFlux.dao
 
         }
 
+        public void ObtemVencidos()
+        {
+            // TODO
+            //  return db.vw_email_mensalidade.ToList<vw_email_conta_a_pagar>();
+        }
 
         public void Remove(Int32 id)
         {

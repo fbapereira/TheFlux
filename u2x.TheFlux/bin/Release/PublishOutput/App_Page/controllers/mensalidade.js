@@ -78,6 +78,8 @@
             return;
         }
 
+        $scope.plano.valor = ($scope.plano.valor).split(".").join("");
+
         U2X_AbreLoader();
         $scope.plano.id_aluno = dataservice.getAluno().id;
         $http({

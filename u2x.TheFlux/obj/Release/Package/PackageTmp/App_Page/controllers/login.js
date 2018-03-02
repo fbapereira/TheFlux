@@ -75,9 +75,17 @@
                 }).then(function () {
                     var oInstituicao = dataservice.getInstituicao();
                     if (oInstituicao.idTipo == 1) {
-                        $location.path("/dashboard_admin");
-                        $scope.$apply()
-                        return;
+
+                        if (oUsuario.isAdmin) {
+                            $location.path("/dashboard_admin");
+                            $scope.$apply()
+                            return;
+                        }
+                        else {
+                            $location.path("/dashboard_aluno");
+                            $scope.$apply()
+                            return;
+                        }
 
                     } else {
                         $location.path("/dashboard");

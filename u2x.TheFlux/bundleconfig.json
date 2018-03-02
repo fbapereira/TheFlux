@@ -94,5 +94,29 @@
     "inputFiles": [
       "App_Page/controllers/mensalidade.html"
     ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/alunos.min.js",
+    "inputFiles": [
+      "App_Page/controllers/alunos.js"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/index.min.html",
+    "inputFiles": [
+      "App_Page/index.html"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/login.min.js",
+    "inputFiles": [
+      "App_Page/controllers/login.js"
+    ]
+  },
+  {
+    "outputFileName": "App_Page/controllers/dashboard_aluno.min.html",
+    "inputFiles": [
+      "App_Page/controllers/dashboard_aluno.html"
+    ]
   }
 ]

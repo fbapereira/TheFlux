@@ -203,6 +203,7 @@
     <EntitySetMapping Name="tf_aluno">
       <EntityTypeMapping TypeName="u2xMainModel.tf_aluno">
         <MappingFragment StoreEntitySet="tf_aluno">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
           <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="cpf" ColumnName="cpf" />

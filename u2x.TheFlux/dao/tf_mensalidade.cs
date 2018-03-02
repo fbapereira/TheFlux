@@ -14,6 +14,12 @@ namespace u2x.TheFlux.dao
     
     public partial class tf_mensalidade
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tf_mensalidade()
+        {
+            this.tf_pagseguro_pagamento = new HashSet<tf_pagseguro_pagamento>();
+        }
+    
         public int id { get; set; }
         public Nullable<int> id_aluno { get; set; }
         public Nullable<decimal> valor { get; set; }
@@ -24,5 +30,7 @@ namespace u2x.TheFlux.dao
     
         public virtual tf_aluno tf_aluno { get; set; }
         public virtual tf_tipo_pagamento tf_tipo_pagamento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tf_pagseguro_pagamento> tf_pagseguro_pagamento { get; set; }
     }
 }

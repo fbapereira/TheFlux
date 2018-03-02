@@ -9,6 +9,7 @@
     <Property Name="cpf" Type="varchar" MaxLength="50" />
     <Property Name="email" Type="varchar" MaxLength="200" />
     <Property Name="id_instituicao" Type="int" />
+    <Property Name="id_usuario" Type="int" />
   </EntityType>
   <EntityType Name="tf_error">
     <Key>
@@ -42,6 +43,12 @@
     <Property Name="documento" Type="varchar" MaxLength="50" />
     <Property Name="idTipo" Type="int" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'u2xMain.dbo.tf_instituicao_tipo' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tf_instituicao_tipo">
+          <Property Name="id" Type="int" />
+          <Property Name="nome" Type="varchar" MaxLength="200" />
+        </EntityType>-->
   <EntityType Name="tf_investimento_RF">
     <Key>
       <PropertyRef Name="id" />
@@ -284,6 +291,18 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tf_aluno_tf_usuario">
+    <End Role="tf_usuario" Type="Self.tf_usuario" Multiplicity="0..1" />
+    <End Role="tf_aluno" Type="Self.tf_aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_aluno">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tf_estrelas_tf_usuario">
     <End Role="tf_usuario" Type="Self.tf_usuario" Multiplicity="1" />
     <End Role="tf_estrelas" Type="Self.tf_estrelas" Multiplicity="*" />
@@ -454,6 +473,10 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
     </AssociationSet>
     <AssociationSet Name="FK_dbo_tf_aluno_tf_instituicao" Association="Self.FK_dbo_tf_aluno_tf_instituicao">
       <End Role="tf_instituicao" EntitySet="tf_instituicao" />
+      <End Role="tf_aluno" EntitySet="tf_aluno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tf_aluno_tf_usuario" Association="Self.FK_tf_aluno_tf_usuario">
+      <End Role="tf_usuario" EntitySet="tf_usuario" />
       <End Role="tf_aluno" EntitySet="tf_aluno" />
     </AssociationSet>
     <AssociationSet Name="FK_tf_estrelas_tf_usuario" Association="Self.FK_tf_estrelas_tf_usuario">

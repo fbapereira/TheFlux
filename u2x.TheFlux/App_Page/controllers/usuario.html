@@ -34,7 +34,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="usuario in lstUsuarioFiltered track by usuario.id" my-repeat-directive>
+                                <tr ng-repeat="usuario in lstUsuarioFiltered" my-repeat-directive>
                                     <td>{{usuario.login}}</td>
                                     <td>
                                         <i class="material-icons" ng-click="OpenChangePassword(usuario)" style="cursor: pointer">vpn_key</i>

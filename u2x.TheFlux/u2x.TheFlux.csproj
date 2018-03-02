@@ -379,6 +379,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Page\controllers\alunos.min.js">
+      <DependentUpon>alunos.js</DependentUpon>
+    </Content>
+    <Content Include="App_Page\controllers\dashboard_aluno.html" />
+    <Content Include="App_Page\controllers\dashboard_aluno.js" />
+    <Content Include="App_Page\controllers\dashboard_aluno.min.html">
+      <DependentUpon>dashboard_aluno.html</DependentUpon>
+    </Content>
+    <Content Include="App_Page\controllers\login.min.js">
+      <DependentUpon>login.js</DependentUpon>
+    </Content>
+    <Content Include="App_Page\controllers\mensalidade_aluno.html" />
+    <Content Include="App_Page\controllers\mensalidade_aluno.js" />
     <Content Include="App_Page\e2e\conf.js" />
     <Content Include="App_Page\controllers\add_movimentacao - Copy.min - Copy.html">
       <DependentUpon>mensalidade.html</DependentUpon>
@@ -472,11 +485,17 @@
     <Content Include="App_Page\css\style.css" />
     <Content Include="App_Page\directives\phoneDir.js" />
     <Content Include="App_Page\e2e\login.spec.js" />
+    <Content Include="App_Page\e2e\mensalidade.spec.js" />
+    <Content Include="App_Page\e2e\usuario.spec.js" />
+    <Content Include="App_Page\e2e\_func.js" />
     <Content Include="App_Page\favicon.png" />
     <Content Include="App_Page\img\icon.png" />
     <Content Include="App_Page\img\logo_header.png" />
     <Content Include="App_Page\img\menu.png" />
     <Content Include="App_Page\index.html" />
+    <Content Include="App_Page\index.min.html">
+      <DependentUpon>index.html</DependentUpon>
+    </Content>
     <Content Include="App_Page\js\angular.min.js" />
     <Content Include="App_Page\js\filter.js" />
     <Content Include="App_Page\js\filter.min.js">
@@ -490,6 +509,7 @@
     <Content Include="App_Page\js\materialize.js" />
     <Content Include="App_Page\js\materialize.min.js" />
     <Content Include="App_Page\js\moment.min.js" />
+    <Content Include="App_Page\js\PagSeguro.js" />
     <Content Include="App_Page\js\SAM.js" />
     <Content Include="App_Page\js\u2x.functions.js" />
     <Content Include="dao\dao.Context.tt">
@@ -537,10 +557,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Page\controllers\PagSeguro_CheckoutController.cs" />
     <Compile Include="controllers\Adicionar_EstrelaController.cs" />
     <Compile Include="controllers\Aluno_AdicionarController.cs" />
     <Compile Include="controllers\Aluno_EditarController.cs" />
     <Compile Include="controllers\Aluno_ObtemController.cs" />
+    <Compile Include="controllers\Aluno_ObtemPorUsuarioController.cs" />
     <Compile Include="controllers\Aporte_AdicionarController.cs" />
     <Compile Include="controllers\Aporte_ObtemController.cs" />
     <Compile Include="controllers\Aporte_RemoveController.cs" />
@@ -582,6 +604,7 @@
     <Compile Include="core\HunterTesouro.cs" />
     <Compile Include="core\HunterPoupanca.cs" />
     <Compile Include="core\Mailer.cs" />
+    <Compile Include="core\PagSeguro.cs" />
     <Compile Include="dao\Aluno.cs" />
     <Compile Include="dao\ContasFuturas.cs" />
     <Compile Include="dao\dao.Context.cs">
@@ -636,6 +659,9 @@
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\tf_pagamento.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\tf_pagseguro_pagamento.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\tf_parcela_futura.cs">

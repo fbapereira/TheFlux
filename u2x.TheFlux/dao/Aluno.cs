@@ -12,12 +12,17 @@ namespace u2x.TheFlux.dao
 
         public Int32 Criar(string nome, string cpf, string email, int id_instituicao)
         {
+
+            string senha = cpf.Replace(".", "").Substring(0, 5);
+            Int32 idUsuario = new Usuario().Add(email, senha, false, id_instituicao);
+
             tf_aluno aluno = new tf_aluno()
             {
                 nome = nome,
                 cpf = cpf,
                 email = email,
-                id_instituicao = id_instituicao
+                id_instituicao = id_instituicao,
+                id_usuario = idUsuario
 
             };
 
@@ -38,6 +43,15 @@ namespace u2x.TheFlux.dao
 
         }
 
+        public tf_aluno ObtemUnicoPorUsuario(int id_usuario)
+        {
+            return (from item in db.tf_aluno
+                    where item.id_usuario == id_usuario
+                    select item)
+                    .OrderByDescending(x => x.nome)
+            .ToList()[0];
+
+        }
 
         public tf_aluno ObtemUnico(int id_Aluno)
         {

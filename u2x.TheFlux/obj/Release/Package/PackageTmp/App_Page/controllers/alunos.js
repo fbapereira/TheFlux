@@ -104,7 +104,12 @@
         }).then(function sucess(response) {
             $("#mdlNovoAluno").modal("close");
             ObtemAlunos();
-            Materialize.toast('Aluno cadastrado com sucesso.', 4000);
+            if ($scope.isEditing) {
+                Materialize.toast('Aluno editado com sucesso.', 4000);
+            } else {
+                Materialize.toast('Aluno cadastrado com sucesso.', 4000);
+
+            }
             U2X_FechaLoader();
 
         }, function errorCallback(response) {

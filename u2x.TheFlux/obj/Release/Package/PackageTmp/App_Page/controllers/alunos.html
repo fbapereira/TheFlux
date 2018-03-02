@@ -34,8 +34,8 @@
                             <td>{{aluno.cpf}}</td>
                             <td>{{aluno.nome}}</td>
                             <td>{{aluno.email}}</td>
-                            <td><i class="material-icons" style="cursor: pointer;" ng-click="AbreModalCriaAluno(aluno);">create</i></td>
-                            <td><i class="material-icons" style="cursor: pointer;" ng-click="AddMensalidades(aluno);">payment</i></td>
+                            <td><i id="btn_edit_aluno" class="material-icons" style="cursor: pointer;" ng-click="AbreModalCriaAluno(aluno);">create</i></td>
+                            <td><i id="btn_more_aluno" class="material-icons" style="cursor: pointer;" ng-click="AddMensalidades(aluno);">payment</i></td>
                         </tr>
 
                     </tbody>
@@ -44,7 +44,7 @@
         </ul>
 
     </div>
-    <div class="fixed-action-btn ">
+    <div class="fixed-action-btn" id="btnAddAluno">
         <a class="btn-floating purple darken-3 " id="btnLancamento" ng-click="AbreModalCriaAluno();">
             <i class="material-icons">add</i>
         </a>
@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="row">
                     <div class="col l3 offset-l2 s12">
-                        <a ng-click="FechaModal();" class="btn-large waves-effect waves-light black" style="width: 100%; margin-bottom:15px">
+                        <a id="btn_voltar" ng-click="FechaModal();" class="btn-large waves-effect waves-light black" style="width: 100%; margin-bottom:15px">
                             Voltar
                         </a>
                     </div>
