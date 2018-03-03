@@ -15,20 +15,21 @@
                             <th>Data</th>
                             <th>Valor</th>
                             <th>Status</th>
+                            <th>Forma de Pagamento</th>
+                            <th>Data de Pagamento</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat=" mensalidade in mensalidades  track by mensalidade.id" my-repeat-directive style="color:{{getStyle(mensalidade)}}">
+                        <tr ng-repeat=" mensalidade in mensalidades" my-repeat-directive style="color:{{getStyle(mensalidade)}}">
                             <td>{{mensalidade.mes}}/{{mensalidade.ano}}</td>
                             <td>{{trataValores(mensalidade.valor,  2, 'R$ ',  '', ',', '.')}}</td>
                             <td>{{getStatus(mensalidade)}}</td>
-
+                            <td>{{getFormaPagamento(mensalidade)}}</td>
                             <td>
-                                <a class="btn-flat  purple-text" ng-if="mensalidade.dt_pagamento==null" ng-click="OpenPagamento(mensalidade)">Pagar </a>
                                 <p ng-if="mensalidade.dt_pagamento != null">{{dataFormat(mensalidade.dt_include)}}</p>
                             </td>
-
+                            <td><a class="btn-flat  purple-text" ng-if="mensalidade.dt_pagamento==null" ng-click="OpenPagamento(mensalidade)">Pagar </a>
                         </tr>
 
                     </tbody>

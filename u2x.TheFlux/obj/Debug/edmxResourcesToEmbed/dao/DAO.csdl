@@ -91,6 +91,7 @@
       <End Role="tf_parcela_futura" EntitySet="tf_parcela_futura" />
     </AssociationSet>
     <EntitySet Name="tf_pagseguro_notification" EntityType="u2xMainModel.tf_pagseguro_notification" />
+    <EntitySet Name="vw_mensalidade_pagamento" EntityType="u2xMainModel.vw_mensalidade_pagamento" />
   </EntityContainer>
   <EntityType Name="tf_aluno">
     <Key>
@@ -576,5 +577,19 @@
     <Property Name="code" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="isProcessed" Type="Boolean" />
     <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vw_mensalidade_pagamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id_aluno" Type="Int32" />
+    <Property Name="valor" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="id_tipo_pagamento" Type="Int32" />
+    <Property Name="dt_pagamento" Type="DateTime" Precision="3" />
+    <Property Name="mes" Type="Int32" />
+    <Property Name="ano" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="formaPagamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

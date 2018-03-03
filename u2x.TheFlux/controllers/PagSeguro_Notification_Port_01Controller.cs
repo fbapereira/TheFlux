@@ -23,7 +23,7 @@ namespace u2x.TheFlux.controllers
                 if (String.Equals("transaction", type))
                 {
                     new PagSeguroNotification().Criar(code, "PORT_1");
-                    new PagSeguro().ProcessNotification(code);
+                    new PagSeguro().ProcessNotification(code, "PORT_1");
                     new PagSeguroNotification().Finalizar(code);
 
                     return true;

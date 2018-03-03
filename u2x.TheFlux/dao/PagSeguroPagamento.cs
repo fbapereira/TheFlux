@@ -16,7 +16,9 @@ namespace u2x.TheFlux.dao
             {
                 code = code,
                 date = data,
-                idMensalidade = idMensalidade
+                idMensalidade = idMensalidade,
+                status = "Pagamento Cancelado",
+                statusDate = DateTime.Now
             };
 
             db.tf_pagseguro_pagamento.Add(obj);

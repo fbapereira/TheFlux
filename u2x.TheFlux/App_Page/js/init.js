@@ -78,8 +78,8 @@ app.factory('dataservice', function () {
     var aluno;
 
     return {
-        url: 'http://app.basicflux.com',
-        _url: 'http://localhost:64010',
+        _url: 'http://app.basicflux.com',
+        url: 'http://localhost:64010',
 
         setInstituicao: function (oInstituicao) {
             if (!oInstituicao || !oInstituicao.id) {

@@ -159,6 +159,8 @@
 
     $scope.getStatus = function (mensalidade) {
 
+        if (mensalidade.status) { return mensalidade.status }
+
         if (mensalidade.dt_pagamento) { return "Pago"; }
 
         var d = new Date();
@@ -171,6 +173,15 @@
         return "Aguardando";
 
     }
+
+    $scope.getFormaPagamento = function (mensalidade) {
+        if (mensalidade.formaPagamento) { return mensalidade.formaPagamento }
+
+        if (mensalidade.dt_pagamento) { return "Pagamento Manual"; }
+
+        return ""
+    }
+
 
     $scope.getStyle = function (mensalidade) {
 

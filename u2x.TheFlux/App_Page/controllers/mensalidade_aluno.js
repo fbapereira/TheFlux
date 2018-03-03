@@ -37,6 +37,8 @@
 
     $scope.getStatus = function (mensalidade) {
 
+        if (mensalidade.status) { return mensalidade.status }
+
         if (mensalidade.dt_pagamento) { return "Pago"; }
 
         var d = new Date();
@@ -48,6 +50,14 @@
 
         return "Aguardando";
 
+    }
+
+    $scope.getFormaPagamento = function (mensalidade) {
+        if (mensalidade.formaPagamento) { return mensalidade.formaPagamento }
+
+        if (mensalidade.dt_pagamento) { return "Pagamento Manual"; }
+
+        return ""
     }
 
     $scope.getStyle = function (mensalidade) {
@@ -84,20 +94,28 @@
                 code: _code
             }, {
                     success: function (transactionCode) {
-                         var pagObj = {};
+                        var pagObj = {};
                         pagObj.code = _code
                         pagObj.codeResponse = transactionCode
-
+                        U2X_AbreLoader();
                         $http({
                             method: 'POST',
                             url: dataservice.url + "/api/PagSeguro_CheckoutSuccess",
                             data: pagObj
                         }).then(function sucess(response) {
-                            this.toasterService.pop('success', 'Pagamento realizado com sucesso, estamos processando.');
+                            mensalidade.code = transactionCode;
+                            $http({
+                                method: 'POST',
+                                url: dataservice.url + "/api/PagSeguro_Consult",
+                                data: mensalidade
+                            }).then(function sucess(response) {
+                                U2X_FechaLoader();
+                                Materialize.toast('Pagamento realizado com sucesso, estamos processando.', 4000);
+                            });
                         });
                     },
                     abort: function () {
-                        this.toasterService.pop('success', 'Pagamento cancelado.');
+                        Materialize.toast('Pagamento cancelado.', 4000);
                     }
                 });
             // Redirecionando o cliente caso o navegador não tenha suporte ao Lightbox

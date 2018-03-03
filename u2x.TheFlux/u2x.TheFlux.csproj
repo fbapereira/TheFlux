@@ -582,6 +582,7 @@
     <Compile Include="controllers\MovimentacaoPessoal_ObtemController.cs" />
     <Compile Include="controllers\Obtem_EstrelaController.cs" />
     <Compile Include="controllers\PagSeguro_CheckoutSuccessController.cs" />
+    <Compile Include="controllers\PagSeguro_ConsultController.cs" />
     <Compile Include="controllers\PagSeguro_Notification_Port_01Controller.cs" />
     <Compile Include="controllers\ParcelaFutura_ComprovanteController.cs" />
     <Compile Include="controllers\ParcelaFutura_CriarController.cs" />
@@ -629,6 +630,7 @@
     <Compile Include="dao\Estrela.cs" />
     <Compile Include="dao\Instituicao.cs" />
     <Compile Include="dao\Mensalidade.cs" />
+    <Compile Include="dao\MensalidadeStatus.cs" />
     <Compile Include="dao\Movimentacao.cs" />
     <Compile Include="dao\PagSeguroNotification.cs" />
     <Compile Include="dao\PagSeguroPagamento.cs" />
@@ -697,6 +699,9 @@
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\vw_email_conta_a_receber.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\vw_mensalidade_pagamento.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\vw_registro.cs">

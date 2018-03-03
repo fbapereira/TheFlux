@@ -239,6 +239,29 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
     <Property Name="dt_include" Type="date" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6013: The table/view 'u2xMain.dbo.vw_email_mensalidade' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_email_mensalidade">
+          <Property Name="email" Type="varchar" MaxLength="200" />
+          <Property Name="conta" Type="varchar" MaxLength="73" />
+          <Property Name="valor" Type="decimal" Precision="16" Scale="2" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'u2xMain.dbo.vw_mensalidade_pagamento' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_mensalidade_pagamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_aluno" Type="int" />
+    <Property Name="valor" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="id_tipo_pagamento" Type="int" />
+    <Property Name="dt_pagamento" Type="datetime" />
+    <Property Name="mes" Type="int" />
+    <Property Name="ano" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="50" />
+    <Property Name="formaPagamento" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'u2xMain.dbo.vw_registro' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="vw_registro">
     <Key>
@@ -498,6 +521,19 @@ warning 6002: The table/view 'u2xMain.dbo.vw_registro' does not have a primary k
     [vw_email_conta_a_receber].[valor_base] AS [valor_base], 
     [vw_email_conta_a_receber].[dt_include] AS [dt_include]
     FROM [dbo].[vw_email_conta_a_receber] AS [vw_email_conta_a_receber]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_mensalidade_pagamento" EntityType="Self.vw_mensalidade_pagamento" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_mensalidade_pagamento].[id] AS [id], 
+    [vw_mensalidade_pagamento].[id_aluno] AS [id_aluno], 
+    [vw_mensalidade_pagamento].[valor] AS [valor], 
+    [vw_mensalidade_pagamento].[id_tipo_pagamento] AS [id_tipo_pagamento], 
+    [vw_mensalidade_pagamento].[dt_pagamento] AS [dt_pagamento], 
+    [vw_mensalidade_pagamento].[mes] AS [mes], 
+    [vw_mensalidade_pagamento].[ano] AS [ano], 
+    [vw_mensalidade_pagamento].[status] AS [status], 
+    [vw_mensalidade_pagamento].[formaPagamento] AS [formaPagamento]
+    FROM [dbo].[vw_mensalidade_pagamento] AS [vw_mensalidade_pagamento]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="vw_registro" EntityType="Self.vw_registro" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

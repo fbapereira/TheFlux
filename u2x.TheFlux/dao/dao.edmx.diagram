@@ -44,6 +44,7 @@
         <AssociationConnector Association="u2xMainModel.FK__tf_movime__id_us__15DA3E5D" />
         <AssociationConnector Association="u2xMainModel.FK__tf_parcel__id_mo__13F1F5EB" />
         <EntityTypeShape EntityType="u2xMainModel.tf_pagseguro_notification" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="u2xMainModel.vw_mensalidade_pagamento" Width="1.5" PointX="12.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

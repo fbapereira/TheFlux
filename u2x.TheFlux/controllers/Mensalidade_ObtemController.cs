@@ -10,15 +10,15 @@ namespace u2x.TheFlux.controllers
 {
     public class Mensalidade_ObtemController : ApiController
     {
-        public List<Mensalidade> Post([FromBody]tf_aluno value)
+        public List<MensalidadeStatus> Post([FromBody]tf_aluno value)
         {
             try
             {
-                List<Mensalidade> lstCov = new List<Mensalidade>();
-                List<tf_mensalidade> lst = new Mensalidade().Obtem((int)value.id);
+                List<MensalidadeStatus> lstCov = new List<MensalidadeStatus>();
+                List<vw_mensalidade_pagamento> lst = new MensalidadeStatus().Obtem((int)value.id);
                 lst.ForEach((x) =>
                 {
-                    lstCov.Add(new Mensalidade().ToMensalidade(x));
+                    lstCov.Add(new MensalidadeStatus().ToMensalidade(x));
                 });
                 return lstCov;
             }

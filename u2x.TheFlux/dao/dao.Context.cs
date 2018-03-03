@@ -47,5 +47,6 @@ namespace u2x.TheFlux.dao
         public virtual DbSet<vw_email_conta_a_receber> vw_email_conta_a_receber { get; set; }
         public virtual DbSet<vw_registro> vw_registro { get; set; }
         public virtual DbSet<tf_pagseguro_notification> tf_pagseguro_notification { get; set; }
+        public virtual DbSet<vw_mensalidade_pagamento> vw_mensalidade_pagamento { get; set; }
     }
 }
