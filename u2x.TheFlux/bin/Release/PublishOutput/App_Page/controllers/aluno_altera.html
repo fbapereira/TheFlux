@@ -1,0 +1,55 @@
+﻿<div class="section no-pad-bot " id="index-banner " ng-app="myApp" ng-controller="alunosCtrl">
+    <div class="container ">
+        <ul class="breadcrumb">
+            <li><a href="#!/dashboard_admin">Home</a></li>
+            <li>Alunos</li>
+        </ul>
+
+        <ul class="collection">
+            <li class="collection-item">
+                <i class="material-icons ">filter_list</i>Filtro
+            </li>
+            <li class="collection-item">
+                <div class="row">
+                    <div class="input-field col l8 offset-l2 s12">
+                        <input id="txtValor" class="validate" ng-model="aluno.nome">
+                        <label for="txtValor" class="active">Login</label>
+                    </div>
+                    <div class="input-field col l8 offset-l2 s12">
+                        <input id="txtValor" class="validate" ng-model="aluno.nome">
+                        <label for="txtValor" class="active">Nome</label>
+                    </div>
+                    <div class="input-field col l8 offset-l2 s12">
+                        <input id="txtValor" class="validate" ng-model="aluno.cpf" doc-dir>
+                        <label for="txtValor" class="active">CPF</label>
+                    </div>
+                    <div class="input-field col l8 offset-l2 s12">
+                        <input id="txtValor" class="validate" ng-model="aluno.email">
+                        <label for="txtValor" class="active">E-mail</label>
+                    </div>
+                    <div class="input-field col l8 offset-l2 s12">
+                        <input id="txtValor" class="validate" ng-model="aluno.email">
+                        <label for="txtValor" class="active">Senha</label>
+                    </div>
+                    <div class="input-field col l8 offset-l2 s12">
+                        <input id="txtValor" class="validate" ng-model="aluno.email">
+                        <label for="txtValor" class="active">Confirmacao de Senha</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l3 offset-l2 s12">
+                        <a id="btn_voltar" ng-click="FechaModal();" class="btn-large waves-effect waves-light black" style="width: 100%; margin-bottom:15px">
+                            Voltar
+                        </a>
+                    </div>
+                    <div class="col l3 offset-l2 s12" ng-if="isEditing">
+                        <a id="btn_entrar" ng-click="btnAdd()" class="btn-large waves-effect waves-light purple darken-3" style="width: 100%; margin-bottom:15px">
+                            Salvar
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>

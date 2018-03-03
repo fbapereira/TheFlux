@@ -34,6 +34,15 @@ namespace u2x.TheFlux.dao
 
         }
 
+        public List<tf_mensalidade> ObtemById(Int32 id_mensalidade)
+        {
+            return (from item in db.tf_mensalidade
+                    where item.id == id_mensalidade
+                    select item)
+         .OrderBy(c => c.ano).ThenBy(n => n.mes).ToList();
+
+        }
+
         public tf_mensalidade Pagar(Int32 id)
         {
             List<tf_mensalidade> lst = db.tf_mensalidade.Where(x => (x.id == id)).ToList<tf_mensalidade>();
@@ -67,6 +76,7 @@ namespace u2x.TheFlux.dao
                 ano = obj.ano,
                 valor = obj.valor,
                 dt_pagamento = obj.dt_pagamento,
+                id_aluno = obj.id_aluno,
             };
         }
     }

@@ -1,0 +1,39 @@
+﻿<div class="section no-pad-bot " id="index-banner " ng-app="myApp" ng-controller="mensalidadeAlunoCtrl">
+    <div class="container ">
+        <ul class="breadcrumb">
+            <li><a href="#!/dashboard_aluno">Home</a></li>
+            <li>Mensalidade</li>
+        </ul>
+        <ul class="collection">
+            <li class="collection-item">
+                <p ng-if="!mensalidades || mensalidades.length == 0">
+                    Nenhuma mensalidade foi encontrada
+                </p>
+                <table ng-if="mensalidades && mensalidades.length > 0" class="responsive-table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat=" mensalidade in mensalidades  track by mensalidade.id" my-repeat-directive style="color:{{getStyle(mensalidade)}}">
+                            <td>{{mensalidade.mes}}/{{mensalidade.ano}}</td>
+                            <td>{{trataValores(mensalidade.valor,  2, 'R$ ',  '', ',', '.')}}</td>
+                            <td>{{getStatus(mensalidade)}}</td>
+
+                            <td>
+                                <a class="btn-flat  purple-text" ng-if="mensalidade.dt_pagamento==null" ng-click="OpenPagamento(mensalidade)">Pagar </a>
+                                <p ng-if="mensalidade.dt_pagamento != null">{{dataFormat(mensalidade.dt_include)}}</p>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+    </div>
+</div>

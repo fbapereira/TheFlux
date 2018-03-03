@@ -38,11 +38,13 @@
         <EntityTypeShape EntityType="u2xMainModel.vw_email_conta_a_pagar" Width="2.625" PointX="5.375" PointY="6.75" />
         <EntityTypeShape EntityType="u2xMainModel.vw_email_conta_a_receber" Width="2.625" PointX="7.375" PointY="9.75" />
         <EntityTypeShape EntityType="u2xMainModel.tf_aluno" Width="1.5" PointX="2.25" PointY="14" />
-        <EntityTypeShape EntityType="u2xMainModel.tf_mensalidade" Width="1.5" PointX="8.25" PointY="13.625" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_mensalidade" Width="1.5" PointX="5.125" PointY="13.875" />
         <AssociationConnector Association="u2xMainModel.FK_dbo_tf_aluno_tf_instituicao" />
         <AssociationConnector Association="u2xMainModel.FK_tf_mensalidade_tf_aluno" />
         <AssociationConnector Association="u2xMainModel.FK_tf_mensalidade_tf_tipo_pagamento" />
         <AssociationConnector Association="u2xMainModel.FK_tf_aluno_tf_usuario" />
+        <EntityTypeShape EntityType="u2xMainModel.tf_pagseguro_pagamento" Width="1.5" PointX="7.375" PointY="13.875" />
+        <AssociationConnector Association="u2xMainModel.FK_tf_pagseguro_pagamento_tf_mensalidade" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -25,25 +25,27 @@ namespace u2x.TheFlux.dao
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tf_pagamento> tf_pagamento { get; set; }
-        public virtual DbSet<tf_tipo_movimentacao> tf_tipo_movimentacao { get; set; }
-        public virtual DbSet<tf_tipo_pagamento> tf_tipo_pagamento { get; set; }
-        public virtual DbSet<tf_instituicao> tf_instituicao { get; set; }
-        public virtual DbSet<tf_estrelas> tf_estrelas { get; set; }
-        public virtual DbSet<tf_tesouro> tf_tesouro { get; set; }
-        public virtual DbSet<tf_poupanca> tf_poupanca { get; set; }
+        public virtual DbSet<tf_aluno> tf_aluno { get; set; }
         public virtual DbSet<tf_error> tf_error { get; set; }
+        public virtual DbSet<tf_estrelas> tf_estrelas { get; set; }
+        public virtual DbSet<tf_instituicao> tf_instituicao { get; set; }
         public virtual DbSet<tf_investimento_RF> tf_investimento_RF { get; set; }
         public virtual DbSet<tf_investimento_RF_aporte> tf_investimento_RF_aporte { get; set; }
         public virtual DbSet<tf_investimento_RF_variacao> tf_investimento_RF_variacao { get; set; }
-        public virtual DbSet<tf_usuario> tf_usuario { get; set; }
-        public virtual DbSet<tf_parcela_futura> tf_parcela_futura { get; set; }
+        public virtual DbSet<tf_mensalidade> tf_mensalidade { get; set; }
         public virtual DbSet<tf_movimentacao> tf_movimentacao { get; set; }
         public virtual DbSet<tf_movimentacao_futura> tf_movimentacao_futura { get; set; }
+        public virtual DbSet<tf_pagamento> tf_pagamento { get; set; }
+        public virtual DbSet<tf_pagseguro_pagamento> tf_pagseguro_pagamento { get; set; }
+        public virtual DbSet<tf_parcela_futura> tf_parcela_futura { get; set; }
+        public virtual DbSet<tf_poupanca> tf_poupanca { get; set; }
+        public virtual DbSet<tf_tesouro> tf_tesouro { get; set; }
+        public virtual DbSet<tf_tipo_movimentacao> tf_tipo_movimentacao { get; set; }
+        public virtual DbSet<tf_tipo_pagamento> tf_tipo_pagamento { get; set; }
+        public virtual DbSet<tf_usuario> tf_usuario { get; set; }
         public virtual DbSet<vw_email_conta_a_pagar> vw_email_conta_a_pagar { get; set; }
         public virtual DbSet<vw_email_conta_a_receber> vw_email_conta_a_receber { get; set; }
-        public virtual DbSet<tf_aluno> tf_aluno { get; set; }
-        public virtual DbSet<tf_mensalidade> tf_mensalidade { get; set; }
-        public virtual DbSet<tf_pagseguro_pagamento> tf_pagseguro_pagamento { get; set; }
+        public virtual DbSet<vw_registro> vw_registro { get; set; }
+        public virtual DbSet<tf_pagseguro_notification> tf_pagseguro_notification { get; set; }
     }
 }

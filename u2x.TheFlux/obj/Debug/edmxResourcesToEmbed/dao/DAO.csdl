@@ -1,46 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="u2xMainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="tf_pagamento">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="id_instituicao" Type="Int32" Nullable="false" />
-    <Property Name="ano" Type="Int32" Nullable="false" />
-    <Property Name="mes" Type="Int32" Nullable="false" />
-    <Property Name="is_pago" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_tf_pagamento_tf_instituicao" FromRole="tf_pagamento" ToRole="tf_instituicao" />
-  </EntityType>
-  <EntityType Name="tf_tipo_movimentacao">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="descricao" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="id_instituicao" Type="Int32" Nullable="false" />
-    <Property Name="is_canceled" Type="Boolean" />
-    <NavigationProperty Name="tf_movimentacao" Relationship="u2xMainModel.FK_tf_movimentacao_tf_tipo_movimentacao" FromRole="tf_tipo_movimentacao" ToRole="tf_movimentacao" />
-    <NavigationProperty Name="tf_movimentacao_futura" Relationship="u2xMainModel.FK__tf_movime__id_ti__2739D489" FromRole="tf_tipo_movimentacao" ToRole="tf_movimentacao_futura" />
-  </EntityType>
-  <EntityType Name="tf_tipo_pagamento">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="id_instituicao" Type="Int32" />
-    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="cobranca_juros" Type="Decimal" Precision="10" Scale="5" />
-    <Property Name="is_ativo" Type="Boolean" />
-    <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_tf_tipo_pagamento_tf_instituicao" FromRole="tf_tipo_pagamento" ToRole="tf_instituicao" />
-    <NavigationProperty Name="tf_movimentacao" Relationship="u2xMainModel.FK_tf_movimentacao_tf_tipo_pagamento" FromRole="tf_tipo_pagamento" ToRole="tf_movimentacao" />
-    <NavigationProperty Name="tf_movimentacao_futura" Relationship="u2xMainModel.FK__tf_movime__id_ti__1DB06A4F" FromRole="tf_tipo_pagamento" ToRole="tf_movimentacao_futura" />
-    <NavigationProperty Name="tf_mensalidade" Relationship="u2xMainModel.FK_tf_mensalidade_tf_tipo_pagamento" FromRole="tf_tipo_pagamento" ToRole="tf_mensalidade" />
-  </EntityType>
   <EntityContainer Name="u2xMainEntities1" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="tf_pagamento" EntityType="Self.tf_pagamento" />
-    <EntitySet Name="tf_tipo_movimentacao" EntityType="Self.tf_tipo_movimentacao" />
-    <EntitySet Name="tf_tipo_pagamento" EntityType="Self.tf_tipo_pagamento" />
+    <EntitySet Name="tf_aluno" EntityType="u2xMainModel.tf_aluno" />
+    <EntitySet Name="tf_error" EntityType="u2xMainModel.tf_error" />
+    <EntitySet Name="tf_estrelas" EntityType="u2xMainModel.tf_estrelas" />
     <EntitySet Name="tf_instituicao" EntityType="u2xMainModel.tf_instituicao" />
+    <EntitySet Name="tf_investimento_RF" EntityType="u2xMainModel.tf_investimento_RF" />
+    <EntitySet Name="tf_investimento_RF_aporte" EntityType="u2xMainModel.tf_investimento_RF_aporte" />
+    <EntitySet Name="tf_investimento_RF_variacao" EntityType="u2xMainModel.tf_investimento_RF_variacao" />
+    <EntitySet Name="tf_mensalidade" EntityType="u2xMainModel.tf_mensalidade" />
+    <EntitySet Name="tf_movimentacao" EntityType="u2xMainModel.tf_movimentacao" />
+    <EntitySet Name="tf_movimentacao_futura" EntityType="u2xMainModel.tf_movimentacao_futura" />
+    <EntitySet Name="tf_pagamento" EntityType="u2xMainModel.tf_pagamento" />
+    <EntitySet Name="tf_pagseguro_pagamento" EntityType="u2xMainModel.tf_pagseguro_pagamento" />
+    <EntitySet Name="tf_parcela_futura" EntityType="u2xMainModel.tf_parcela_futura" />
+    <EntitySet Name="tf_poupanca" EntityType="u2xMainModel.tf_poupanca" />
+    <EntitySet Name="tf_tesouro" EntityType="u2xMainModel.tf_tesouro" />
+    <EntitySet Name="tf_tipo_movimentacao" EntityType="u2xMainModel.tf_tipo_movimentacao" />
+    <EntitySet Name="tf_tipo_pagamento" EntityType="u2xMainModel.tf_tipo_pagamento" />
+    <EntitySet Name="tf_usuario" EntityType="u2xMainModel.tf_usuario" />
+    <EntitySet Name="vw_email_conta_a_pagar" EntityType="u2xMainModel.vw_email_conta_a_pagar" />
+    <EntitySet Name="vw_email_conta_a_receber" EntityType="u2xMainModel.vw_email_conta_a_receber" />
+    <EntitySet Name="vw_registro" EntityType="u2xMainModel.vw_registro" />
+    <AssociationSet Name="FK_dbo_tf_aluno_tf_instituicao" Association="u2xMainModel.FK_dbo_tf_aluno_tf_instituicao">
+      <End Role="tf_instituicao" EntitySet="tf_instituicao" />
+      <End Role="tf_aluno" EntitySet="tf_aluno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tf_aluno_tf_usuario" Association="u2xMainModel.FK_tf_aluno_tf_usuario">
+      <End Role="tf_usuario" EntitySet="tf_usuario" />
+      <End Role="tf_aluno" EntitySet="tf_aluno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tf_mensalidade_tf_aluno" Association="u2xMainModel.FK_tf_mensalidade_tf_aluno">
+      <End Role="tf_aluno" EntitySet="tf_aluno" />
+      <End Role="tf_mensalidade" EntitySet="tf_mensalidade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tf_estrelas_tf_usuario" Association="u2xMainModel.FK_tf_estrelas_tf_usuario">
+      <End Role="tf_usuario" EntitySet="tf_usuario" />
+      <End Role="tf_estrelas" EntitySet="tf_estrelas" />
+    </AssociationSet>
     <AssociationSet Name="FK_tf_pagamento_tf_instituicao" Association="u2xMainModel.FK_tf_pagamento_tf_instituicao">
       <End Role="tf_instituicao" EntitySet="tf_instituicao" />
       <End Role="tf_pagamento" EntitySet="tf_pagamento" />
@@ -49,25 +46,19 @@
       <End Role="tf_instituicao" EntitySet="tf_instituicao" />
       <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
     </AssociationSet>
-    <EntitySet Name="tf_estrelas" EntityType="u2xMainModel.tf_estrelas" />
-    <EntitySet Name="tf_tesouro" EntityType="u2xMainModel.tf_tesouro" />
-    <EntitySet Name="tf_poupanca" EntityType="u2xMainModel.tf_poupanca" />
-    <EntitySet Name="tf_error" EntityType="u2xMainModel.tf_error" />
-    <EntitySet Name="tf_investimento_RF" EntityType="u2xMainModel.tf_investimento_RF" />
-    <EntitySet Name="tf_investimento_RF_aporte" EntityType="u2xMainModel.tf_investimento_RF_aporte" />
-    <EntitySet Name="tf_investimento_RF_variacao" EntityType="u2xMainModel.tf_investimento_RF_variacao" />
-    <EntitySet Name="tf_usuario" EntityType="u2xMainModel.tf_usuario" />
-    <AssociationSet Name="FK_tf_estrelas_tf_usuario" Association="u2xMainModel.FK_tf_estrelas_tf_usuario">
-      <End Role="tf_usuario" EntitySet="tf_usuario" />
-      <End Role="tf_estrelas" EntitySet="tf_estrelas" />
-    </AssociationSet>
     <AssociationSet Name="FK_tf_usuario_tf_instituicao" Association="u2xMainModel.FK_tf_usuario_tf_instituicao">
       <End Role="tf_instituicao" EntitySet="tf_instituicao" />
       <End Role="tf_usuario" EntitySet="tf_usuario" />
     </AssociationSet>
-    <EntitySet Name="tf_parcela_futura" EntityType="u2xMainModel.tf_parcela_futura" />
-    <EntitySet Name="tf_movimentacao" EntityType="u2xMainModel.tf_movimentacao" />
-    <AssociationSet Name="FK__tf_movime__id_pa__1332DBDC" Association="u2xMainModel.FK__tf_movime__id_pa__1332DBDC">
+    <AssociationSet Name="FK_tf_mensalidade_tf_tipo_pagamento" Association="u2xMainModel.FK_tf_mensalidade_tf_tipo_pagamento">
+      <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
+      <End Role="tf_mensalidade" EntitySet="tf_mensalidade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tf_pagseguro_pagamento_tf_mensalidade" Association="u2xMainModel.FK_tf_pagseguro_pagamento_tf_mensalidade">
+      <End Role="tf_mensalidade" EntitySet="tf_mensalidade" />
+      <End Role="tf_pagseguro_pagamento" EntitySet="tf_pagseguro_pagamento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tf_movime__id_pa__14E61A24" Association="u2xMainModel.FK__tf_movime__id_pa__14E61A24">
       <End Role="tf_parcela_futura" EntitySet="tf_parcela_futura" />
       <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />
     </AssociationSet>
@@ -83,126 +74,37 @@
       <End Role="tf_usuario" EntitySet="tf_usuario" />
       <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />
     </AssociationSet>
-    <EntitySet Name="tf_movimentacao_futura" EntityType="u2xMainModel.tf_movimentacao_futura" />
-    <AssociationSet Name="FK__tf_movime__id_ti__0E6E26BF" Association="u2xMainModel.FK__tf_movime__id_ti__0E6E26BF">
-      <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />
-      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
-    </AssociationSet>
-    <AssociationSet Name="FK__tf_movime__id_ti__1BC821DD" Association="u2xMainModel.FK__tf_movime__id_ti__1BC821DD">
-      <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />
-      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
-    </AssociationSet>
-    <AssociationSet Name="FK__tf_movime__id_ti__1CBC4616" Association="u2xMainModel.FK__tf_movime__id_ti__1CBC4616">
-      <End Role="tf_movimentacao" EntitySet="tf_movimentacao" />
-      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
-    </AssociationSet>
-    <AssociationSet Name="FK__tf_movime__id_ti__1DB06A4F" Association="u2xMainModel.FK__tf_movime__id_ti__1DB06A4F">
-      <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
-      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
-    </AssociationSet>
-    <AssociationSet Name="FK__tf_movime__id_us__1AD3FDA4" Association="u2xMainModel.FK__tf_movime__id_us__1AD3FDA4">
-      <End Role="tf_usuario" EntitySet="tf_usuario" />
-      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
-    </AssociationSet>
-    <AssociationSet Name="FK__tf_parcel__id_mo__123EB7A3" Association="u2xMainModel.FK__tf_parcel__id_mo__123EB7A3">
-      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
-      <End Role="tf_parcela_futura" EntitySet="tf_parcela_futura" />
-    </AssociationSet>
-    <AssociationSet Name="FK__tf_movime__id_ti__2739D489" Association="u2xMainModel.FK__tf_movime__id_ti__2739D489">
+    <AssociationSet Name="FK__tf_movime__id_ti__10216507" Association="u2xMainModel.FK__tf_movime__id_ti__10216507">
       <End Role="tf_tipo_movimentacao" EntitySet="tf_tipo_movimentacao" />
       <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
     </AssociationSet>
-    <EntitySet Name="vw_email_conta_a_pagar" EntityType="u2xMainModel.vw_email_conta_a_pagar" />
-    <EntitySet Name="vw_email_conta_a_receber" EntityType="u2xMainModel.vw_email_conta_a_receber" />
-    <EntitySet Name="tf_aluno" EntityType="u2xMainModel.tf_aluno" />
-    <EntitySet Name="tf_mensalidade" EntityType="u2xMainModel.tf_mensalidade" />
-    <AssociationSet Name="FK_dbo_tf_aluno_tf_instituicao" Association="u2xMainModel.FK_dbo_tf_aluno_tf_instituicao">
-      <End Role="tf_instituicao" EntitySet="tf_instituicao" />
-      <End Role="tf_aluno" EntitySet="tf_aluno" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tf_mensalidade_tf_aluno" Association="u2xMainModel.FK_tf_mensalidade_tf_aluno">
-      <End Role="tf_aluno" EntitySet="tf_aluno" />
-      <End Role="tf_mensalidade" EntitySet="tf_mensalidade" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tf_mensalidade_tf_tipo_pagamento" Association="u2xMainModel.FK_tf_mensalidade_tf_tipo_pagamento">
+    <AssociationSet Name="FK__tf_movime__id_ti__11158940" Association="u2xMainModel.FK__tf_movime__id_ti__11158940">
       <End Role="tf_tipo_pagamento" EntitySet="tf_tipo_pagamento" />
-      <End Role="tf_mensalidade" EntitySet="tf_mensalidade" />
+      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
     </AssociationSet>
-    <AssociationSet Name="FK_tf_aluno_tf_usuario" Association="u2xMainModel.FK_tf_aluno_tf_usuario">
+    <AssociationSet Name="FK__tf_movime__id_us__15DA3E5D" Association="u2xMainModel.FK__tf_movime__id_us__15DA3E5D">
       <End Role="tf_usuario" EntitySet="tf_usuario" />
-      <End Role="tf_aluno" EntitySet="tf_aluno" />
+      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
     </AssociationSet>
+    <AssociationSet Name="FK__tf_parcel__id_mo__13F1F5EB" Association="u2xMainModel.FK__tf_parcel__id_mo__13F1F5EB">
+      <End Role="tf_movimentacao_futura" EntitySet="tf_movimentacao_futura" />
+      <End Role="tf_parcela_futura" EntitySet="tf_parcela_futura" />
+    </AssociationSet>
+    <EntitySet Name="tf_pagseguro_notification" EntityType="u2xMainModel.tf_pagseguro_notification" />
   </EntityContainer>
-  <EntityType Name="tf_instituicao">
+  <EntityType Name="tf_aluno">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nome" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="tf_pagamento" Relationship="u2xMainModel.FK_tf_pagamento_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_pagamento" />
-    <NavigationProperty Name="tf_tipo_pagamento" Relationship="u2xMainModel.FK_tf_tipo_pagamento_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_tipo_pagamento" />
-    <Property Name="email" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
-    <Property Name="telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="tf_usuario" Relationship="u2xMainModel.FK_tf_usuario_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_usuario" />
-    <NavigationProperty Name="tf_aluno" Relationship="u2xMainModel.FK_dbo_tf_aluno_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_aluno" />
-    <Property Name="idTipo" Type="Int32" />
-  </EntityType>
-  <Association Name="FK_tf_pagamento_tf_instituicao">
-    <End Type="u2xMainModel.tf_instituicao" Role="tf_instituicao" Multiplicity="1" />
-    <End Type="u2xMainModel.tf_pagamento" Role="tf_pagamento" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_instituicao">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_pagamento">
-        <PropertyRef Name="id_instituicao" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tf_tipo_pagamento_tf_instituicao">
-    <End Type="u2xMainModel.tf_instituicao" Role="tf_instituicao" Multiplicity="0..1" />
-    <End Type="u2xMainModel.tf_tipo_pagamento" Role="tf_tipo_pagamento" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_instituicao">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_tipo_pagamento">
-        <PropertyRef Name="id_instituicao" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="tf_estrelas">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="telefone" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="is_processed" Type="Boolean" Nullable="false" />
-    <Property Name="id_usuario" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="tf_usuario" Relationship="u2xMainModel.FK_tf_estrelas_tf_usuario" FromRole="tf_estrelas" ToRole="tf_usuario" />
-  </EntityType>
-  <EntityType Name="tf_tesouro">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="vencimento" Type="DateTime" Precision="3" />
-    <Property Name="rendimento" Type="Decimal" Precision="16" Scale="2" />
-    <Property Name="valorMinimo" Type="Decimal" Precision="16" Scale="2" />
-    <Property Name="precoUnitario" Type="Decimal" Precision="16" Scale="2" />
-    <Property Name="loggedTime" Type="DateTime" Precision="3" />
-    <Property Name="tipoOperacao" Type="Int32" />
-  </EntityType>
-  <EntityType Name="tf_poupanca">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="aporte" Type="DateTime" Precision="0" />
-    <Property Name="rendimento" Type="Decimal" Precision="14" Scale="4" />
+    <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="cpf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="id_instituicao" Type="Int32" />
+    <Property Name="id_usuario" Type="Int32" />
+    <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_dbo_tf_aluno_tf_instituicao" FromRole="tf_aluno" ToRole="tf_instituicao" />
+    <NavigationProperty Name="tf_usuario" Relationship="u2xMainModel.FK_tf_aluno_tf_usuario" FromRole="tf_aluno" ToRole="tf_usuario" />
+    <NavigationProperty Name="tf_mensalidade" Relationship="u2xMainModel.FK_tf_mensalidade_tf_aluno" FromRole="tf_aluno" ToRole="tf_mensalidade" />
   </EntityType>
   <EntityType Name="tf_error">
     <Key>
@@ -214,6 +116,34 @@
     <Property Name="hora" Type="DateTime" Precision="3" />
     <Property Name="classe" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="metodo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tf_estrelas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="telefone" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="is_processed" Type="Boolean" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tf_usuario" Relationship="u2xMainModel.FK_tf_estrelas_tf_usuario" FromRole="tf_estrelas" ToRole="tf_usuario" />
+  </EntityType>
+  <EntityType Name="tf_instituicao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+    <Property Name="telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idTipo" Type="Int32" />
+    <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="token_dev" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tf_aluno" Relationship="u2xMainModel.FK_dbo_tf_aluno_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_aluno" />
+    <NavigationProperty Name="tf_pagamento" Relationship="u2xMainModel.FK_tf_pagamento_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_pagamento" />
+    <NavigationProperty Name="tf_tipo_pagamento" Relationship="u2xMainModel.FK_tf_tipo_pagamento_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_tipo_pagamento" />
+    <NavigationProperty Name="tf_usuario" Relationship="u2xMainModel.FK_tf_usuario_tf_instituicao" FromRole="tf_instituicao" ToRole="tf_usuario" />
   </EntityType>
   <EntityType Name="tf_investimento_RF">
     <Key>
@@ -242,58 +172,20 @@
     <Property Name="data" Type="DateTime" Precision="0" />
     <Property Name="valor" Type="Decimal" Precision="14" Scale="4" />
   </EntityType>
-  <EntityType Name="tf_usuario">
+  <EntityType Name="tf_mensalidade">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="id_instituicao" Type="Int32" Nullable="false" />
-    <Property Name="login" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="senha" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="isAdmin" Type="Boolean" />
-    <NavigationProperty Name="tf_estrelas" Relationship="u2xMainModel.FK_tf_estrelas_tf_usuario" FromRole="tf_usuario" ToRole="tf_estrelas" />
-    <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_tf_usuario_tf_instituicao" FromRole="tf_usuario" ToRole="tf_instituicao" />
-    <NavigationProperty Name="tf_movimentacao" Relationship="u2xMainModel.FK_tf_movimentacao_tf_usuario" FromRole="tf_usuario" ToRole="tf_movimentacao" />
-    <NavigationProperty Name="tf_movimentacao_futura" Relationship="u2xMainModel.FK__tf_movime__id_us__1AD3FDA4" FromRole="tf_usuario" ToRole="tf_movimentacao_futura" />
-    <NavigationProperty Name="tf_aluno" Relationship="u2xMainModel.FK_tf_aluno_tf_usuario" FromRole="tf_usuario" ToRole="tf_aluno" />
-  </EntityType>
-  <Association Name="FK_tf_estrelas_tf_usuario">
-    <End Type="u2xMainModel.tf_usuario" Role="tf_usuario" Multiplicity="1" />
-    <End Type="u2xMainModel.tf_estrelas" Role="tf_estrelas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_usuario">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_estrelas">
-        <PropertyRef Name="id_usuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tf_usuario_tf_instituicao">
-    <End Type="u2xMainModel.tf_instituicao" Role="tf_instituicao" Multiplicity="1" />
-    <End Type="u2xMainModel.tf_usuario" Role="tf_usuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_instituicao">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_usuario">
-        <PropertyRef Name="id_instituicao" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="tf_parcela_futura">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="id_movimentacao_futura" Type="Int32" />
-    <Property Name="dt_include" Type="DateTime" Precision="0" />
-    <Property Name="valor_real" Type="Decimal" Precision="16" Scale="2" />
-    <Property Name="is_pago" Type="Boolean" />
-    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="tf_movimentacao" Relationship="u2xMainModel.FK__tf_movime__id_pa__1332DBDC" FromRole="tf_parcela_futura" ToRole="tf_movimentacao" />
-    <NavigationProperty Name="tf_movimentacao_futura" Relationship="u2xMainModel.FK__tf_parcel__id_mo__123EB7A3" FromRole="tf_parcela_futura" ToRole="tf_movimentacao_futura" />
-    <Property Name="is_email_sent" Type="Boolean" />
+    <Property Name="id_aluno" Type="Int32" />
+    <Property Name="valor" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="id_tipo_pagamento" Type="Int32" />
+    <Property Name="dt_pagamento" Type="DateTime" Precision="3" />
+    <Property Name="mes" Type="Int32" />
+    <Property Name="ano" Type="Int32" />
+    <NavigationProperty Name="tf_aluno" Relationship="u2xMainModel.FK_tf_mensalidade_tf_aluno" FromRole="tf_mensalidade" ToRole="tf_aluno" />
+    <NavigationProperty Name="tf_tipo_pagamento" Relationship="u2xMainModel.FK_tf_mensalidade_tf_tipo_pagamento" FromRole="tf_mensalidade" ToRole="tf_tipo_pagamento" />
+    <NavigationProperty Name="tf_pagseguro_pagamento" Relationship="u2xMainModel.FK_tf_pagseguro_pagamento_tf_mensalidade" FromRole="tf_mensalidade" ToRole="tf_pagseguro_pagamento" />
   </EntityType>
   <EntityType Name="tf_movimentacao">
     <Key>
@@ -309,15 +201,278 @@
     <Property Name="id_tipo_pagamento" Type="Int32" />
     <Property Name="is_canceled" Type="Boolean" />
     <Property Name="id_parcela_futura" Type="Int32" />
-    <NavigationProperty Name="tf_parcela_futura" Relationship="u2xMainModel.FK__tf_movime__id_pa__1332DBDC" FromRole="tf_movimentacao" ToRole="tf_parcela_futura" />
+    <NavigationProperty Name="tf_parcela_futura" Relationship="u2xMainModel.FK__tf_movime__id_pa__14E61A24" FromRole="tf_movimentacao" ToRole="tf_parcela_futura" />
     <NavigationProperty Name="tf_tipo_movimentacao" Relationship="u2xMainModel.FK_tf_movimentacao_tf_tipo_movimentacao" FromRole="tf_movimentacao" ToRole="tf_tipo_movimentacao" />
     <NavigationProperty Name="tf_tipo_pagamento" Relationship="u2xMainModel.FK_tf_movimentacao_tf_tipo_pagamento" FromRole="tf_movimentacao" ToRole="tf_tipo_pagamento" />
     <NavigationProperty Name="tf_usuario" Relationship="u2xMainModel.FK_tf_movimentacao_tf_usuario" FromRole="tf_movimentacao" ToRole="tf_usuario" />
-    <NavigationProperty Name="tf_movimentacao_futura" Relationship="u2xMainModel.FK__tf_movime__id_ti__0E6E26BF" FromRole="tf_movimentacao" ToRole="tf_movimentacao_futura" />
-    <NavigationProperty Name="tf_movimentacao_futura1" Relationship="u2xMainModel.FK__tf_movime__id_ti__1BC821DD" FromRole="tf_movimentacao" ToRole="tf_movimentacao_futura" />
-    <NavigationProperty Name="tf_movimentacao_futura2" Relationship="u2xMainModel.FK__tf_movime__id_ti__1CBC4616" FromRole="tf_movimentacao" ToRole="tf_movimentacao_futura" />
   </EntityType>
-  <Association Name="FK__tf_movime__id_pa__1332DBDC">
+  <EntityType Name="tf_movimentacao_futura">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="id_tipo_movimentacao" Type="Int32" />
+    <Property Name="id_tipo_pagamento" Type="Int32" />
+    <Property Name="valor_base" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="is_entrada" Type="Boolean" />
+    <NavigationProperty Name="tf_tipo_movimentacao" Relationship="u2xMainModel.FK__tf_movime__id_ti__10216507" FromRole="tf_movimentacao_futura" ToRole="tf_tipo_movimentacao" />
+    <NavigationProperty Name="tf_tipo_pagamento" Relationship="u2xMainModel.FK__tf_movime__id_ti__11158940" FromRole="tf_movimentacao_futura" ToRole="tf_tipo_pagamento" />
+    <NavigationProperty Name="tf_usuario" Relationship="u2xMainModel.FK__tf_movime__id_us__15DA3E5D" FromRole="tf_movimentacao_futura" ToRole="tf_usuario" />
+    <NavigationProperty Name="tf_parcela_futura" Relationship="u2xMainModel.FK__tf_parcel__id_mo__13F1F5EB" FromRole="tf_movimentacao_futura" ToRole="tf_parcela_futura" />
+  </EntityType>
+  <EntityType Name="tf_pagamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_instituicao" Type="Int32" Nullable="false" />
+    <Property Name="ano" Type="Int32" Nullable="false" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+    <Property Name="is_pago" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_tf_pagamento_tf_instituicao" FromRole="tf_pagamento" ToRole="tf_instituicao" />
+  </EntityType>
+  <EntityType Name="tf_pagseguro_pagamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="codeResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dateResponse" Type="DateTime" Precision="3" />
+    <Property Name="idMensalidade" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="statusDate" Type="DateTime" Precision="3" />
+    <Property Name="formaPagamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tf_mensalidade" Relationship="u2xMainModel.FK_tf_pagseguro_pagamento_tf_mensalidade" FromRole="tf_pagseguro_pagamento" ToRole="tf_mensalidade" />
+  </EntityType>
+  <EntityType Name="tf_parcela_futura">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_movimentacao_futura" Type="Int32" />
+    <Property Name="dt_include" Type="DateTime" Precision="0" />
+    <Property Name="valor_real" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="is_pago" Type="Boolean" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="is_email_sent" Type="Boolean" />
+    <NavigationProperty Name="tf_movimentacao" Relationship="u2xMainModel.FK__tf_movime__id_pa__14E61A24" FromRole="tf_parcela_futura" ToRole="tf_movimentacao" />
+    <NavigationProperty Name="tf_movimentacao_futura" Relationship="u2xMainModel.FK__tf_parcel__id_mo__13F1F5EB" FromRole="tf_parcela_futura" ToRole="tf_movimentacao_futura" />
+  </EntityType>
+  <EntityType Name="tf_poupanca">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="aporte" Type="DateTime" Precision="0" />
+    <Property Name="rendimento" Type="Decimal" Precision="14" Scale="4" />
+  </EntityType>
+  <EntityType Name="tf_tesouro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="vencimento" Type="DateTime" Precision="3" />
+    <Property Name="rendimento" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="valorMinimo" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="precoUnitario" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="loggedTime" Type="DateTime" Precision="3" />
+    <Property Name="tipoOperacao" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tf_tipo_movimentacao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="id_instituicao" Type="Int32" Nullable="false" />
+    <Property Name="is_canceled" Type="Boolean" />
+    <NavigationProperty Name="tf_movimentacao" Relationship="u2xMainModel.FK_tf_movimentacao_tf_tipo_movimentacao" FromRole="tf_tipo_movimentacao" ToRole="tf_movimentacao" />
+    <NavigationProperty Name="tf_movimentacao_futura" Relationship="u2xMainModel.FK__tf_movime__id_ti__10216507" FromRole="tf_tipo_movimentacao" ToRole="tf_movimentacao_futura" />
+  </EntityType>
+  <EntityType Name="tf_tipo_pagamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_instituicao" Type="Int32" />
+    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cobranca_juros" Type="Decimal" Precision="10" Scale="5" />
+    <Property Name="is_ativo" Type="Boolean" />
+    <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_tf_tipo_pagamento_tf_instituicao" FromRole="tf_tipo_pagamento" ToRole="tf_instituicao" />
+    <NavigationProperty Name="tf_mensalidade" Relationship="u2xMainModel.FK_tf_mensalidade_tf_tipo_pagamento" FromRole="tf_tipo_pagamento" ToRole="tf_mensalidade" />
+    <NavigationProperty Name="tf_movimentacao" Relationship="u2xMainModel.FK_tf_movimentacao_tf_tipo_pagamento" FromRole="tf_tipo_pagamento" ToRole="tf_movimentacao" />
+    <NavigationProperty Name="tf_movimentacao_futura" Relationship="u2xMainModel.FK__tf_movime__id_ti__11158940" FromRole="tf_tipo_pagamento" ToRole="tf_movimentacao_futura" />
+  </EntityType>
+  <EntityType Name="tf_usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_instituicao" Type="Int32" Nullable="false" />
+    <Property Name="login" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="senha" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="isAdmin" Type="Boolean" />
+    <NavigationProperty Name="tf_aluno" Relationship="u2xMainModel.FK_tf_aluno_tf_usuario" FromRole="tf_usuario" ToRole="tf_aluno" />
+    <NavigationProperty Name="tf_estrelas" Relationship="u2xMainModel.FK_tf_estrelas_tf_usuario" FromRole="tf_usuario" ToRole="tf_estrelas" />
+    <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_tf_usuario_tf_instituicao" FromRole="tf_usuario" ToRole="tf_instituicao" />
+    <NavigationProperty Name="tf_movimentacao" Relationship="u2xMainModel.FK_tf_movimentacao_tf_usuario" FromRole="tf_usuario" ToRole="tf_movimentacao" />
+    <NavigationProperty Name="tf_movimentacao_futura" Relationship="u2xMainModel.FK__tf_movime__id_us__15DA3E5D" FromRole="tf_usuario" ToRole="tf_movimentacao_futura" />
+  </EntityType>
+  <EntityType Name="vw_email_conta_a_pagar">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="nome" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="login" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+    <Property Name="conta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="valor_base" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="dt_include" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="vw_email_conta_a_receber">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="nome" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="login" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+    <Property Name="conta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="valor_base" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="dt_include" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="vw_registro">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="isUsuario" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="isUsuario" Type="Int32" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="valor" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="isCartao" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_dbo_tf_aluno_tf_instituicao">
+    <End Type="u2xMainModel.tf_instituicao" Role="tf_instituicao" Multiplicity="0..1" />
+    <End Type="u2xMainModel.tf_aluno" Role="tf_aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_instituicao">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_aluno">
+        <PropertyRef Name="id_instituicao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tf_aluno_tf_usuario">
+    <End Type="u2xMainModel.tf_usuario" Role="tf_usuario" Multiplicity="0..1" />
+    <End Type="u2xMainModel.tf_aluno" Role="tf_aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_aluno">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tf_mensalidade_tf_aluno">
+    <End Type="u2xMainModel.tf_aluno" Role="tf_aluno" Multiplicity="0..1" />
+    <End Type="u2xMainModel.tf_mensalidade" Role="tf_mensalidade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_aluno">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_mensalidade">
+        <PropertyRef Name="id_aluno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tf_estrelas_tf_usuario">
+    <End Type="u2xMainModel.tf_usuario" Role="tf_usuario" Multiplicity="1" />
+    <End Type="u2xMainModel.tf_estrelas" Role="tf_estrelas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_estrelas">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tf_pagamento_tf_instituicao">
+    <End Type="u2xMainModel.tf_instituicao" Role="tf_instituicao" Multiplicity="1" />
+    <End Type="u2xMainModel.tf_pagamento" Role="tf_pagamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_instituicao">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_pagamento">
+        <PropertyRef Name="id_instituicao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tf_tipo_pagamento_tf_instituicao">
+    <End Type="u2xMainModel.tf_instituicao" Role="tf_instituicao" Multiplicity="0..1" />
+    <End Type="u2xMainModel.tf_tipo_pagamento" Role="tf_tipo_pagamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_instituicao">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_tipo_pagamento">
+        <PropertyRef Name="id_instituicao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tf_usuario_tf_instituicao">
+    <End Type="u2xMainModel.tf_instituicao" Role="tf_instituicao" Multiplicity="1" />
+    <End Type="u2xMainModel.tf_usuario" Role="tf_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_instituicao">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_usuario">
+        <PropertyRef Name="id_instituicao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tf_mensalidade_tf_tipo_pagamento">
+    <End Type="u2xMainModel.tf_tipo_pagamento" Role="tf_tipo_pagamento" Multiplicity="0..1" />
+    <End Type="u2xMainModel.tf_mensalidade" Role="tf_mensalidade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_tipo_pagamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_mensalidade">
+        <PropertyRef Name="id_tipo_pagamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tf_pagseguro_pagamento_tf_mensalidade">
+    <End Type="u2xMainModel.tf_mensalidade" Role="tf_mensalidade" Multiplicity="0..1" />
+    <End Type="u2xMainModel.tf_pagseguro_pagamento" Role="tf_pagseguro_pagamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_mensalidade">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_pagseguro_pagamento">
+        <PropertyRef Name="idMensalidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tf_movime__id_pa__14E61A24">
     <End Type="u2xMainModel.tf_parcela_futura" Role="tf_parcela_futura" Multiplicity="0..1" />
     <End Type="u2xMainModel.tf_movimentacao" Role="tf_movimentacao" Multiplicity="*" />
     <ReferentialConstraint>
@@ -365,98 +520,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="tf_movimentacao_futura">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="id_tipo_movimentacao" Type="Int32" />
-    <Property Name="valor_base" Type="Decimal" Precision="16" Scale="2" />
-    <Property Name="id_usuario" Type="Int32" />
-    <Property Name="is_entrada" Type="Boolean" />
-    <Property Name="id_tipo_pagamento" Type="Int32" />
-    <NavigationProperty Name="tf_movimentacao" Relationship="u2xMainModel.FK__tf_movime__id_ti__0E6E26BF" FromRole="tf_movimentacao_futura" ToRole="tf_movimentacao" />
-    <NavigationProperty Name="tf_movimentacao1" Relationship="u2xMainModel.FK__tf_movime__id_ti__1BC821DD" FromRole="tf_movimentacao_futura" ToRole="tf_movimentacao" />
-    <NavigationProperty Name="tf_movimentacao2" Relationship="u2xMainModel.FK__tf_movime__id_ti__1CBC4616" FromRole="tf_movimentacao_futura" ToRole="tf_movimentacao" />
-    <NavigationProperty Name="tf_tipo_pagamento" Relationship="u2xMainModel.FK__tf_movime__id_ti__1DB06A4F" FromRole="tf_movimentacao_futura" ToRole="tf_tipo_pagamento" />
-    <NavigationProperty Name="tf_usuario" Relationship="u2xMainModel.FK__tf_movime__id_us__1AD3FDA4" FromRole="tf_movimentacao_futura" ToRole="tf_usuario" />
-    <NavigationProperty Name="tf_parcela_futura" Relationship="u2xMainModel.FK__tf_parcel__id_mo__123EB7A3" FromRole="tf_movimentacao_futura" ToRole="tf_parcela_futura" />
-    <NavigationProperty Name="tf_tipo_movimentacao" Relationship="u2xMainModel.FK__tf_movime__id_ti__2739D489" FromRole="tf_movimentacao_futura" ToRole="tf_tipo_movimentacao" />
-  </EntityType>
-  <Association Name="FK__tf_movime__id_ti__0E6E26BF">
-    <End Type="u2xMainModel.tf_movimentacao" Role="tf_movimentacao" Multiplicity="0..1" />
-    <End Type="u2xMainModel.tf_movimentacao_futura" Role="tf_movimentacao_futura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_movimentacao">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_movimentacao_futura">
-        <PropertyRef Name="id_tipo_movimentacao" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__tf_movime__id_ti__1BC821DD">
-    <End Type="u2xMainModel.tf_movimentacao" Role="tf_movimentacao" Multiplicity="0..1" />
-    <End Type="u2xMainModel.tf_movimentacao_futura" Role="tf_movimentacao_futura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_movimentacao">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_movimentacao_futura">
-        <PropertyRef Name="id_tipo_movimentacao" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__tf_movime__id_ti__1CBC4616">
-    <End Type="u2xMainModel.tf_movimentacao" Role="tf_movimentacao" Multiplicity="0..1" />
-    <End Type="u2xMainModel.tf_movimentacao_futura" Role="tf_movimentacao_futura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_movimentacao">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_movimentacao_futura">
-        <PropertyRef Name="id_tipo_movimentacao" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__tf_movime__id_ti__1DB06A4F">
-    <End Type="u2xMainModel.tf_tipo_pagamento" Role="tf_tipo_pagamento" Multiplicity="0..1" />
-    <End Type="u2xMainModel.tf_movimentacao_futura" Role="tf_movimentacao_futura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_tipo_pagamento">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_movimentacao_futura">
-        <PropertyRef Name="id_tipo_pagamento" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__tf_movime__id_us__1AD3FDA4">
-    <End Type="u2xMainModel.tf_usuario" Role="tf_usuario" Multiplicity="0..1" />
-    <End Type="u2xMainModel.tf_movimentacao_futura" Role="tf_movimentacao_futura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_usuario">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_movimentacao_futura">
-        <PropertyRef Name="id_usuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__tf_parcel__id_mo__123EB7A3">
-    <End Type="u2xMainModel.tf_movimentacao_futura" Role="tf_movimentacao_futura" Multiplicity="0..1" />
-    <End Type="u2xMainModel.tf_parcela_futura" Role="tf_parcela_futura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_movimentacao_futura">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_parcela_futura">
-        <PropertyRef Name="id_movimentacao_futura" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__tf_movime__id_ti__2739D489">
+  <Association Name="FK__tf_movime__id_ti__10216507">
     <End Type="u2xMainModel.tf_tipo_movimentacao" Role="tf_tipo_movimentacao" Multiplicity="0..1" />
     <End Type="u2xMainModel.tf_movimentacao_futura" Role="tf_movimentacao_futura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -468,108 +532,49 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="vw_email_conta_a_pagar">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="login" />
-      <PropertyRef Name="nome" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="login" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="nome" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="email" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
-    <Property Name="conta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="valor_base" Type="Decimal" Precision="16" Scale="2" />
-    <Property Name="dt_include" Type="DateTime" Precision="0" />
-  </EntityType>
-  <EntityType Name="vw_email_conta_a_receber">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="login" />
-      <PropertyRef Name="nome" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="login" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="nome" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="email" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
-    <Property Name="conta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="valor_base" Type="Decimal" Precision="16" Scale="2" />
-    <Property Name="dt_include" Type="DateTime" Precision="0" />
-  </EntityType>
-  <EntityType Name="tf_aluno">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="cpf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="id_instituicao" Type="Int32" />
-    <NavigationProperty Name="tf_instituicao" Relationship="u2xMainModel.FK_dbo_tf_aluno_tf_instituicao" FromRole="tf_aluno" ToRole="tf_instituicao" />
-    <NavigationProperty Name="tf_mensalidade" Relationship="u2xMainModel.FK_tf_mensalidade_tf_aluno" FromRole="tf_aluno" ToRole="tf_mensalidade" />
-    <Property Name="id_usuario" Type="Int32" />
-    <NavigationProperty Name="tf_usuario" Relationship="u2xMainModel.FK_tf_aluno_tf_usuario" FromRole="tf_aluno" ToRole="tf_usuario" />
-  </EntityType>
-  <EntityType Name="tf_mensalidade">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="id_aluno" Type="Int32" />
-    <Property Name="valor" Type="Decimal" Precision="16" Scale="2" />
-    <Property Name="id_tipo_pagamento" Type="Int32" />
-    <Property Name="dt_pagamento" Type="DateTime" Precision="3" />
-    <Property Name="mes" Type="Int32" />
-    <Property Name="ano" Type="Int32" />
-    <NavigationProperty Name="tf_aluno" Relationship="u2xMainModel.FK_tf_mensalidade_tf_aluno" FromRole="tf_mensalidade" ToRole="tf_aluno" />
-    <NavigationProperty Name="tf_tipo_pagamento" Relationship="u2xMainModel.FK_tf_mensalidade_tf_tipo_pagamento" FromRole="tf_mensalidade" ToRole="tf_tipo_pagamento" />
-  </EntityType>
-  <Association Name="FK_dbo_tf_aluno_tf_instituicao">
-    <End Type="u2xMainModel.tf_instituicao" Role="tf_instituicao" Multiplicity="0..1" />
-    <End Type="u2xMainModel.tf_aluno" Role="tf_aluno" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_instituicao">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_aluno">
-        <PropertyRef Name="id_instituicao" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tf_mensalidade_tf_aluno">
-    <End Type="u2xMainModel.tf_aluno" Role="tf_aluno" Multiplicity="0..1" />
-    <End Type="u2xMainModel.tf_mensalidade" Role="tf_mensalidade" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tf_aluno">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="tf_mensalidade">
-        <PropertyRef Name="id_aluno" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tf_mensalidade_tf_tipo_pagamento">
+  <Association Name="FK__tf_movime__id_ti__11158940">
     <End Type="u2xMainModel.tf_tipo_pagamento" Role="tf_tipo_pagamento" Multiplicity="0..1" />
-    <End Type="u2xMainModel.tf_mensalidade" Role="tf_mensalidade" Multiplicity="*" />
+    <End Type="u2xMainModel.tf_movimentacao_futura" Role="tf_movimentacao_futura" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tf_tipo_pagamento">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="tf_mensalidade">
+      <Dependent Role="tf_movimentacao_futura">
         <PropertyRef Name="id_tipo_pagamento" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tf_aluno_tf_usuario">
+  <Association Name="FK__tf_movime__id_us__15DA3E5D">
     <End Type="u2xMainModel.tf_usuario" Role="tf_usuario" Multiplicity="0..1" />
-    <End Type="u2xMainModel.tf_aluno" Role="tf_aluno" Multiplicity="*" />
+    <End Type="u2xMainModel.tf_movimentacao_futura" Role="tf_movimentacao_futura" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tf_usuario">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="tf_aluno">
+      <Dependent Role="tf_movimentacao_futura">
         <PropertyRef Name="id_usuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__tf_parcel__id_mo__13F1F5EB">
+    <End Type="u2xMainModel.tf_movimentacao_futura" Role="tf_movimentacao_futura" Multiplicity="0..1" />
+    <End Type="u2xMainModel.tf_parcela_futura" Role="tf_parcela_futura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_movimentacao_futura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_parcela_futura">
+        <PropertyRef Name="id_movimentacao_futura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tf_pagseguro_notification">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="isProcessed" Type="Boolean" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

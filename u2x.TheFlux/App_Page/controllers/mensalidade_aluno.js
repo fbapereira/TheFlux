@@ -71,7 +71,39 @@
     }
 
     $scope.OpenPagamento = function (mensalidade) {
-        debugger;
-        CheckOut($http, "fba_pereira@hotmail.com", "4A82A4D0DCDF4D6D8140508ADE3EFC17", $scope.aluno.nome, $scope.aluno.email, [{ "nome": "Mensalidade de" + mensalidade.mes + "/" + mensalidade.ano, "valor": mensalidade.valor }])
+        U2X_AbreLoader();
+        $http({
+            method: 'POST',
+            url: dataservice.url + "/api/PagSeguro_Checkout",
+            data: mensalidade
+        }).then(function sucess(response) {
+            U2X_FechaLoader();
+            var _code = response.data;
+
+            var isOpenLightbox = PagSeguroLightbox({
+                code: _code
+            }, {
+                    success: function (transactionCode) {
+                         var pagObj = {};
+                        pagObj.code = _code
+                        pagObj.codeResponse = transactionCode
+
+                        $http({
+                            method: 'POST',
+                            url: dataservice.url + "/api/PagSeguro_CheckoutSuccess",
+                            data: pagObj
+                        }).then(function sucess(response) {
+                            this.toasterService.pop('success', 'Pagamento realizado com sucesso, estamos processando.');
+                        });
+                    },
+                    abort: function () {
+                        this.toasterService.pop('success', 'Pagamento cancelado.');
+                    }
+                });
+            // Redirecionando o cliente caso o navegador não tenha suporte ao Lightbox
+            if (!isOpenLightbox) {
+                alert("Seu navegador nao possui suporte para realizar o pagamento")
+            }
+        });
     }
-});
+}); 

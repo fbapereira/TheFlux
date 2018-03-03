@@ -382,6 +382,7 @@
     <Content Include="App_Page\controllers\alunos.min.js">
       <DependentUpon>alunos.js</DependentUpon>
     </Content>
+    <Content Include="App_Page\controllers\aluno_altera.html" />
     <Content Include="App_Page\controllers\dashboard_aluno.html" />
     <Content Include="App_Page\controllers\dashboard_aluno.js" />
     <Content Include="App_Page\controllers\dashboard_aluno.min.html">
@@ -557,7 +558,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Page\controllers\PagSeguro_CheckoutController.cs" />
+    <Compile Include="controllers\PagSeguro_CheckoutController.cs" />
     <Compile Include="controllers\Adicionar_EstrelaController.cs" />
     <Compile Include="controllers\Aluno_AdicionarController.cs" />
     <Compile Include="controllers\Aluno_EditarController.cs" />
@@ -580,6 +581,8 @@
     <Compile Include="controllers\Movimentacao_DeletarController.cs" />
     <Compile Include="controllers\MovimentacaoPessoal_ObtemController.cs" />
     <Compile Include="controllers\Obtem_EstrelaController.cs" />
+    <Compile Include="controllers\PagSeguro_CheckoutSuccessController.cs" />
+    <Compile Include="controllers\PagSeguro_Notification_Port_01Controller.cs" />
     <Compile Include="controllers\ParcelaFutura_ComprovanteController.cs" />
     <Compile Include="controllers\ParcelaFutura_CriarController.cs" />
     <Compile Include="controllers\ParcelaFutura_ObtemController.cs" />
@@ -627,6 +630,8 @@
     <Compile Include="dao\Instituicao.cs" />
     <Compile Include="dao\Mensalidade.cs" />
     <Compile Include="dao\Movimentacao.cs" />
+    <Compile Include="dao\PagSeguroNotification.cs" />
+    <Compile Include="dao\PagSeguroPagamento.cs" />
     <Compile Include="dao\RendaFixa.cs" />
     <Compile Include="dao\tf_aluno.cs">
       <DependentUpon>dao.tt</DependentUpon>
@@ -661,6 +666,9 @@
     <Compile Include="dao\tf_pagamento.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
+    <Compile Include="dao\tf_pagseguro_notification.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
     <Compile Include="dao\tf_pagseguro_pagamento.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
@@ -689,6 +697,9 @@
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\vw_email_conta_a_receber.cs">
+      <DependentUpon>dao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\vw_registro.cs">
       <DependentUpon>dao.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">

@@ -17,9 +17,12 @@ namespace u2x.TheFlux.dao
         public int id { get; set; }
         public string code { get; set; }
         public string date { get; set; }
-        public string resposta { get; set; }
-        public Nullable<System.DateTime> respostaDate { get; set; }
+        public string codeResponse { get; set; }
+        public Nullable<System.DateTime> dateResponse { get; set; }
         public Nullable<int> idMensalidade { get; set; }
+        public string status { get; set; }
+        public Nullable<System.DateTime> statusDate { get; set; }
+        public string formaPagamento { get; set; }
     
         public virtual tf_mensalidade tf_mensalidade { get; set; }
     }

@@ -89,6 +89,9 @@ namespace u2x.TheFlux.dao
                 id = obj.id,
                 nome = obj.nome,
                 cpf = obj.cpf,
+                id_usuario = obj.id_usuario,
+                id_instituicao = obj.id_instituicao,
+
                 email = obj.email,
             };
         }

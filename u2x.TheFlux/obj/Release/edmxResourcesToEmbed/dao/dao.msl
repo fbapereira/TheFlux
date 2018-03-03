@@ -36,6 +36,8 @@
     <EntitySetMapping Name="tf_instituicao">
       <EntityTypeMapping TypeName="u2xMainModel.tf_instituicao">
         <MappingFragment StoreEntitySet="tf_instituicao">
+          <ScalarProperty Name="token_dev" ColumnName="token_dev" />
+          <ScalarProperty Name="token" ColumnName="token" />
           <ScalarProperty Name="idTipo" ColumnName="idTipo" />
           <ScalarProperty Name="documento" ColumnName="documento" />
           <ScalarProperty Name="telefone" ColumnName="telefone" />
@@ -221,6 +223,21 @@
           <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
           <ScalarProperty Name="valor" ColumnName="valor" />
           <ScalarProperty Name="id_aluno" ColumnName="id_aluno" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_pagseguro_pagamento">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_pagseguro_pagamento">
+        <MappingFragment StoreEntitySet="tf_pagseguro_pagamento">
+          <ScalarProperty Name="formaPagamento" ColumnName="formaPagamento" />
+          <ScalarProperty Name="statusDate" ColumnName="statusDate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="idMensalidade" ColumnName="idMensalidade" />
+          <ScalarProperty Name="dateResponse" ColumnName="dateResponse" />
+          <ScalarProperty Name="codeResponse" ColumnName="codeResponse" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

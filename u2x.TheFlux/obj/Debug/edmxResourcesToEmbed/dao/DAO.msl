@@ -1,46 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="u2xMainModelStoreContainer" CdmEntityContainer="u2xMainEntities1">
-    <EntitySetMapping Name="tf_pagamento">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_pagamento">
-        <MappingFragment StoreEntitySet="tf_pagamento">
-          <ScalarProperty Name="id" ColumnName="id" />
+    <EntitySetMapping Name="tf_aluno">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_aluno">
+        <MappingFragment StoreEntitySet="tf_aluno">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
           <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
-          <ScalarProperty Name="ano" ColumnName="ano" />
-          <ScalarProperty Name="mes" ColumnName="mes" />
-          <ScalarProperty Name="is_pago" ColumnName="is_pago" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tf_tipo_movimentacao">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_tipo_movimentacao">
-        <MappingFragment StoreEntitySet="tf_tipo_movimentacao">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="descricao" ColumnName="descricao" />
-          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
-          <ScalarProperty Name="is_canceled" ColumnName="is_canceled" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tf_tipo_pagamento">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_tipo_pagamento">
-        <MappingFragment StoreEntitySet="tf_tipo_pagamento">
-          <ScalarProperty Name="is_ativo" ColumnName="is_ativo" />
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
-          <ScalarProperty Name="nome" ColumnName="nome" />
-          <ScalarProperty Name="cobranca_juros" ColumnName="cobranca_juros" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tf_instituicao">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_instituicao">
-        <MappingFragment StoreEntitySet="tf_instituicao">
-          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
-          <ScalarProperty Name="documento" ColumnName="documento" />
-          <ScalarProperty Name="telefone" ColumnName="telefone" />
           <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
           <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_error">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_error">
+        <MappingFragment StoreEntitySet="tf_error">
+          <ScalarProperty Name="metodo" ColumnName="metodo" />
+          <ScalarProperty Name="classe" ColumnName="classe" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="error" ColumnName="error" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -56,37 +36,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tf_tesouro">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_tesouro">
-        <MappingFragment StoreEntitySet="tf_tesouro">
-          <ScalarProperty Name="tipoOperacao" ColumnName="tipoOperacao" />
-          <ScalarProperty Name="loggedTime" ColumnName="loggedTime" />
-          <ScalarProperty Name="precoUnitario" ColumnName="precoUnitario" />
-          <ScalarProperty Name="valorMinimo" ColumnName="valorMinimo" />
-          <ScalarProperty Name="rendimento" ColumnName="rendimento" />
-          <ScalarProperty Name="vencimento" ColumnName="vencimento" />
-          <ScalarProperty Name="titulo" ColumnName="titulo" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tf_poupanca">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_poupanca">
-        <MappingFragment StoreEntitySet="tf_poupanca">
-          <ScalarProperty Name="rendimento" ColumnName="rendimento" />
-          <ScalarProperty Name="aporte" ColumnName="aporte" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tf_error">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_error">
-        <MappingFragment StoreEntitySet="tf_error">
-          <ScalarProperty Name="metodo" ColumnName="metodo" />
-          <ScalarProperty Name="classe" ColumnName="classe" />
-          <ScalarProperty Name="hora" ColumnName="hora" />
-          <ScalarProperty Name="usuario" ColumnName="usuario" />
-          <ScalarProperty Name="error" ColumnName="error" />
+    <EntitySetMapping Name="tf_instituicao">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_instituicao">
+        <MappingFragment StoreEntitySet="tf_instituicao">
+          <ScalarProperty Name="token_dev" ColumnName="token_dev" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+          <ScalarProperty Name="documento" ColumnName="documento" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -121,26 +80,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tf_usuario">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_usuario">
-        <MappingFragment StoreEntitySet="tf_usuario">
-          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
-          <ScalarProperty Name="senha" ColumnName="senha" />
-          <ScalarProperty Name="login" ColumnName="login" />
-          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tf_parcela_futura">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_parcela_futura">
-        <MappingFragment StoreEntitySet="tf_parcela_futura">
-          <ScalarProperty Name="is_email_sent" ColumnName="is_email_sent" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="is_pago" ColumnName="is_pago" />
-          <ScalarProperty Name="valor_real" ColumnName="valor_real" />
-          <ScalarProperty Name="dt_include" ColumnName="dt_include" />
-          <ScalarProperty Name="id_movimentacao_futura" ColumnName="id_movimentacao_futura" />
+    <EntitySetMapping Name="tf_mensalidade">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_mensalidade">
+        <MappingFragment StoreEntitySet="tf_mensalidade">
+          <ScalarProperty Name="ano" ColumnName="ano" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="dt_pagamento" ColumnName="dt_pagamento" />
+          <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="id_aluno" ColumnName="id_aluno" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -164,12 +112,106 @@
     <EntitySetMapping Name="tf_movimentacao_futura">
       <EntityTypeMapping TypeName="u2xMainModel.tf_movimentacao_futura">
         <MappingFragment StoreEntitySet="tf_movimentacao_futura">
-          <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
           <ScalarProperty Name="is_entrada" ColumnName="is_entrada" />
           <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
           <ScalarProperty Name="valor_base" ColumnName="valor_base" />
+          <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
           <ScalarProperty Name="id_tipo_movimentacao" ColumnName="id_tipo_movimentacao" />
           <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_pagamento">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_pagamento">
+        <MappingFragment StoreEntitySet="tf_pagamento">
+          <ScalarProperty Name="is_pago" ColumnName="is_pago" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="ano" ColumnName="ano" />
+          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_pagseguro_pagamento">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_pagseguro_pagamento">
+        <MappingFragment StoreEntitySet="tf_pagseguro_pagamento">
+          <ScalarProperty Name="formaPagamento" ColumnName="formaPagamento" />
+          <ScalarProperty Name="statusDate" ColumnName="statusDate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="idMensalidade" ColumnName="idMensalidade" />
+          <ScalarProperty Name="dateResponse" ColumnName="dateResponse" />
+          <ScalarProperty Name="codeResponse" ColumnName="codeResponse" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_parcela_futura">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_parcela_futura">
+        <MappingFragment StoreEntitySet="tf_parcela_futura">
+          <ScalarProperty Name="is_email_sent" ColumnName="is_email_sent" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="is_pago" ColumnName="is_pago" />
+          <ScalarProperty Name="valor_real" ColumnName="valor_real" />
+          <ScalarProperty Name="dt_include" ColumnName="dt_include" />
+          <ScalarProperty Name="id_movimentacao_futura" ColumnName="id_movimentacao_futura" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_poupanca">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_poupanca">
+        <MappingFragment StoreEntitySet="tf_poupanca">
+          <ScalarProperty Name="rendimento" ColumnName="rendimento" />
+          <ScalarProperty Name="aporte" ColumnName="aporte" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_tesouro">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_tesouro">
+        <MappingFragment StoreEntitySet="tf_tesouro">
+          <ScalarProperty Name="tipoOperacao" ColumnName="tipoOperacao" />
+          <ScalarProperty Name="loggedTime" ColumnName="loggedTime" />
+          <ScalarProperty Name="precoUnitario" ColumnName="precoUnitario" />
+          <ScalarProperty Name="valorMinimo" ColumnName="valorMinimo" />
+          <ScalarProperty Name="rendimento" ColumnName="rendimento" />
+          <ScalarProperty Name="vencimento" ColumnName="vencimento" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_tipo_movimentacao">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_tipo_movimentacao">
+        <MappingFragment StoreEntitySet="tf_tipo_movimentacao">
+          <ScalarProperty Name="is_canceled" ColumnName="is_canceled" />
+          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_tipo_pagamento">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_tipo_pagamento">
+        <MappingFragment StoreEntitySet="tf_tipo_pagamento">
+          <ScalarProperty Name="is_ativo" ColumnName="is_ativo" />
+          <ScalarProperty Name="cobranca_juros" ColumnName="cobranca_juros" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tf_usuario">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_usuario">
+        <MappingFragment StoreEntitySet="tf_usuario">
+          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -200,27 +242,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tf_aluno">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_aluno">
-        <MappingFragment StoreEntitySet="tf_aluno">
-          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-          <ScalarProperty Name="id_instituicao" ColumnName="id_instituicao" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="cpf" ColumnName="cpf" />
-          <ScalarProperty Name="nome" ColumnName="nome" />
+    <EntitySetMapping Name="vw_registro">
+      <EntityTypeMapping TypeName="u2xMainModel.vw_registro">
+        <MappingFragment StoreEntitySet="vw_registro">
+          <ScalarProperty Name="isCartao" ColumnName="isCartao" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="isUsuario" ColumnName="isUsuario" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tf_mensalidade">
-      <EntityTypeMapping TypeName="u2xMainModel.tf_mensalidade">
-        <MappingFragment StoreEntitySet="tf_mensalidade">
-          <ScalarProperty Name="ano" ColumnName="ano" />
-          <ScalarProperty Name="mes" ColumnName="mes" />
-          <ScalarProperty Name="dt_pagamento" ColumnName="dt_pagamento" />
-          <ScalarProperty Name="id_tipo_pagamento" ColumnName="id_tipo_pagamento" />
-          <ScalarProperty Name="valor" ColumnName="valor" />
-          <ScalarProperty Name="id_aluno" ColumnName="id_aluno" />
+    <EntitySetMapping Name="tf_pagseguro_notification">
+      <EntityTypeMapping TypeName="u2xMainModel.tf_pagseguro_notification">
+        <MappingFragment StoreEntitySet="tf_pagseguro_notification">
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="isProcessed" ColumnName="isProcessed" />
+          <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

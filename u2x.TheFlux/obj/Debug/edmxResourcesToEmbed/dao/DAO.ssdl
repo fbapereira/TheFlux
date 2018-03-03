@@ -36,19 +36,15 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id" Type="int" Nullable="false" />
     <Property Name="nome" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="800" />
     <Property Name="telefone" Type="varchar" MaxLength="20" />
     <Property Name="documento" Type="varchar" MaxLength="50" />
     <Property Name="idTipo" Type="int" />
+    <Property Name="token" Type="varchar" MaxLength="50" />
+    <Property Name="token_dev" Type="varchar" MaxLength="50" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'u2xMain.dbo.tf_instituicao_tipo' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="tf_instituicao_tipo">
-          <Property Name="id" Type="int" />
-          <Property Name="nome" Type="varchar" MaxLength="200" />
-        </EntityType>-->
   <EntityType Name="tf_investimento_RF">
     <Key>
       <PropertyRef Name="id" />
@@ -124,6 +120,29 @@ warning 6013: The table/view 'u2xMain.dbo.tf_instituicao_tipo' does not have a p
     <Property Name="ano" Type="int" Nullable="false" />
     <Property Name="mes" Type="int" Nullable="false" />
     <Property Name="is_pago" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tf_pagseguro_notification">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="500" />
+    <Property Name="isProcessed" Type="bit" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tf_pagseguro_pagamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="50" />
+    <Property Name="date" Type="varchar" MaxLength="50" />
+    <Property Name="codeResponse" Type="varchar(max)" />
+    <Property Name="dateResponse" Type="datetime" />
+    <Property Name="idMensalidade" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="50" />
+    <Property Name="statusDate" Type="datetime" />
+    <Property Name="formaPagamento" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tf_parcela_futura">
     <Key>
@@ -218,6 +237,21 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
     <Property Name="conta" Type="varchar" MaxLength="100" />
     <Property Name="valor_base" Type="decimal" Precision="16" Scale="2" />
     <Property Name="dt_include" Type="date" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'u2xMain.dbo.vw_registro' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_registro">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="isUsuario" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="isUsuario" Type="int" Nullable="false" />
+    <Property Name="login" Type="varchar" MaxLength="50" />
+    <Property Name="descricao" Type="varchar" MaxLength="100" />
+    <Property Name="valor" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="date" Type="datetime" />
+    <Property Name="isCartao" Type="bit" />
   </EntityType>
   <Association Name="FK__tf_movime__id_pa__14E61A24">
     <End Role="tf_parcela_futura" Type="Self.tf_parcela_futura" Multiplicity="0..1" />
@@ -387,6 +421,18 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tf_pagseguro_pagamento_tf_mensalidade">
+    <End Role="tf_mensalidade" Type="Self.tf_mensalidade" Multiplicity="0..1" />
+    <End Role="tf_pagseguro_pagamento" Type="Self.tf_pagseguro_pagamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tf_mensalidade">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tf_pagseguro_pagamento">
+        <PropertyRef Name="idMensalidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tf_tipo_pagamento_tf_instituicao">
     <End Role="tf_instituicao" Type="Self.tf_instituicao" Multiplicity="0..1" />
     <End Role="tf_tipo_pagamento" Type="Self.tf_tipo_pagamento" Multiplicity="*" />
@@ -423,6 +469,8 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
     <EntitySet Name="tf_movimentacao" EntityType="Self.tf_movimentacao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_movimentacao_futura" EntityType="Self.tf_movimentacao_futura" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_pagamento" EntityType="Self.tf_pagamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tf_pagseguro_notification" EntityType="Self.tf_pagseguro_notification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tf_pagseguro_pagamento" EntityType="Self.tf_pagseguro_pagamento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_parcela_futura" EntityType="Self.tf_parcela_futura" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_poupanca" EntityType="Self.tf_poupanca" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tf_tesouro" EntityType="Self.tf_tesouro" Schema="dbo" store:Type="Tables" />
@@ -450,6 +498,17 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
     [vw_email_conta_a_receber].[valor_base] AS [valor_base], 
     [vw_email_conta_a_receber].[dt_include] AS [dt_include]
     FROM [dbo].[vw_email_conta_a_receber] AS [vw_email_conta_a_receber]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_registro" EntityType="Self.vw_registro" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_registro].[id] AS [id], 
+    [vw_registro].[isUsuario] AS [isUsuario], 
+    [vw_registro].[login] AS [login], 
+    [vw_registro].[descricao] AS [descricao], 
+    [vw_registro].[valor] AS [valor], 
+    [vw_registro].[date] AS [date], 
+    [vw_registro].[isCartao] AS [isCartao]
+    FROM [dbo].[vw_registro] AS [vw_registro]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK__tf_movime__id_pa__14E61A24" Association="Self.FK__tf_movime__id_pa__14E61A24">
       <End Role="tf_parcela_futura" EntitySet="tf_parcela_futura" />
@@ -506,6 +565,10 @@ warning 6002: The table/view 'u2xMain.dbo.vw_email_conta_a_receber' does not hav
     <AssociationSet Name="FK_tf_pagamento_tf_instituicao" Association="Self.FK_tf_pagamento_tf_instituicao">
       <End Role="tf_instituicao" EntitySet="tf_instituicao" />
       <End Role="tf_pagamento" EntitySet="tf_pagamento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tf_pagseguro_pagamento_tf_mensalidade" Association="Self.FK_tf_pagseguro_pagamento_tf_mensalidade">
+      <End Role="tf_mensalidade" EntitySet="tf_mensalidade" />
+      <End Role="tf_pagseguro_pagamento" EntitySet="tf_pagseguro_pagamento" />
     </AssociationSet>
     <AssociationSet Name="FK_tf_tipo_pagamento_tf_instituicao" Association="Self.FK_tf_tipo_pagamento_tf_instituicao">
       <End Role="tf_instituicao" EntitySet="tf_instituicao" />

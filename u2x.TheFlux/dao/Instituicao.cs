@@ -71,6 +71,15 @@ namespace u2x.TheFlux.dao
             return ToInstituicao(lstInstituicao[0]);
         }
 
+        public Instituicao Get(Int32 idInstituicao)
+        {
+            List<tf_instituicao> lstInstituicao;
+            lstInstituicao = db.tf_instituicao.Where(instituicao => (instituicao.id == idInstituicao)).ToList<tf_instituicao>();
+            if (lstInstituicao.Count == 0) { return null; }
+
+            return ToInstituicao(lstInstituicao[0]);
+        }
+
         private Instituicao ToInstituicao(tf_instituicao obj)
         {
             return new Instituicao()
@@ -79,6 +88,7 @@ namespace u2x.TheFlux.dao
                 nome = obj.nome,
                 email = obj.email,
                 idTipo = obj.idTipo,
+                token = obj.token,
             };
         }
     }
